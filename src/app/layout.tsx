@@ -19,6 +19,13 @@ export const metadata: Metadata = {
   title: "The Divine Hima | Boutique Hotel in Dharamshala",
   description:
     "Experience luxury in the Himalayas at The Divine Hima — a boutique hotel in Dharamshala offering premium rooms, world-class dining, and breathtaking mountain views.",
+  icons: {
+    icon: [
+      { url: "https://thedivinehima.com/wp-content/uploads/2016/03/cropped-Divine-Hima-logo-512-32x32.png", sizes: "32x32" },
+      { url: "https://thedivinehima.com/wp-content/uploads/2016/03/cropped-Divine-Hima-logo-512-192x192.png", sizes: "192x192" },
+    ],
+    apple: "https://thedivinehima.com/wp-content/uploads/2016/03/cropped-Divine-Hima-logo-512-180x180.png",
+  },
 };
 
 export default function RootLayout({
