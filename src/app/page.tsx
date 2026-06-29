@@ -119,7 +119,7 @@ export default function HomePage() {
         requestAnimationFrame(() => {
           if (heroImageRef.current) {
             const scrollY = window.scrollY;
-            heroImageRef.current.style.transform = `translateY(${scrollY * 0.15}px)`;
+            heroImageRef.current.style.transform = `translateY(${scrollY * 0.15}px) scale(1.15)`;
           }
           ticking = false;
         });
