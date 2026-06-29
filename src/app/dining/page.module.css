@@ -1,0 +1,241 @@
+/* ═══════════════════════════════════════════════════════════════
+   THE DIVINE HIMA — DINING PAGE
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── INTRO ─── */
+
+.intro {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.introText {
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+  color: var(--color-text-secondary);
+  line-height: 1.85;
+  font-style: italic;
+}
+
+.introText::before,
+.introText::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--color-gold);
+  margin: 0 auto 1.75rem;
+}
+
+.introText::after {
+  margin: 1.75rem auto 0;
+}
+
+/* ─── VENUES WRAPPER ─── */
+
+.venues {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4rem, 8vw, 7rem);
+}
+
+/* ─── SINGLE VENUE CARD ─── */
+
+.venueRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.venueRowReversed {
+  composes: venueRow;
+}
+
+.venueRowReversed .venueImageWrap {
+  order: 2;
+}
+
+.venueRowReversed .venueBody {
+  order: 1;
+}
+
+/* ─── IMAGE ─── */
+
+.venueImageWrap {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-elevated);
+}
+
+/* Subtle gold line accent on left */
+.venueImageWrap::before {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  left: 0;
+  width: 3px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--color-gold),
+    transparent
+  );
+  z-index: 2;
+  border-radius: 2px;
+  opacity: 0.7;
+  transition: opacity var(--transition-slow);
+}
+
+.venueImageWrap:hover::before {
+  opacity: 1;
+}
+
+/* Reversed cards get the accent on the right */
+.venueRowReversed .venueImageWrap::before {
+  left: auto;
+  right: 0;
+}
+
+.venueImage {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.venueImageWrap:hover .venueImage {
+  transform: scale(1.04);
+}
+
+/* Hover glow */
+.venueImageWrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(229, 203, 134, 0.06) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+}
+
+.venueImageWrap:hover::after {
+  opacity: 1;
+}
+
+/* ─── TEXT BODY ─── */
+
+.venueBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.venueLabel {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.7rem;
+  color: var(--color-gold);
+  margin-bottom: 0.75rem;
+  position: relative;
+  padding-left: 28px;
+}
+
+.venueLabel::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 1px;
+  background: var(--color-gold-dim);
+}
+
+.venueName {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 400;
+  color: var(--color-text);
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+
+.venueDesc {
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  font-size: clamp(0.9rem, 1.4vw, 1rem);
+  margin-bottom: 1.5rem;
+}
+
+/* Decorative bottom line */
+.venueDivider {
+  width: 40px;
+  height: 1px;
+  background: var(--color-border-hover);
+  transition: width var(--transition-slow);
+}
+
+.venueRow:hover .venueDivider {
+  width: 80px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .venueRow,
+  .venueRowReversed {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Reset ordering on mobile — image always on top */
+  .venueRowReversed .venueImageWrap {
+    order: 0;
+  }
+
+  .venueRowReversed .venueBody {
+    order: 0;
+  }
+
+  /* Accent always on left on mobile */
+  .venueRowReversed .venueImageWrap::before {
+    left: 0;
+    right: auto;
+  }
+
+  .venueBody {
+    text-align: center;
+    align-items: center;
+  }
+
+  .venueLabel {
+    padding-left: 0;
+  }
+
+  .venueLabel::before {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .introText {
+    font-size: 0.98rem;
+  }
+
+  .venues {
+    gap: 3.5rem;
+  }
+}

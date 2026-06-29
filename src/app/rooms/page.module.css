@@ -1,0 +1,255 @@
+/* ═══════════════════════════════════════════════════
+   Rooms & Suites Page — The Divine Hima
+   ═══════════════════════════════════════════════════ */
+
+/* ── Room Detail Section ── */
+.roomSection {
+  padding: var(--section-padding);
+  position: relative;
+}
+
+.roomSection:nth-child(even) {
+  background: var(--color-bg-elevated);
+}
+
+.roomInner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.roomInner.reversed {
+  flex-direction: row-reverse;
+}
+
+/* ── Image Column ── */
+.imageCol {
+  flex: 1 1 50%;
+  min-width: 0;
+}
+
+.roomImage {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-elevated);
+  transition: transform var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+.roomImage:hover {
+  transform: scale(1.02);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Content Column ── */
+.contentCol {
+  flex: 1 1 50%;
+  min-width: 0;
+}
+
+.roomLabel {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  background: linear-gradient(135deg, rgba(229, 203, 134, 0.12), rgba(150, 122, 80, 0.08));
+  border: 1px solid rgba(229, 203, 134, 0.2);
+  padding: 0.35rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+}
+
+.roomTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+
+.roomDescription {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* ── Amenities Grid ── */
+.amenitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.amenityPill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.6rem 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  transition: border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.amenityPill:hover {
+  border-color: var(--color-border-hover);
+  background: var(--color-bg-card);
+  color: var(--color-text);
+}
+
+.amenityEmoji {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+/* Even sections already have elevated bg — pills need card bg */
+.roomSection:nth-child(even) .amenityPill {
+  background: var(--color-bg-card);
+}
+
+.roomSection:nth-child(even) .amenityPill:hover {
+  background: var(--color-bg);
+}
+
+/* ── Book Button ── */
+.bookBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.bookBtn::after {
+  content: '→';
+  transition: transform var(--transition-fast);
+}
+
+.bookBtn:hover::after {
+  transform: translateX(4px);
+}
+
+/* ── Divider ── */
+.sectionDivider {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-gold-dim));
+  border: none;
+  margin: 0 auto;
+}
+
+/* ── Bottom CTA ── */
+.ctaSection {
+  padding: var(--section-padding);
+  text-align: center;
+}
+
+.ctaInner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 3.5rem var(--container-padding);
+  background: linear-gradient(135deg, var(--color-bg-elevated), var(--color-bg-card));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaInner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+}
+
+.ctaText {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.ctaPhone {
+  font-family: var(--font-body);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  letter-spacing: 0.02em;
+}
+
+.ctaPhone:hover {
+  color: var(--color-secondary);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .roomInner {
+    gap: 2.5rem;
+  }
+
+  .roomImage {
+    height: 400px;
+  }
+
+  .amenitiesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .roomInner,
+  .roomInner.reversed {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .imageCol,
+  .contentCol {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .roomImage {
+    height: 300px;
+  }
+
+  .amenitiesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ctaInner {
+    padding: 2.5rem var(--container-padding);
+  }
+}
+
+@media (max-width: 480px) {
+  .amenitiesGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .amenityPill {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.65rem;
+  }
+}

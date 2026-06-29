@@ -1,142 +1,715 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
+/* ═══════════════════════════════════════════════════════════════
+   THE DIVINE HIMA — HOMEPAGE STYLES
+   ═══════════════════════════════════════════════════════════════ */
 
-  --text-primary: #000;
-  --text-secondary: #666;
+/* ─── SHARED UTILITIES ─── */
 
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
+.goldLine {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--color-gold);
+  margin-bottom: 1.25rem;
+}
 
+.sectionTitle,
+.sectionSubtitle {
+  text-align: center;
+}
+
+.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   1. HERO
+   ═══════════════════════════════════════════════════════════════ */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
-  flex: 1;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
 }
 
-.main {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
 }
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 9, 8, 0.3) 0%,
+    rgba(10, 9, 8, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 var(--container-padding);
+  animation: fadeInUp 1s ease-out both;
+}
+
+.heroLine {
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: var(--color-gold);
+  margin: 0 auto 1.5rem;
+}
+
+.heroBrand {
+  font-variant: small-caps;
+  letter-spacing: 0.3em;
+  font-size: 0.875rem;
+  color: var(--color-gold);
+  margin-bottom: 1rem;
+}
+
+.heroTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: #fff;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+}
+
+.heroSubtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 550px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.heroBtn {
+  min-width: 160px;
+}
+
+/* Scroll indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.5);
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   2. INTRO / ABOUT
+   ═══════════════════════════════════════════════════════════════ */
 
 .intro {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: 55% 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.introImageWrap {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* Gold accent border */
+.introImageWrap::before {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  bottom: 1rem;
+  left: -10px;
+  width: 3px;
+  background: var(--color-gold);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.introImage {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+.introText {
+  /* right column */
+}
+
+.preTitle {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  color: var(--color-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.introTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 400;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  line-height: 1.25;
+}
+
+.introBody {
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.statsRow {
+  display: flex;
+  gap: 0;
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.stat + .stat {
+  border-left: 1px solid var(--color-border);
+}
+
+.stat:first-child {
+  padding-left: 0;
   text-align: left;
-  gap: 24px;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
+.statNumber {
+  font-size: 2rem;
   font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
+  color: var(--color-gold);
+  font-family: var(--font-heading);
 }
 
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
+.statLabel {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
+/* ═══════════════════════════════════════════════════════════════
+   3. ROOMS SHOWCASE
+   ═══════════════════════════════════════════════════════════════ */
+
+.rooms {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
+.roomsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
 }
 
-.ctas a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
+.roomCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  aspect-ratio: 3 / 4;
+  display: block;
+  text-decoration: none;
+  color: inherit;
   cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+.roomImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+.roomCard:hover .roomImage {
+  transform: scale(1.05);
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+.roomOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 9, 8, 0.9) 0%,
+    rgba(10, 9, 8, 0.4) 40%,
+    transparent 70%
+  );
+  z-index: 1;
+}
+
+/* Gold top border that grows on hover */
+.roomGoldBorder {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: var(--color-gold);
+  z-index: 2;
+  transition: width 0.5s ease;
+  border-radius: 0 0 2px 2px;
+}
+
+.roomCard:hover .roomGoldBorder {
+  width: 100%;
+}
+
+.roomContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.roomType {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 0.5rem;
+}
+
+.roomName {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.roomDesc {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.roomLink {
+  font-size: 0.85rem;
+  color: var(--color-gold);
+  transition: letter-spacing var(--transition-base);
+}
+
+.roomCard:hover .roomLink {
+  letter-spacing: 0.05em;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   4. AMENITIES
+   ═══════════════════════════════════════════════════════════════ */
+
+.amenities {
+  background: var(--color-bg-elevated);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.amenitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.amenityCard {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  text-align: center;
+  transition:
+    border-color var(--transition-base),
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.amenityCard:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+
+.amenityIcon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.amenityTitle {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.amenityDesc {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   5. TESTIMONIALS
+   ═══════════════════════════════════════════════════════════════ */
+
+.testimonials {
+  background: var(--color-bg);
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.testimonialsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.testimonialCard {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  transition: border-color var(--transition-base), transform var(--transition-base);
+}
+
+.testimonialCard:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
+}
+
+.quoteIcon {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--color-secondary);
+  opacity: 0.3;
+  margin-bottom: 0.5rem;
+  user-select: none;
+}
+
+.testimonialText {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.stars {
+  color: var(--color-gold);
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.testimonialName {
+  font-weight: 600;
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.reviewsLink {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.reviewsLink a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color var(--transition-fast);
+}
+
+.reviewsLink a:hover {
+  color: var(--color-gold);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   6. SIGHTSEEING
+   ═══════════════════════════════════════════════════════════════ */
+
+.sightseeing {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.sightsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.sightCard {
+  position: relative;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  transition:
+    border-color var(--transition-base),
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.sightCard:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+}
+
+.distanceBadge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: rgba(150, 122, 80, 0.15);
+  color: var(--color-secondary);
+  font-size: 0.7rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.sightTitle {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  padding-right: 5rem;
+}
+
+.sightDesc {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   7. CTA
+   ═══════════════════════════════════════════════════════════════ */
+
+.cta {
+  position: relative;
+  padding: 6rem 0;
+  overflow: hidden;
+}
+
+.ctaBg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+}
+
+.ctaOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 9, 8, 0.82);
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.ctaTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+.ctaPhone {
+  margin-bottom: 2rem;
+}
+
+.ctaPhone a {
+  color: var(--color-gold);
+  font-size: 1.1rem;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color var(--transition-fast);
+}
+
+.ctaPhone a:hover {
+  color: var(--color-gold-dim);
+}
+
+.ctaBtn {
+  padding: 1rem 3rem !important;
+  font-size: 1rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Tablet — 1024px */
+@media (max-width: 1024px) {
+  .introGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+  .introImageWrap::before {
+    display: none;
+  }
+
+  .roomsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .amenitiesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .testimonialsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sightsGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+/* Large mobile — 768px */
+@media (max-width: 768px) {
+  .roomsGrid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .intro {
-    gap: 16px;
+  .amenitiesGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
+  .testimonialsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sightsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statsRow {
+    gap: 0;
+  }
+
+  .stat {
+    padding: 0 0.75rem;
+  }
+
+  .statNumber {
+    font-size: 1.5rem;
+  }
+
+  .heroTitle {
+    max-width: 500px;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+/* Small mobile — 480px */
+@media (max-width: 480px) {
+  .heroSubtitle {
+    font-size: 0.95rem;
   }
 
-  .page {
-    --background: #000;
-    --foreground: #000;
+  .heroButtons {
+    flex-direction: column;
+    align-items: center;
+  }
 
-    --text-primary: #ededed;
-    --text-secondary: #999;
+  .heroBtn {
+    width: 100%;
+    max-width: 260px;
+  }
 
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .amenitiesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .amenityCard {
+    padding: 1.5rem;
+  }
+
+  .testimonialCard {
+    padding: 1.75rem;
+  }
+
+  .sightCard {
+    padding: 1.5rem;
+  }
+
+  .ctaTitle {
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ctaBtn {
+    padding: 0.875rem 2.5rem !important;
   }
 }

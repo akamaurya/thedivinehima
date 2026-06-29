@@ -1,0 +1,239 @@
+/* ============================================
+   Header Component Styles
+   ============================================ */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: background var(--transition-base),
+    backdrop-filter var(--transition-base),
+    border-color var(--transition-base);
+  border-bottom: 1px solid transparent;
+}
+
+.header.scrolled {
+  background: var(--color-bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: var(--color-border);
+}
+
+.headerInner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* --- Logo --- */
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  letter-spacing: 0.15em;
+  color: var(--color-gold);
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+
+.logo:hover {
+  color: var(--color-gold);
+}
+
+/* --- Desktop Nav --- */
+.desktopNav {
+  display: flex;
+  align-items: center;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.navLink {
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+  padding: 0.25rem 0;
+  transition: color var(--transition-fast);
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1px;
+  background: var(--color-gold);
+  transition: width var(--transition-base);
+}
+
+.navLink:hover {
+  color: var(--color-gold);
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+.navLinkActive {
+  color: var(--color-gold);
+}
+
+.navLinkActive::after {
+  width: 16px;
+}
+
+/* --- Book Now Button --- */
+.bookBtn {
+  padding: 0.625rem 1.5rem;
+  font-size: 0.75rem;
+}
+
+/* --- Hamburger --- */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1010;
+}
+
+.hamburgerLine {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 1px;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+  transform-origin: center;
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerOpen .hamburgerLine:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- Mobile Overlay --- */
+.mobileOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+  z-index: 998;
+}
+
+.mobileOverlayVisible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- Mobile Nav --- */
+.mobileNav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  max-width: 80vw;
+  height: 100vh;
+  background: var(--color-bg-elevated);
+  border-left: 1px solid var(--color-border);
+  z-index: 999;
+  padding: 5rem 2rem 2rem;
+  transform: translateX(100%);
+  transition: transform var(--transition-luxe);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileNavOpen {
+  transform: translateX(0);
+}
+
+.mobileNavList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobileNavLink {
+  display: block;
+  padding: 0.875rem 0;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-border);
+  transition: color var(--transition-fast), padding-left var(--transition-fast);
+}
+
+.mobileNavLink:hover {
+  color: var(--color-gold);
+  padding-left: 0.5rem;
+}
+
+.mobileNavLinkActive {
+  color: var(--color-gold);
+}
+
+.mobileBookBtn {
+  margin-top: 2rem;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .desktopNav {
+    display: none;
+  }
+
+  .bookBtn {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .headerInner {
+    padding: 0.875rem 1.25rem;
+  }
+}
