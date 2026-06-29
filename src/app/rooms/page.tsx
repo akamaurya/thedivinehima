@@ -14,7 +14,7 @@ export default function RoomsPage() {
     <main className={styles.main}>
       <PageHero 
         title="Our Rooms & Suites" 
-        backgroundImage="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1920&q=80"
+        backgroundImage="https://thedivinehima.com/wp-content/uploads/2024/12/premium-3.jpg"
       />
 
       <section className={`section ${styles.roomsList}`}>
@@ -24,7 +24,7 @@ export default function RoomsPage() {
           <AnimateOnScroll>
             <div className={styles.roomItem}>
               <div className={styles.roomImageWrapper}>
-                <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1000&q=80" alt="Premium Room" className={styles.roomImage} />
+                <img src="https://thedivinehima.com/wp-content/uploads/2024/12/premium-1.jpg" alt="Premium Room" className={styles.roomImage} />
               </div>
               <div className={styles.roomContent}>
                 <span className={styles.roomLabel}>LUXURY</span>
@@ -49,7 +49,7 @@ export default function RoomsPage() {
           <AnimateOnScroll delay={150}>
             <div className={`${styles.roomItem} ${styles.roomItemReverse}`}>
               <div className={styles.roomImageWrapper}>
-                <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1000&q=80" alt="Superior Room" className={styles.roomImage} />
+                <img src="https://thedivinehima.com/wp-content/uploads/2024/12/luxury-1.jpg" alt="Superior Room" className={styles.roomImage} />
               </div>
               <div className={styles.roomContent}>
                 <span className={styles.roomLabel}>COMFORT</span>
@@ -74,7 +74,7 @@ export default function RoomsPage() {
           <AnimateOnScroll delay={300}>
             <div className={styles.roomItem}>
               <div className={styles.roomImageWrapper}>
-                <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1000&q=80" alt="Deluxe Room" className={styles.roomImage} />
+                <img src="https://thedivinehima.com/wp-content/uploads/2024/12/deluxe-2.jpg" alt="Deluxe Room" className={styles.roomImage} />
               </div>
               <div className={styles.roomContent}>
                 <span className={styles.roomLabel}>COZY</span>

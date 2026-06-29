@@ -13,7 +13,7 @@ export default function DiningPage() {
     <main className={styles.main}>
       <PageHero 
         title="Dining at The Divine Hima" 
-        backgroundImage="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80"
+        backgroundImage="https://thedivinehima.com/wp-content/uploads/2024/12/restro-icon.jpg"
       />
 
       <section className={`section ${styles.introSection}`}>
@@ -31,7 +31,7 @@ export default function DiningPage() {
           <AnimateOnScroll>
             <div className={styles.venueItem}>
               <div className={styles.venueImageWrapper}>
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1000&q=80" alt="The Restaurant" className={styles.venueImage} />
+                <img src="https://thedivinehima.com/wp-content/uploads/2024/12/restro-icon.jpg" alt="The Restaurant" className={styles.venueImage} />
               </div>
               <div className={styles.venueContent}>
                 <h2 className={styles.venueTitle}>The Restaurant</h2>
@@ -46,7 +46,7 @@ export default function DiningPage() {
           <AnimateOnScroll delay={150}>
             <div className={`${styles.venueItem} ${styles.venueItemReverse}`}>
               <div className={styles.venueImageWrapper}>
-                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1000&q=80" alt="Divine Café" className={styles.venueImage} />
+                <img src="https://thedivinehima.com/wp-content/uploads/2024/12/cafe.jpg" alt="Divine Café" className={styles.venueImage} />
               </div>
               <div className={styles.venueContent}>
                 <h2 className={styles.venueTitle}>Divine Café</h2>
@@ -61,7 +61,7 @@ export default function DiningPage() {
           <AnimateOnScroll delay={300}>
             <div className={styles.venueItem}>
               <div className={styles.venueImageWrapper}>
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1000&q=80" alt="Firewood Pizzeria" className={styles.venueImage} />
+                <img src="https://thedivinehima.com/wp-content/uploads/2024/12/pizerria.jpg" alt="Firewood Pizzeria" className={styles.venueImage} />
               </div>
               <div className={styles.venueContent}>
                 <h2 className={styles.venueTitle}>Firewood Pizzeria</h2>
@@ -76,7 +76,7 @@ export default function DiningPage() {
           <AnimateOnScroll delay={450}>
             <div className={`${styles.venueItem} ${styles.venueItemReverse}`}>
               <div className={styles.venueImageWrapper}>
-                <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1000&q=80" alt="The Bar By Far" className={styles.venueImage} />
+                <img src="https://thedivinehima.com/wp-content/uploads/2024/12/bar.jpg" alt="The Bar By Far" className={styles.venueImage} />
               </div>
               <div className={styles.venueContent}>
                 <h2 className={styles.venueTitle}>The Bar By Far</h2>

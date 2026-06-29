@@ -53,7 +53,7 @@ export default function Header() {
     >
       <div className={styles.headerInner}>
         <Link href="/" className={styles.logo}>
-          THE DIVINE HIMA
+          <img src="https://thedivinehima.com/wp-content/themes/calluna-child/img/logo1.png" alt="The Divine Hima" style={{ maxHeight: '40px' }} />
         </Link>
 
         <nav className={styles.desktopNav}>

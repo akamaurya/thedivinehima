@@ -9,19 +9,19 @@ const rooms = [
     name: 'Premium Rooms',
     type: 'LUXURY',
     description: 'Experience the ultimate comfort and elegance with our luxury hotel rooms.',
-    image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80',
+    image: 'https://thedivinehima.com/wp-content/uploads/2024/12/premium-1.jpg',
   },
   {
     name: 'Superior Rooms',
     type: 'COMFORT',
     description: 'Unmatched comfort and elegance in our premium rooms in Dharamshala.',
-    image: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80',
+    image: 'https://thedivinehima.com/wp-content/uploads/2024/12/luxury-1.jpg',
   },
   {
     name: 'Deluxe Rooms',
     type: 'COZY',
     description: 'Relax in comfort with modern amenities and breathtaking mountain views.',
-    image: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&q=80',
+    image: 'https://thedivinehima.com/wp-content/uploads/2024/12/deluxe-2.jpg',
   },
 ];
 
@@ -158,7 +158,7 @@ export default function HomePage() {
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
           <span className={styles.heroLine} />
-          <p className={styles.heroBrand}>THE DIVINE HIMA</p>
+          <img src="https://thedivinehima.com/wp-content/themes/calluna-child/img/logo1.png" alt="The Divine Hima" className={styles.heroBrand} style={{ margin: '0 auto 1.5rem', maxHeight: '60px' }} />
           <h1 className={styles.heroTitle}>Your Perfect Stay in Dharamshala</h1>
           <p className={styles.heroSubtitle}>
             Nestled in the serene landscapes of Dharamshala, experience a blend of luxury and
@@ -185,7 +185,7 @@ export default function HomePage() {
         <div className={`container ${styles.introGrid}`}>
           <div className={styles.introImageWrap}>
             <img
-              src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80"
+              src="https://thedivinehima.com/wp-content/uploads/2016/03/divine-hima0044.jpg"
               alt="The Divine Hima exterior"
               className={styles.introImage}
               loading="lazy"

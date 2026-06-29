@@ -14,7 +14,7 @@ export default function AboutPage() {
     <main className={styles.main}>
       <PageHero 
         title="Our Story" 
-        backgroundImage="https://images.unsplash.com/photo-1585136917935-1a7dd2e8e5b1?w=1920&q=80"
+        backgroundImage="https://thedivinehima.com/wp-content/uploads/2023/12/southcol-main.jpg"
       />
 
       <section className={`section ${styles.storySection}`}>
@@ -22,7 +22,7 @@ export default function AboutPage() {
           <AnimateOnScroll>
             <div className={styles.storyGrid}>
               <div className={styles.storyImageWrapper}>
-                <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&q=80" alt="Hotel exterior" className={styles.storyImage} />
+                <img src="https://thedivinehima.com/wp-content/uploads/2016/03/divine-hima0044.jpg" alt="Hotel exterior" className={styles.storyImage} />
                 <div className={styles.imageAccent}></div>
               </div>
               <div className={styles.storyContent}>

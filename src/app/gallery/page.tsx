@@ -4,18 +4,18 @@ import PageHero from '@/components/PageHero';
 import styles from './page.module.css';
 
 const images = [
-  { id: 1, category: 'property', src: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&q=80', alt: 'Property View' },
-  { id: 2, category: 'rooms', src: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80', alt: 'Premium Room' },
-  { id: 3, category: 'rooms', src: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80', alt: 'Superior Room' },
-  { id: 4, category: 'rooms', src: 'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600&q=80', alt: 'Deluxe Room' },
-  { id: 5, category: 'dining', src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80', alt: 'The Restaurant' },
-  { id: 6, category: 'dining', src: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=80', alt: 'Divine Cafe' },
-  { id: 7, category: 'dining', src: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80', alt: 'Firewood Pizzeria' },
-  { id: 8, category: 'dining', src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=600&q=80', alt: 'The Bar By Far' },
-  { id: 9, category: 'views', src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', alt: 'Mountain View' },
-  { id: 10, category: 'views', src: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600&q=80', alt: 'Himalayan Scenery' },
-  { id: 11, category: 'views', src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80', alt: 'Landscape' },
-  { id: 12, category: 'property', src: 'https://images.unsplash.com/photo-1585136917935-1a7dd2e8e5b1?w=600&q=80', alt: 'Hotel Exterior' },
+  { id: 1, category: 'property', src: 'https://thedivinehima.com/wp-content/uploads/2016/03/divine-hima0044.jpg', alt: 'Property View' },
+  { id: 2, category: 'rooms', src: 'https://thedivinehima.com/wp-content/uploads/2024/12/premium-1.jpg', alt: 'Premium Room' },
+  { id: 3, category: 'rooms', src: 'https://thedivinehima.com/wp-content/uploads/2024/12/luxury-1.jpg', alt: 'Superior Room' },
+  { id: 4, category: 'rooms', src: 'https://thedivinehima.com/wp-content/uploads/2024/12/deluxe-2.jpg', alt: 'Deluxe Room' },
+  { id: 5, category: 'dining', src: 'https://thedivinehima.com/wp-content/uploads/2024/12/restro-icon.jpg', alt: 'The Restaurant' },
+  { id: 6, category: 'dining', src: 'https://thedivinehima.com/wp-content/uploads/2024/12/cafe.jpg', alt: 'Divine Cafe' },
+  { id: 7, category: 'dining', src: 'https://thedivinehima.com/wp-content/uploads/2024/12/pizerria.jpg', alt: 'Firewood Pizzeria' },
+  { id: 8, category: 'dining', src: 'https://thedivinehima.com/wp-content/uploads/2024/12/bar.jpg', alt: 'The Bar By Far' },
+  { id: 9, category: 'views', src: 'https://thedivinehima.com/wp-content/uploads/2018/04/takling-la-1.jpg', alt: 'Mountain View' },
+  { id: 10, category: 'views', src: 'https://thedivinehima.com/wp-content/uploads/2023/12/southcol-main.jpg', alt: 'Himalayan Scenery' },
+  { id: 11, category: 'views', src: 'https://thedivinehima.com/wp-content/uploads/2024/12/luxury-hotel-in-dharamshala.jpg', alt: 'Landscape' },
+  { id: 12, category: 'property', src: 'https://thedivinehima.com/wp-content/uploads/2019/01/IMG_20181205_091933.jpg', alt: 'Hotel Exterior' },
 ];
 
 const categories = ['All', 'Property', 'Rooms', 'Dining', 'Views', 'Activities'];
@@ -33,7 +33,7 @@ export default function GalleryPage() {
       <PageHero 
         title="Gallery" 
         subtitle="A glimpse into The Divine Hima"
-        backgroundImage="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=80"
+        backgroundImage="https://thedivinehima.com/wp-content/uploads/2018/04/takling-la-1.jpg"
       />
 
       <section className={`section ${styles.gallerySection}`}>
