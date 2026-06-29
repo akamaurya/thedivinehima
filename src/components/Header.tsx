@@ -11,6 +11,7 @@ const navLinks = [
   { href: '/dining', label: 'Dining' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/about', label: 'About' },
+  { href: '/blog', label: 'Travel Guide' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -46,6 +47,9 @@ export default function Header() {
       document.body.style.overflow = '';
     };
   }, [mobileOpen]);
+
+
+  if (pathname.startsWith('/studio')) return null;
 
   return (
     <header

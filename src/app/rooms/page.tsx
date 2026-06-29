@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { client } from '../../../sanity/lib/client';
+import { urlForImage } from '../../../sanity/lib/image';
 import PageHero from '@/components/PageHero';
 import AnimateOnScroll from '@/components/AnimateOnScroll';
 import styles from './page.module.css';
@@ -9,7 +11,22 @@ export const metadata: Metadata = {
   description: 'Explore our premium, superior, and deluxe rooms with stunning mountain views at The Divine Hima, Dharamshala.',
 };
 
-export default function RoomsPage() {
+export const dynamic = 'force-static';
+
+export default async function RoomsPage() {
+  const query = `*[_type == "room"] | order(price desc) {
+    _id,
+    name,
+    "slug": slug.current,
+    roomType,
+    description,
+    images,
+    amenities,
+    price
+  }`;
+
+  const rooms = await client.fetch(query);
+
   return (
     <main className={styles.main}>
       <PageHero 
@@ -20,79 +37,33 @@ export default function RoomsPage() {
       <section className={`section ${styles.roomsList}`}>
         <div className="container">
           
-          {/* Premium Room */}
-          <AnimateOnScroll>
-            <div className={styles.roomItem}>
-              <div className={styles.roomImageWrapper}>
-                <img src="https://thedivinehima.com/wp-content/uploads/2024/12/premium-1.jpg" alt="Premium Room" className={styles.roomImage} />
-              </div>
-              <div className={styles.roomContent}>
-                <span className={styles.roomLabel}>LUXURY</span>
-                <h2 className={styles.roomTitle}>Premium Rooms</h2>
-                <p className={styles.roomDesc}>
-                  Experience the ultimate comfort and elegance with our luxury hotel rooms. Each premium room features handcrafted furniture, premium linens, and panoramic mountain views that will take your breath away.
-                </p>
-                <div className={styles.amenitiesGrid}>
-                  <div className={styles.amenityItem}>🏔️ Mountain View</div>
-                  <div className={styles.amenityItem}>🛏️ King Bed</div>
-                  <div className={styles.amenityItem}>📶 Free Wi-Fi</div>
-                  <div className={styles.amenityItem}>🛎️ Room Service</div>
-                  <div className={styles.amenityItem}>🍷 Mini Bar</div>
-                  <div className={styles.amenityItem}>🌅 Private Balcony</div>
-                </div>
-                <Link href="/contact" className="btn btn-primary">Book This Room</Link>
-              </div>
-            </div>
-          </AnimateOnScroll>
+          {rooms.map((room: any, index: number) => {
+            const isReverse = index % 2 !== 0;
+            const imageUrl = room.images && room.images.length > 0 
+              ? urlForImage(room.images[0]).url() 
+              : 'https://thedivinehima.com/wp-content/uploads/2024/12/premium-1.jpg'; // fallback
 
-          {/* Superior Room */}
-          <AnimateOnScroll delay={150}>
-            <div className={`${styles.roomItem} ${styles.roomItemReverse}`}>
-              <div className={styles.roomImageWrapper}>
-                <img src="https://thedivinehima.com/wp-content/uploads/2024/12/luxury-1.jpg" alt="Superior Room" className={styles.roomImage} />
-              </div>
-              <div className={styles.roomContent}>
-                <span className={styles.roomLabel}>COMFORT</span>
-                <h2 className={styles.roomTitle}>Superior Rooms</h2>
-                <p className={styles.roomDesc}>
-                  Unmatched comfort and elegance in our premium rooms. The superior rooms blend modern amenities with traditional Himachali warmth, creating a space that feels like home.
-                </p>
-                <div className={styles.amenitiesGrid}>
-                  <div className={styles.amenityItem}>🏔️ Mountain View</div>
-                  <div className={styles.amenityItem}>🛏️ Queen Bed</div>
-                  <div className={styles.amenityItem}>📶 Free Wi-Fi</div>
-                  <div className={styles.amenityItem}>🛎️ Room Service</div>
-                  <div className={styles.amenityItem}>💼 Work Desk</div>
-                  <div className={styles.amenityItem}>🛁 En-suite Bathroom</div>
+            return (
+              <AnimateOnScroll key={room._id} delay={index * 150}>
+                <div className={`${styles.roomItem} ${isReverse ? styles.roomItemReverse : ''}`}>
+                  <div className={styles.roomImageWrapper}>
+                    <img src={imageUrl} alt={room.name} className={styles.roomImage} />
+                  </div>
+                  <div className={styles.roomContent}>
+                    <span className={styles.roomLabel}>{room.roomType?.toUpperCase() || 'ROOM'}</span>
+                    <h2 className={styles.roomTitle}>{room.name}</h2>
+                    <p className={styles.roomDesc}>{room.description}</p>
+                    <div className={styles.amenitiesGrid}>
+                      {room.amenities?.slice(0, 6).map((amenity: string, i: number) => (
+                        <div key={i} className={styles.amenityItem}>✨ {amenity}</div>
+                      ))}
+                    </div>
+                    <Link href={`/rooms/${room.slug}`} className="btn btn-primary">View Details</Link>
+                  </div>
                 </div>
-                <Link href="/contact" className="btn btn-primary">Book This Room</Link>
-              </div>
-            </div>
-          </AnimateOnScroll>
-
-          {/* Deluxe Room */}
-          <AnimateOnScroll delay={300}>
-            <div className={styles.roomItem}>
-              <div className={styles.roomImageWrapper}>
-                <img src="https://thedivinehima.com/wp-content/uploads/2024/12/deluxe-2.jpg" alt="Deluxe Room" className={styles.roomImage} />
-              </div>
-              <div className={styles.roomContent}>
-                <span className={styles.roomLabel}>COZY</span>
-                <h2 className={styles.roomTitle}>Deluxe Rooms</h2>
-                <p className={styles.roomDesc}>
-                  Relax in comfort with our deluxe rooms featuring modern amenities and breathtaking views. Perfect for couples and solo travelers seeking a cozy retreat in the mountains.
-                </p>
-                <div className={styles.amenitiesGrid}>
-                  <div className={styles.amenityItem}>🌳 Garden View</div>
-                  <div className={styles.amenityItem}>🛏️ Double Bed</div>
-                  <div className={styles.amenityItem}>📶 Free Wi-Fi</div>
-                  <div className={styles.amenityItem}>🛎️ Room Service</div>
-                  <div className={styles.amenityItem}>☕ Tea/Coffee Maker</div>
-                </div>
-                <Link href="/contact" className="btn btn-primary">Book This Room</Link>
-              </div>
-            </div>
-          </AnimateOnScroll>
+              </AnimateOnScroll>
+            );
+          })}
 
         </div>
       </section>

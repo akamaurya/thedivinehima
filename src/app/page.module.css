@@ -1,25 +1,26 @@
 /* ═══════════════════════════════════════════════════════════════
-   THE DIVINE HIMA — HOMEPAGE STYLES
+   THE DIVINE HIMA — HOMEPAGE STYLES (Editorial/Magazine)
    ═══════════════════════════════════════════════════════════════ */
 
 /* ─── SHARED UTILITIES ─── */
 
-.goldLine {
-  display: block;
-  width: 40px;
-  height: 1px;
-  background: var(--color-gold);
-  margin-bottom: 1.25rem;
+.sectionTitle {
+  /* Inherits from globals.css */
 }
 
-.sectionTitle,
 .sectionSubtitle {
-  text-align: center;
+  /* Inherits from globals.css */
 }
 
 .visible {
   opacity: 1 !important;
   transform: translateY(0) !important;
+}
+
+.gridSystem {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2rem;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -29,95 +30,86 @@
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  padding-top: 5rem;
 }
 
-.heroBg {
-  position: absolute;
-  inset: 0;
-  background-image: url('https://thedivinehima.com/wp-content/uploads/2024/12/luxury-hotel-in-dharamshala.jpg');
-  background-size: cover;
-  background-position: center;
-  will-change: transform;
+.heroTopMeta {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem var(--container-padding);
+  border-bottom: 1px solid var(--color-border-dark);
 }
 
-.heroOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(10, 9, 8, 0.3) 0%,
-    rgba(10, 9, 8, 0.7) 100%
-  );
-  z-index: 1;
+.heroTopMeta span {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-muted);
 }
 
 .heroContent {
-  position: relative;
-  z-index: 2;
-  text-align: center;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   padding: 0 var(--container-padding);
   animation: fadeInUp 1s ease-out both;
 }
 
-.heroLine {
-  display: block;
-  width: 60px;
-  height: 1px;
-  background: var(--color-gold);
-  margin: 0 auto 1.5rem;
-}
-
-.heroBrand {
-  font-variant: small-caps;
-  letter-spacing: 0.3em;
-  font-size: 0.875rem;
-  color: var(--color-gold);
-  margin-bottom: 1rem;
+.heroTextCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 4rem;
 }
 
 .heroTitle {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(4rem, 8vw, 7rem);
   font-weight: 400;
-  line-height: 1.15;
-  color: #fff;
-  max-width: 800px;
-  margin: 0 auto 1.5rem;
+  line-height: 0.95;
+  color: var(--color-text);
+  margin: 2rem 0;
+  letter-spacing: -0.02em;
 }
 
 .heroSubtitle {
+  font-family: var(--font-body);
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 550px;
-  margin: 0 auto 2.5rem;
+  color: var(--color-text-secondary);
+  max-width: 500px;
   line-height: 1.7;
+  margin-bottom: 2.5rem;
 }
 
 .heroButtons {
   display: flex;
   gap: 1rem;
-  justify-content: center;
   flex-wrap: wrap;
 }
 
-.heroBtn {
-  min-width: 160px;
+.heroImageCol {
+  position: relative;
+  height: 100%;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
 }
 
-/* Scroll indicator */
-.scrollIndicator {
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  color: rgba(255, 255, 255, 0.5);
-  animation: float 3s ease-in-out infinite;
+.heroBg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%) contrast(1.1);
+}
+
+.heroBrand {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -128,105 +120,100 @@
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.8s ease, transform 0.8s ease;
+  border-top: 1px solid var(--color-border-dark);
 }
 
 .introGrid {
   display: grid;
-  grid-template-columns: 55% 1fr;
+  grid-template-columns: 4fr 8fr;
   gap: 4rem;
-  align-items: center;
-}
-
-.introImageWrap {
-  position: relative;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-}
-
-/* Gold accent border */
-.introImageWrap::before {
-  content: '';
-  position: absolute;
-  top: 1rem;
-  bottom: 1rem;
-  left: -10px;
-  width: 3px;
-  background: var(--color-gold);
-  border-radius: 2px;
-  z-index: 1;
-}
-
-.introImage {
-  width: 100%;
-  display: block;
-  border-radius: var(--radius-md);
-  object-fit: cover;
-  aspect-ratio: 4 / 3;
+  align-items: start;
 }
 
 .introText {
-  /* right column */
+  column-count: 2;
+  column-gap: 3rem;
+  position: relative;
+}
+
+.dropCap {
+  float: left;
+  font-family: var(--font-heading);
+  font-size: 5.5rem;
+  line-height: 0.8;
+  padding-top: 0.2rem;
+  padding-right: 0.5rem;
+  color: var(--color-bg-dark);
 }
 
 .preTitle {
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   font-size: 0.75rem;
-  color: var(--color-secondary);
-  margin-bottom: 0.75rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+  display: block;
 }
 
 .introTitle {
   font-family: var(--font-heading);
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 400;
   color: var(--color-text);
-  margin-bottom: 1.5rem;
-  line-height: 1.25;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+  grid-column: 1 / -1;
 }
 
 .introBody {
   color: var(--color-text-secondary);
   line-height: 1.75;
-  margin-bottom: 2rem;
-  font-size: 0.95rem;
+  font-size: 1rem;
+}
+
+.introImageWrap {
+  grid-column: 1 / -1;
+  margin-top: 4rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.introImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 21 / 9;
+  filter: grayscale(10%);
 }
 
 .statsRow {
   display: flex;
-  gap: 0;
+  gap: 3rem;
+  margin-top: 4rem;
+  border-top: 1px solid var(--color-border-dark);
+  border-bottom: 1px solid var(--color-border-dark);
+  padding: 2rem 0;
 }
 
 .stat {
-  flex: 1;
-  text-align: center;
-  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
 
-.stat + .stat {
-  border-left: 1px solid var(--color-border);
-}
-
-.stat:first-child {
-  padding-left: 0;
-  text-align: left;
-}
-
 .statNumber {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--color-gold);
+  font-size: 3rem;
+  font-weight: 400;
+  color: var(--color-text);
   font-family: var(--font-heading);
+  line-height: 1;
 }
 
 .statLabel {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--color-text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -237,246 +224,214 @@
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.8s ease, transform 0.8s ease;
+  background: var(--color-bg-elevated);
+}
+
+.roomsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--color-border-dark);
+  padding-bottom: 1rem;
 }
 
 .roomsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 3rem;
+  gap: 2rem;
 }
 
 .roomCard {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-  aspect-ratio: 3 / 4;
   display: block;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  group: true;
+}
+
+.roomImageWrap {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
 }
 
 .roomImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.8s ease;
+  filter: grayscale(20%);
 }
 
 .roomCard:hover .roomImage {
-  transform: scale(1.05);
-}
-
-.roomOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(10, 9, 8, 0.9) 0%,
-    rgba(10, 9, 8, 0.4) 40%,
-    transparent 70%
-  );
-  z-index: 1;
-}
-
-/* Gold top border that grows on hover */
-.roomGoldBorder {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 3px;
-  background: var(--color-gold);
-  z-index: 2;
-  transition: width 0.5s ease;
-  border-radius: 0 0 2px 2px;
-}
-
-.roomCard:hover .roomGoldBorder {
-  width: 100%;
-}
-
-.roomContent {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 2rem;
-  z-index: 2;
+  transform: scale(1.03);
+  filter: grayscale(0%);
 }
 
 .roomType {
-  display: inline-block;
-  font-size: 0.7rem;
+  display: block;
+  font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-text-muted);
   margin-bottom: 0.5rem;
 }
 
 .roomName {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 400;
-  color: #fff;
-  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  margin-bottom: 0.75rem;
 }
 
 .roomDesc {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--color-text-secondary);
-  line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
 
 .roomLink {
   font-size: 0.85rem;
-  color: var(--color-gold);
-  transition: letter-spacing var(--transition-base);
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid var(--color-border-dark);
+  padding-bottom: 0.25rem;
+  transition: color var(--transition-base), border-color var(--transition-base);
 }
 
 .roomCard:hover .roomLink {
-  letter-spacing: 0.05em;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   4. AMENITIES
+   4. AMENITIES (Editorial List)
    ═══════════════════════════════════════════════════════════════ */
 
 .amenities {
-  background: var(--color-bg-elevated);
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-.amenitiesGrid {
+.amenitiesLayout {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.25rem;
-  margin-top: 3rem;
+  grid-template-columns: 4fr 8fr;
+  gap: 4rem;
 }
 
-.amenityCard {
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 2rem;
-  text-align: center;
-  transition:
-    border-color var(--transition-base),
-    transform var(--transition-base),
-    box-shadow var(--transition-base);
+.amenitiesList {
+  display: flex;
+  flex-direction: column;
 }
 
-.amenityCard:hover {
-  border-color: var(--color-border-hover);
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card);
+.amenityItem {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.amenityItem:first-child {
+  border-top: 1px solid var(--color-border);
 }
 
 .amenityIcon {
-  font-size: 2.5rem;
-  display: block;
-  margin-bottom: 1rem;
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  color: var(--color-primary);
+  font-style: italic;
+  display: flex;
+  align-items: flex-start;
 }
 
-.amenityTitle {
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  color: var(--color-text);
-  font-size: 1rem;
+.amenityContent h4 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
 }
 
-.amenityDesc {
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  line-height: 1.6;
+.amenityContent p {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   5. TESTIMONIALS
+   5. TESTIMONIALS (Pull Quotes)
    ═══════════════════════════════════════════════════════════════ */
 
 .testimonials {
-  background: var(--color-bg);
+  background: var(--color-bg-dark);
+  color: var(--color-text-inverse);
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.testimonials .sectionTitle,
+.testimonials .sectionSubtitle {
+  color: var(--color-text-inverse);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .testimonialsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 3rem;
+  gap: 3rem;
+  margin-top: 4rem;
 }
 
 .testimonialCard {
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 2.5rem;
-  transition: border-color var(--transition-base), transform var(--transition-base);
-}
-
-.testimonialCard:hover {
-  border-color: var(--color-border-hover);
-  transform: translateY(-2px);
+  position: relative;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .quoteIcon {
-  display: block;
   font-family: var(--font-heading);
-  font-size: 4rem;
-  line-height: 1;
-  color: var(--color-secondary);
-  opacity: 0.3;
-  margin-bottom: 0.5rem;
-  user-select: none;
+  font-size: 5rem;
+  line-height: 0;
+  color: rgba(255, 255, 255, 0.1);
+  position: absolute;
+  top: 1rem;
+  left: -1rem;
 }
 
 .testimonialText {
-  font-size: 1rem;
-  color: var(--color-text-secondary);
-  line-height: 1.7;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  line-height: 1.5;
   font-style: italic;
   margin-bottom: 1.5rem;
-}
-
-.stars {
-  color: var(--color-gold);
-  font-size: 0.875rem;
-  margin-bottom: 0.75rem;
-  letter-spacing: 0.1em;
+  position: relative;
+  z-index: 1;
 }
 
 .testimonialName {
-  font-weight: 600;
-  color: var(--color-text);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .reviewsLink {
-  text-align: center;
-  margin-top: 2.5rem;
+  margin-top: 4rem;
+  text-align: right;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: 1rem;
 }
 
 .reviewsLink a {
-  color: var(--color-secondary);
-  text-decoration: none;
-  font-size: 0.95rem;
-  transition: color var(--transition-fast);
-}
-
-.reviewsLink a:hover {
-  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -491,225 +446,125 @@
 
 .sightsGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
   margin-top: 3rem;
 }
 
 .sightCard {
-  position: relative;
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 1.75rem;
-  transition:
-    border-color var(--transition-base),
-    transform var(--transition-base),
-    box-shadow var(--transition-base);
-}
-
-.sightCard:hover {
-  border-color: var(--color-border-hover);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-card);
+  border-left: 1px solid var(--color-border-dark);
+  padding-left: 2rem;
 }
 
 .distanceBadge {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  background: rgba(150, 122, 80, 0.15);
-  color: var(--color-secondary);
-  font-size: 0.7rem;
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  letter-spacing: 0.02em;
+  display: block;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
 }
 
 .sightTitle {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-size: 1.75rem;
   font-weight: 400;
-  margin-bottom: 0.5rem;
-  color: var(--color-text);
-  padding-right: 5rem;
+  margin-bottom: 0.75rem;
 }
 
 .sightDesc {
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-  line-height: 1.6;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   7. CTA
+   7. CTA (Full bleed text)
    ═══════════════════════════════════════════════════════════════ */
 
 .cta {
-  position: relative;
-  padding: 6rem 0;
-  overflow: hidden;
-}
-
-.ctaBg {
-  position: absolute;
-  inset: 0;
-  background-image: url('https://thedivinehima.com/wp-content/uploads/2024/12/luxury-2.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-.ctaOverlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 9, 8, 0.82);
+  padding: 8rem 0;
+  text-align: center;
+  border-top: 1px solid var(--color-border-dark);
 }
 
 .ctaContent {
-  position: relative;
-  z-index: 1;
-  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .ctaTitle {
   font-family: var(--font-heading);
-  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 400;
-  color: #fff;
-  margin-bottom: 1rem;
-  line-height: 1.25;
-}
-
-.ctaPhone {
+  line-height: 1.1;
   margin-bottom: 2rem;
 }
 
+.ctaPhone {
+  margin-bottom: 3rem;
+}
+
 .ctaPhone a {
-  color: var(--color-gold);
-  font-size: 1.1rem;
-  text-decoration: none;
-  letter-spacing: 0.05em;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-style: italic;
   transition: color var(--transition-fast);
 }
 
 .ctaPhone a:hover {
-  color: var(--color-gold-dim);
-}
-
-.ctaBtn {
-  padding: 1rem 3rem !important;
-  font-size: 1rem;
+  color: var(--color-primary);
 }
 
 /* ═══════════════════════════════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════════════════════════════ */
 
-/* Tablet — 1024px */
 @media (max-width: 1024px) {
+  .heroContent {
+    grid-template-columns: 1fr;
+  }
+  .heroTextCol {
+    padding-right: 0;
+    margin-bottom: 3rem;
+    align-items: center;
+    text-align: center;
+  }
+  .heroTitle {
+    font-size: clamp(3rem, 10vw, 5rem);
+  }
+  
   .introGrid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 2rem;
   }
-
-  .introImageWrap::before {
-    display: none;
+  
+  .amenitiesLayout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
-
-  .roomsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .amenitiesGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .testimonialsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .sightsGrid {
+  
+  .roomsGrid, .testimonialsGrid, .sightsGrid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* Large mobile — 768px */
 @media (max-width: 768px) {
-  .roomsGrid {
-    grid-template-columns: 1fr;
-    max-width: 420px;
-    margin-left: auto;
-    margin-right: auto;
+  .introText {
+    column-count: 1;
   }
-
-  .amenitiesGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .testimonialsGrid {
+  
+  .roomsGrid, .testimonialsGrid, .sightsGrid {
     grid-template-columns: 1fr;
   }
-
-  .sightsGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .statsRow {
-    gap: 0;
-  }
-
-  .stat {
-    padding: 0 0.75rem;
-  }
-
-  .statNumber {
-    font-size: 1.5rem;
-  }
-
-  .heroTitle {
-    max-width: 500px;
-  }
-}
-
-/* Small mobile — 480px */
-@media (max-width: 480px) {
-  .heroSubtitle {
-    font-size: 0.95rem;
-  }
-
-  .heroButtons {
+  
+  .roomsHeader {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
-
-  .heroBtn {
-    width: 100%;
-    max-width: 260px;
-  }
-
-  .amenitiesGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .amenityCard {
-    padding: 1.5rem;
-  }
-
-  .testimonialCard {
-    padding: 1.75rem;
-  }
-
-  .sightCard {
-    padding: 1.5rem;
-  }
-
-  .ctaTitle {
-    max-width: 320px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .ctaBtn {
-    padding: 0.875rem 2.5rem !important;
+  
+  .statsRow {
+    flex-direction: column;
+    gap: 2rem;
   }
 }

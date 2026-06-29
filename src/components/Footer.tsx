@@ -1,4 +1,6 @@
+'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import styles from './Footer.module.css';
 
 const quickLinks = [
@@ -17,6 +19,9 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname.startsWith('/studio')) return null;
+
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.footerGrid}`}>
