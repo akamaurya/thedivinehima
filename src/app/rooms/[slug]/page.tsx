@@ -11,6 +11,9 @@ export const dynamic = 'force-static';
 export async function generateStaticParams() {
   const query = `*[_type == "room"] { "slug": slug.current }`;
   const slugs = await client.fetch(query);
+  if (!slugs || slugs.length === 0) {
+    return [{ slug: 'dummy' }];
+  }
   return slugs.map((s: { slug: string }) => ({ slug: s.slug }));
 }
 
