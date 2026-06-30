@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import PageHero from '@/components/PageHero';
 import AnimateOnScroll from '@/components/AnimateOnScroll';
+import SanityImage from '@/components/SanityImage';
+import { client } from '../../../sanity/lib/client';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -24,12 +26,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function DiningPage() {
+export default async function DiningPage() {
+  const data = await client.fetch(`*[_type == "diningPage"][0]`);
+
   return (
     <main className={styles.main}>
       <PageHero 
         title="Dining at The Divine Hima" 
-        backgroundImage="https://thedivinehima.com/wp-content/uploads/2020/10/dining.jpg"
+        backgroundImage={data?.heroImage || "https://thedivinehima.com/wp-content/uploads/2020/10/dining.jpg"}
       />
 
       <section className={`section ${styles.intro}`}>
@@ -47,7 +51,11 @@ export default function DiningPage() {
           <AnimateOnScroll>
             <div className={styles.venueRow}>
               <div className={styles.venueImageWrap}>
-                <img src="https://thedivinehima.com/wp-content/uploads/2020/10/dining2.jpg" alt="The Restaurant" className={styles.venueImage} />
+                {data?.restaurantImage ? (
+                  <SanityImage image={data.restaurantImage} alt="The Restaurant" className={styles.venueImage} width={800} height={600} />
+                ) : (
+                  <img src="https://thedivinehima.com/wp-content/uploads/2020/10/dining2.jpg" alt="The Restaurant" className={styles.venueImage} />
+                )}
               </div>
               <div className={styles.venueBody}>
                 <h2 className={styles.venueName}>The Restaurant</h2>
@@ -62,7 +70,11 @@ export default function DiningPage() {
           <AnimateOnScroll delay={150}>
             <div className={`${styles.venueRow} ${styles.venueRowReversed}`}>
               <div className={styles.venueImageWrap}>
-                <img src="https://thedivinehima.com/wp-content/uploads/2020/10/cafe1.jpg" alt="Divine Café" className={styles.venueImage} />
+                {data?.cafeImage ? (
+                  <SanityImage image={data.cafeImage} alt="Divine Café" className={styles.venueImage} width={800} height={600} />
+                ) : (
+                  <img src="https://thedivinehima.com/wp-content/uploads/2020/10/cafe1.jpg" alt="Divine Café" className={styles.venueImage} />
+                )}
               </div>
               <div className={styles.venueBody}>
                 <h2 className={styles.venueName}>Divine Café</h2>
@@ -77,7 +89,11 @@ export default function DiningPage() {
           <AnimateOnScroll delay={300}>
             <div className={styles.venueRow}>
               <div className={styles.venueImageWrap}>
-                <img src="https://thedivinehima.com/wp-content/uploads/2024/12/pizerria.jpg" alt="Firewood Pizzeria" className={styles.venueImage} />
+                {data?.pizzeriaImage ? (
+                  <SanityImage image={data.pizzeriaImage} alt="Firewood Pizzeria" className={styles.venueImage} width={800} height={600} />
+                ) : (
+                  <img src="https://thedivinehima.com/wp-content/uploads/2024/12/pizerria.jpg" alt="Firewood Pizzeria" className={styles.venueImage} />
+                )}
               </div>
               <div className={styles.venueBody}>
                 <h2 className={styles.venueName}>Firewood Pizzeria</h2>
@@ -92,7 +108,11 @@ export default function DiningPage() {
           <AnimateOnScroll delay={450}>
             <div className={`${styles.venueRow} ${styles.venueRowReversed}`}>
               <div className={styles.venueImageWrap}>
-                <img src="https://thedivinehima.com/wp-content/uploads/2024/12/bar.jpg" alt="The Bar By Far" className={styles.venueImage} />
+                {data?.barImage ? (
+                  <SanityImage image={data.barImage} alt="The Bar By Far" className={styles.venueImage} width={800} height={600} />
+                ) : (
+                  <img src="https://thedivinehima.com/wp-content/uploads/2024/12/bar.jpg" alt="The Bar By Far" className={styles.venueImage} />
+                )}
               </div>
               <div className={styles.venueBody}>
                 <h2 className={styles.venueName}>The Bar By Far</h2>

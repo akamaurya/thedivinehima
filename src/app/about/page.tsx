@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import PageHero from '@/components/PageHero';
 import AnimateOnScroll from '@/components/AnimateOnScroll';
+import SanityImage from '@/components/SanityImage';
+import { client } from '../../../sanity/lib/client';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -25,12 +27,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const data = await client.fetch(`*[_type == "aboutPage"][0]{ heroImage, storyImage }`);
+
   return (
     <main className={styles.main}>
       <PageHero 
         title="Our Story" 
-        backgroundImage="https://thedivinehima.com/wp-content/uploads/2023/12/southcol-main.jpg"
+        backgroundImage={data?.heroImage || "https://thedivinehima.com/wp-content/uploads/2023/12/southcol-main.jpg"}
       />
 
       <section className={`section ${styles.storySection}`}>
@@ -38,7 +42,17 @@ export default function AboutPage() {
           <AnimateOnScroll>
             <div className={styles.storyGrid}>
               <div className={styles.storyImageWrapper}>
-                <img src="https://thedivinehima.com/wp-content/uploads/2016/03/divine-hima0044.jpg" alt="Hotel exterior" className={styles.storyImage} />
+                {data?.storyImage ? (
+                  <SanityImage 
+                    image={data.storyImage} 
+                    alt="Hotel exterior" 
+                    className={styles.storyImage}
+                    width={800}
+                    height={1200}
+                  />
+                ) : (
+                  <img src="https://thedivinehima.com/wp-content/uploads/2016/03/divine-hima0044.jpg" alt="Hotel exterior" className={styles.storyImage} />
+                )}
                 <div className={styles.imageAccent}></div>
               </div>
               <div className={styles.storyContent}>
