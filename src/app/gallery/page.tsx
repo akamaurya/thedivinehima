@@ -6,8 +6,24 @@ import GalleryClient, { GalleryImage } from '@/components/GalleryClient';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Gallery | The Divine Hima',
+  title: 'Gallery',
   description: 'A visual journey through The Divine Hima, Dharamshala.',
+  openGraph: {
+    title: 'Gallery | The Divine Hima',
+    description: 'A visual journey through The Divine Hima, Dharamshala.',
+    url: 'https://thedivinehima.com/gallery',
+    images: [
+      {
+        url: 'https://thedivinehima.com/wp-content/uploads/2018/04/takling-la-1.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'The Divine Hima Gallery',
+      }
+    ],
+  },
+  alternates: {
+    canonical: '/gallery',
+  },
 };
 
 export const dynamic = 'force-static';

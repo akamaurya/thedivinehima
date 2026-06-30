@@ -9,22 +9,45 @@ import styles from '../page.module.css';
 export const dynamic = 'force-static';
 
 export async function generateStaticParams() {
-  const query = `*[_type == "room"] { "slug": slug.current }`;
+  const query = `*[_type == "room" && defined(slug.current)] { "slug": slug.current }`;
   const slugs = await client.fetch(query);
   if (!slugs || slugs.length === 0) {
     return [{ slug: 'dummy' }];
   }
-  return slugs.map((s: { slug: string }) => ({ slug: s.slug }));
+  return slugs
+    .filter((s: { slug: string | null }) => typeof s.slug === 'string' && s.slug.length > 0)
+    .map((s: { slug: string }) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const query = `*[_type == "room" && slug.current == $slug][0] { name, description }`;
+  const query = `*[_type == "room" && slug.current == $slug][0] { name, description, images }`;
   const room = await client.fetch(query, { slug });
   if (!room) return { title: 'Room Not Found' };
+
+  const heroImage = room.images && room.images.length > 0 
+    ? urlForImage(room.images[0]).url() 
+    : 'https://thedivinehima.com/wp-content/uploads/2024/12/premium-3.jpg';
+
   return {
-    title: `${room.name} | The Divine Hima`,
+    title: `${room.name}`,
     description: room.description,
+    openGraph: {
+      title: `${room.name} | The Divine Hima`,
+      description: room.description,
+      url: `https://thedivinehima.com/rooms/${slug}`,
+      images: [
+        {
+          url: heroImage,
+          width: 1200,
+          height: 630,
+          alt: room.name,
+        }
+      ]
+    },
+    alternates: {
+      canonical: `/rooms/${slug}`,
+    }
   };
 }
 

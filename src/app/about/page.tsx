@@ -5,8 +5,24 @@ import AnimateOnScroll from '@/components/AnimateOnScroll';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'About Us | The Divine Hima',
+  title: 'About Us',
   description: 'Learn about The Divine Hima, a luxury boutique hotel in Dharamshala where art meets the Himalayas.',
+  openGraph: {
+    title: 'About Us | The Divine Hima',
+    description: 'Learn about The Divine Hima, a luxury boutique hotel in Dharamshala where art meets the Himalayas.',
+    url: 'https://thedivinehima.com/about',
+    images: [
+      {
+        url: 'https://thedivinehima.com/wp-content/uploads/2023/12/southcol-main.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'The Divine Hima Story',
+      }
+    ],
+  },
+  alternates: {
+    canonical: '/about',
+  },
 };
 
 export default function AboutPage() {
@@ -49,7 +65,7 @@ export default function AboutPage() {
               <div className={styles.valueCard}>
                 <div className={styles.valueIcon}>🎨</div>
                 <h3 className={styles.valueTitle}>Art & Culture</h3>
-                <p className={styles.valueDesc}>
+                <p className={styles.valueDescription}>
                   Every corner of our hotel is artistically crafted, creating a living gallery that celebrates local and international art forms.
                 </p>
               </div>

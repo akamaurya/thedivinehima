@@ -16,7 +16,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const query = `*[_type == "blogPost" && slug.current == $slug][0] { title, body }`;
+  const query = `*[_type == "blogPost" && slug.current == $slug][0] { title, body, coverImage }`;
   const post = await client.fetch(query, { slug });
   if (!post) return { title: 'Post Not Found' };
   
@@ -25,9 +25,30 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     ? (post.body.find((b: any) => b._type === 'block')?.children?.[0]?.text || '').slice(0, 150) + '...'
     : 'Read our latest blog post.';
     
+  const coverUrl = post.coverImage 
+    ? urlForImage(post.coverImage).url() 
+    : 'https://thedivinehima.com/wp-content/uploads/2018/04/takling-la-1.jpg';
+    
   return {
-    title: `${post.title} | The Divine Hima`,
+    title: `${post.title}`,
     description,
+    openGraph: {
+      title: `${post.title} | The Divine Hima`,
+      description,
+      url: `https://thedivinehima.com/blog/${slug}`,
+      type: 'article',
+      images: [
+        {
+          url: coverUrl,
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        }
+      ]
+    },
+    alternates: {
+      canonical: `/blog/${slug}`,
+    }
   };
 }
 

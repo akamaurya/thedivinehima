@@ -16,9 +16,66 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "The Divine Hima | Boutique Hotel in Dharamshala",
+  metadataBase: new URL("https://thedivinehima.com"),
+  title: {
+    default: "The Divine Hima | Boutique Hotel in Dharamshala",
+    template: "%s | The Divine Hima",
+  },
   description:
     "Experience luxury in the Himalayas at The Divine Hima — a boutique hotel in Dharamshala offering premium rooms, world-class dining, and breathtaking mountain views.",
+  keywords: [
+    "Boutique Hotel Dharamshala",
+    "Luxury Hotel Himalayas",
+    "The Divine Hima",
+    "Dharamshala Resorts",
+    "Hotels in Sidhpur",
+    "Best Hotels in Dharamshala",
+    "Luxury Stay Dharamshala"
+  ],
+  authors: [{ name: "The Divine Hima" }],
+  creator: "The Divine Hima",
+  publisher: "The Divine Hima",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: "https://thedivinehima.com",
+    title: "The Divine Hima | Boutique Hotel in Dharamshala",
+    description: "Experience luxury in the Himalayas at The Divine Hima — a boutique hotel in Dharamshala.",
+    siteName: "The Divine Hima",
+    images: [
+      {
+        url: "https://thedivinehima.com/wp-content/uploads/2024/12/luxury-hotel-in-dharamshala.jpg",
+        width: 1200,
+        height: 630,
+        alt: "The Divine Hima Exterior in Dharamshala",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Divine Hima | Boutique Hotel in Dharamshala",
+    description: "Experience luxury in the Himalayas at The Divine Hima — a boutique hotel in Dharamshala.",
+    images: ["https://thedivinehima.com/wp-content/uploads/2024/12/luxury-hotel-in-dharamshala.jpg"],
+  },
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   icons: {
     icon: [
       { url: "https://thedivinehima.com/wp-content/uploads/2016/03/cropped-Divine-Hima-logo-512-32x32.png", sizes: "32x32" },
@@ -30,6 +87,7 @@ export const metadata: Metadata = {
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Script from "next/script";
 
 export default function RootLayout({
   children,
@@ -39,6 +97,54 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body>
+        <Script id="schema-org-local-business" type="application/ld+json" strategy="beforeInteractive">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Hotel",
+              "name": "The Divine Hima",
+              "image": "https://thedivinehima.com/wp-content/uploads/2024/12/luxury-hotel-in-dharamshala.jpg",
+              "description": "Experience luxury in the Himalayas at The Divine Hima — a boutique hotel in Dharamshala offering premium rooms, world-class dining, and breathtaking mountain views.",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Opposite Norbulingka Institute, Sidhpur",
+                "addressLocality": "Dharamshala",
+                "addressRegion": "HP",
+                "postalCode": "176057",
+                "addressCountry": "IN"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 32.1932,
+                "longitude": 76.3533
+              },
+              "url": "https://thedivinehima.com",
+              "telephone": "+918626983777",
+              "priceRange": "$$$",
+              "starRating": {
+                "@type": "Rating",
+                "ratingValue": "4.5"
+              },
+              "amenityFeature": [
+                {
+                  "@type": "LocationFeatureSpecification",
+                  "name": "Free WiFi",
+                  "value": true
+                },
+                {
+                  "@type": "LocationFeatureSpecification",
+                  "name": "Restaurant",
+                  "value": true
+                },
+                {
+                  "@type": "LocationFeatureSpecification",
+                  "name": "Parking",
+                  "value": true
+                }
+              ]
+            }
+          `}
+        </Script>
         <Header />
         {children}
         <Footer />

@@ -55,7 +55,7 @@
   flex: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 0 var(--container-padding);
+  padding: 4rem var(--container-padding);
   animation: fadeInUp 1s ease-out both;
 }
 
@@ -171,6 +171,7 @@
   color: var(--color-text-secondary);
   line-height: 1.75;
   font-size: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .introImageWrap {
@@ -330,6 +331,7 @@
 .amenitiesList {
   display: flex;
   flex-direction: column;
+  gap: 2rem;
 }
 
 .amenityItem {
@@ -478,6 +480,7 @@
 .sightDesc {
   color: var(--color-text-secondary);
   font-size: 0.95rem;
+  margin-bottom: 1.5rem;
 }
 
 /* ═══════════════════════════════════════════════════════════════

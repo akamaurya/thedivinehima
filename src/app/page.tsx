@@ -101,6 +101,8 @@ const sights = [
   },
 ];
 
+import FAQSchema from '@/components/FAQSchema';
+
 export default function HomePage() {
   const heroImageRef = useRef<HTMLImageElement>(null);
   const observerSections = useRef<HTMLDivElement[]>([]);
@@ -152,6 +154,7 @@ export default function HomePage() {
 
   return (
     <main>
+      <FAQSchema />
       {/* ─── HERO ─── */}
       <section className={styles.hero}>
         <div className={styles.heroTopMeta}>

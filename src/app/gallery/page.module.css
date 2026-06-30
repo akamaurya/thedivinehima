@@ -1,3 +1,10 @@
+/* ── Gallery Layout ── */
+.main {}
+
+.gallerySection {
+  padding: var(--section-padding);
+}
+
 /* ── Filter Pills ── */
 .filterRow {
   display: flex;

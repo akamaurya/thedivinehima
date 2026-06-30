@@ -6,8 +6,24 @@ import PageHero from '@/components/PageHero';
 import AnimateOnScroll from '@/components/AnimateOnScroll';
 
 export const metadata: Metadata = {
-  title: 'Blog | The Divine Hima',
+  title: 'Blog',
   description: 'Read the latest stories and updates from The Divine Hima, Dharamshala.',
+  openGraph: {
+    title: 'Blog | The Divine Hima',
+    description: 'Read the latest stories and updates from The Divine Hima, Dharamshala.',
+    url: 'https://thedivinehima.com/blog',
+    images: [
+      {
+        url: 'https://thedivinehima.com/wp-content/uploads/2018/04/takling-la-1.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'The Divine Hima Blog',
+      }
+    ],
+  },
+  alternates: {
+    canonical: '/blog',
+  },
 };
 
 export const dynamic = 'force-static';
