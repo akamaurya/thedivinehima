@@ -87,7 +87,7 @@ export default function ContactPage() {
                 <div className={styles.infoCardIcon}>✉️</div>
                 <div className={styles.infoCardContent}>
                   <h3 className={styles.infoCardTitle}>Email</h3>
-                  <a href="mailto:info@thedivinehima.com" className={styles.infoCardLink}>info@thedivinehima.com</a>
+                  <a href="mailto:reservation@thedivinehima.com" className={styles.infoCardLink}>reservation@thedivinehima.com</a>
                 </div>
               </div>
 

@@ -80,10 +80,10 @@ export default function Footer() {
             <p className={styles.contactLine}>
               ✉️{' '}
               <a
-                href="mailto:info@thedivinehima.com"
+                href="mailto:reservation@thedivinehima.com"
                 className={styles.footerLink}
               >
-                info@thedivinehima.com
+                reservation@thedivinehima.com
               </a>
             </p>
           </address>
