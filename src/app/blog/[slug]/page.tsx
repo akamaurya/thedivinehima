@@ -94,10 +94,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         );
       },
       callToAction: ({ value }: any) => {
+        const targetUrl = (!value.url || value.url === '/contact') 
+          ? 'https://asiatech.in/booking_engine/index3?token=MTA4NDQ=' 
+          : value.url;
+
         return (
           <div style={{ margin: '3rem 0', textAlign: 'center' }}>
             <Link 
-              href={value.url || '/contact'} 
+              href={targetUrl} 
               className="btn btn-primary"
               style={{ padding: '1rem 3rem', fontSize: '1.2rem', display: 'inline-block', borderRadius: '8px' }}
             >

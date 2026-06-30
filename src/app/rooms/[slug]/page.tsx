@@ -134,7 +134,7 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
           )}
 
           <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-            <Link href="/contact" className="btn btn-primary" style={{ padding: '1rem 3rem', fontSize: '1.1rem' }}>Book Now</Link>
+            <Link href="https://asiatech.in/booking_engine/index3?token=MTA4NDQ=" className="btn btn-primary" style={{ padding: '1rem 3rem', fontSize: '1.1rem' }}>Book Now</Link>
           </div>
         </div>
       </section>

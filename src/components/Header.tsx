@@ -77,7 +77,7 @@ export default function Header() {
           </ul>
         </nav>
 
-        <Link href="/contact" className={`btn btn-primary ${styles.bookBtn}`}>
+        <Link href="https://asiatech.in/booking_engine/index3?token=MTA4NDQ=" className={`btn btn-primary ${styles.bookBtn}`}>
           Book Now
         </Link>
 
@@ -119,7 +119,7 @@ export default function Header() {
           ))}
         </ul>
         <Link
-          href="/contact"
+          href="https://asiatech.in/booking_engine/index3?token=MTA4NDQ="
           className={`btn btn-primary ${styles.mobileBookBtn}`}
           onClick={() => setMobileOpen(false)}
         >

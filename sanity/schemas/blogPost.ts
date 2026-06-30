@@ -16,7 +16,7 @@ export const blogPost = {
         title: 'Call to Action Button',
         fields: [
           { name: 'text', title: 'Button Text', type: 'string', initialValue: 'Book Now' },
-          { name: 'url', title: 'URL / Link', type: 'string', initialValue: '/contact' }
+          { name: 'url', title: 'URL / Link', type: 'string', initialValue: 'https://asiatech.in/booking_engine/index3?token=MTA4NDQ=' }
         ]
       }
     ] },

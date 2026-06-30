@@ -105,6 +105,22 @@ export default function RootLayout({
               "name": "The Divine Hima",
               "image": "https://thedivinehima.com/wp-content/uploads/2024/12/luxury-hotel-in-dharamshala.jpg",
               "description": "Experience luxury in the Himalayas at The Divine Hima — a boutique hotel in Dharamshala offering premium rooms, world-class dining, and breathtaking mountain views.",
+              "founder": {
+                "@type": "Person",
+                "name": "Sanjay Kumbkarni"
+              },
+              "sameAs": [
+                "https://www.instagram.com/thedivinehima",
+                "https://www.facebook.com/thedivinehima",
+                "https://www.tripadvisor.in/Hotel_Review-g2058079-d10243144-Reviews-The_Divine_Hima-Sidhpur_Dharamshala_Kangra_District_Himachal_Pradesh.html"
+              ],
+              "knowsAbout": [
+                "Boutique Hospitality",
+                "Himalayan Tourism",
+                "Luxury Accommodation",
+                "Dharamshala Travel",
+                "Fine Dining"
+              ],
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "Opposite Norbulingka Institute, Sidhpur",

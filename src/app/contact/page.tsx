@@ -110,7 +110,7 @@ export default function ContactPage() {
       <section className={styles.mapSection}>
         <div className={styles.mapWrapper}>
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d17105.744111325603!2d76.3248!3d32.2223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3904b509f6111111%3A0x8e83348102a96996!2sThe%20Divine%20Hima!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin" 
+            src="https://maps.google.com/maps?q=The%20Divine%20Hima,%20Sidhpur,%20Dharamshala&t=&z=15&ie=UTF8&iwloc=&output=embed" 
             width="100%" 
             height="450" 
             style={{ border: 0 }} 

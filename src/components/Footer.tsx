@@ -95,7 +95,7 @@ export default function Footer() {
           <p className={styles.bookText}>
             Ready for an unforgettable experience?
           </p>
-          <Link href="/contact" className="btn btn-primary">
+          <Link href="https://asiatech.in/booking_engine/index3?token=MTA4NDQ=" className="btn btn-primary">
             Book Now
           </Link>
         </div>

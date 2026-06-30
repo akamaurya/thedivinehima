@@ -170,7 +170,7 @@ export default function HomePage() {
               Nestled in the serene landscapes of Dharamshala, experience a blend of luxury and tranquility with breathtaking mountain views.
             </p>
             <div className={styles.heroButtons}>
-              <Link href="/contact" className="btn btn-primary">
+              <Link href="https://asiatech.in/booking_engine/index3?token=MTA4NDQ=" className="btn btn-primary">
                 Reserve
               </Link>
               <Link href="/rooms" className="btn btn-secondary">
@@ -301,7 +301,7 @@ export default function HomePage() {
             ))}
           </div>
           <div className={styles.reviewsLink}>
-            <a href="https://g.co/kgs/YourGoogleLink" target="_blank" rel="noopener noreferrer" style={{ color: '#fff' }}>
+            <a href="https://www.google.com/maps/search/?api=1&query=The+Divine+Hima+Dharamshala" target="_blank" rel="noopener noreferrer" style={{ color: '#fff' }}>
               Read the full archive &rarr;
             </a>
           </div>
@@ -324,6 +324,17 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+
+          <div style={{ marginTop: '3rem', textAlign: 'center' }}>
+            <a 
+              href="https://www.google.com/maps/search/?api=1&query=The+Divine+Hima+Dharamshala" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn btn-secondary"
+            >
+              Explore Local Environs on Google Maps
+            </a>
+          </div>
         </div>
       </section>
 
@@ -335,7 +346,7 @@ export default function HomePage() {
           <p className={styles.ctaPhone}>
             <a href="tel:+918626983777">+91 86269 83777</a>
           </p>
-          <Link href="/contact" className="btn btn-primary">
+          <Link href="https://asiatech.in/booking_engine/index3?token=MTA4NDQ=" className="btn btn-primary">
             Request a Reservation
           </Link>
         </div>
