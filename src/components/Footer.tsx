@@ -6,6 +6,7 @@ import styles from './Footer.module.css';
 const quickLinks = [
   { href: '/', label: 'Home' },
   { href: '/rooms', label: 'Rooms' },
+  { href: '/packages', label: 'Packages' },
   { href: '/dining', label: 'Dining' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/about', label: 'About' },

@@ -9,6 +9,7 @@ import { testimonial } from './sanity/schemas/testimonial';
 import { siteSettings } from './sanity/schemas/siteSettings';
 import { aboutPage } from './sanity/schemas/aboutPage';
 import { diningPage } from './sanity/schemas/diningPage';
+import { tourPackage } from './sanity/schemas/package';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -19,6 +20,6 @@ export default defineConfig({
   title: 'The Divine Hima',
   plugins: [structureTool(), media()],
   schema: {
-    types: [room, blogPost, gallery, testimonial, siteSettings, aboutPage, diningPage],
+    types: [room, blogPost, gallery, testimonial, siteSettings, aboutPage, diningPage, tourPackage],
   },
 });
