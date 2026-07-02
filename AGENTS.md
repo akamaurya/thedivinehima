@@ -17,3 +17,11 @@ When building or modifying pages, ALWAYS prioritize Search Engine Optimization (
 3. **Semantic HTML & Alt Tags:** Use explicit semantic tags (`<article>`, `<section>`, `<main>`) and ensure every image has a descriptive `alt` attribute. 
 4. **Sitemaps & Robots:** Ensure dynamic `sitemap.ts` and `robots.ts` are kept up to date if new major sections are added to the application, maintaining high priorities for commercial pages (e.g., Rooms, Dining).
 5. **Content Quality:** Follow a content-led design that clearly answers typical generative engine queries (e.g., "Best time to visit", "Amenities available").
+
+# Codemap Maintenance
+
+A detailed codemap exists at `CODEMAP.md` in the project root. **ALL agents (AGY, Claude Code, Cursor, or any other) MUST:**
+
+1. **Read `CODEMAP.md` first** before exploring the codebase — it contains a complete file map, architecture summary, and route table that saves significant discovery time.
+2. **Update `CODEMAP.md`** whenever you add, rename, move, or delete any file, route, component, or Sanity schema. This includes adding new entries to the relevant table and removing stale ones.
+3. **Never skip the update.** If you changed the code structure but did not update the codemap, your task is incomplete.
