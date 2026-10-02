@@ -12,10 +12,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Rooms & Suites | The Divine Hima',
     description: 'Explore our premium, superior, and deluxe rooms with stunning mountain views at The Divine Hima, Dharamshala.',
-    url: 'https://thedivinehima.com/rooms',
+    url: 'https://thedivinehima.com/divine-rooms/',
     images: [
       {
-        url: 'https://thedivinehima.com/wp-content/uploads/2024/12/premium-3.jpg',
+        url: '/images/premium-3.jpg',
         width: 1200,
         height: 630,
         alt: 'Rooms at The Divine Hima',
@@ -23,14 +23,14 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: '/rooms',
+    canonical: '/divine-rooms/',
   },
 };
 
 export const dynamic = 'force-static';
 
 export default async function RoomsPage() {
-  const query = `*[_type == "room"] | order(price desc) {
+  const query = `*[_type == "room" && defined(slug.current)] | order(price desc) {
     _id,
     name,
     "slug": slug.current,
@@ -47,14 +47,14 @@ export default async function RoomsPage() {
     <main className={styles.main}>
       <PageHero 
         title="Our Rooms & Suites" 
-        backgroundImage="https://thedivinehima.com/wp-content/uploads/2024/12/premium-3.jpg"
+        backgroundImage="/images/premium-3.jpg"
       />
 
       {rooms.map((room: any, index: number) => {
         const isReverse = index % 2 !== 0;
         const imageUrl = room.images && room.images.length > 0 
           ? urlForImage(room.images[0]).url() 
-          : 'https://thedivinehima.com/wp-content/uploads/2024/12/premium-1.jpg'; // fallback
+          : '/images/premium-1.jpg'; // fallback
 
         return (
           <section key={room._id} className={styles.roomSection}>
@@ -74,7 +74,7 @@ export default async function RoomsPage() {
                       </div>
                     ))}
                   </div>
-                  <Link href={`/rooms/${room.slug}`} className={`btn btn-primary ${styles.bookBtn}`}>View Details</Link>
+                  <Link href={`/rooms/${room.slug}/`} className={`btn btn-primary ${styles.bookBtn}`}>View Details</Link>
                 </div>
               </div>
             </AnimateOnScroll>

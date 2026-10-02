@@ -1,3 +1,5 @@
+import type { StringRule } from 'sanity';
+
 const DEFAULT_AMENITIES = [
   'Wi-Fi',
   'Air Conditioning',
@@ -29,5 +31,7 @@ export const room = {
       initialValue: DEFAULT_AMENITIES,
     },
     { name: 'price', title: 'Price per Night', type: 'number' },
+    { name: 'seoTitle', title: 'SEO Title', type: 'string', description: 'Full page <title> (no suffix added). Leave blank to use "<name> | The Divine Hima".', validation: (Rule: StringRule) => Rule.max(60).warning('Keep under 60 characters') },
+    { name: 'seoDescription', title: 'SEO Description', type: 'text', rows: 3, description: 'Meta description for search results. Leave blank to use the description.', validation: (Rule: StringRule) => Rule.max(160).warning('Keep under 160 characters') },
   ],
 };

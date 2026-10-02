@@ -4,21 +4,25 @@
 
 ## Rooms
 
-- [Our Rooms](https://thedivinehima.com/rooms): Detailed information about our boutique luxury rooms and suites in Dharamshala, designed for comfort and tranquility.
+- [Our Rooms](https://thedivinehima.com/divine-rooms/): Detailed information about our boutique luxury rooms and suites in Dharamshala, designed for comfort and tranquility.
 
 ## Dining
 
-- [Dining Experience](https://thedivinehima.com/dining): Information on our world-class dining, menu, culinary experiences, and restaurant ambiance.
+- [Dining Experience](https://thedivinehima.com/dining/): Information on our world-class dining, menu, culinary experiences, and restaurant ambiance.
+
+## Packages
+
+- [Holiday Packages](https://thedivinehima.com/divine-holiday-packages/): Curated holiday packages and local experiences around Dharamshala.
 
 ## Gallery
 
-- [Gallery](https://thedivinehima.com/gallery): Visual showcase of The Divine Hima's exterior, interior, rooms, and beautiful Himalayan surroundings.
+- [Gallery](https://thedivinehima.com/gallery/): Visual showcase of The Divine Hima's exterior, interior, rooms, and beautiful Himalayan surroundings.
 
 ## About & Contact
 
-- [About Us](https://thedivinehima.com/about): The story behind The Divine Hima, founded by Sanjay Kumbkarni, and our commitment to luxury hospitality.
-- [Contact](https://thedivinehima.com/contact): Location details, email, phone number, and directions to The Divine Hima in Sidhpur.
-- [Blog](https://thedivinehima.com/blog): Latest articles, travel guides, and updates from Dharamshala and The Divine Hima.
+- [About Us](https://thedivinehima.com/about/): The story behind The Divine Hima, founded by Sanjay Kumbkarni, and our commitment to luxury hospitality.
+- [Contact](https://thedivinehima.com/contact-us/): Location details, email, phone number, and directions to The Divine Hima in Sidhpur.
+- [Travel Guides](https://thedivinehima.com/blog/): Index of our Dharamshala travel guides. Each guide lives at the site root, e.g. https://thedivinehima.com/best-time-to-visit-dharamshala/.
 
 ## Key Facts
 
@@ -32,6 +36,6 @@
 
 ## Contact
 
-- Website: https://thedivinehima.com
+- Website: https://thedivinehima.com/
 - Phone: +918626983777
 - Address: Opposite Norbulingka Institute, Sidhpur, Dharamshala, HP 176057, India

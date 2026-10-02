@@ -11,10 +11,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Gallery | The Divine Hima',
     description: 'A visual journey through The Divine Hima, Dharamshala.',
-    url: 'https://thedivinehima.com/gallery',
+    url: 'https://thedivinehima.com/gallery/',
     images: [
       {
-        url: 'https://thedivinehima.com/wp-content/uploads/2018/04/takling-la-1.jpg',
+        url: '/images/takling-la-1.jpg',
         width: 1200,
         height: 630,
         alt: 'The Divine Hima Gallery',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: '/gallery',
+    canonical: '/gallery/',
   },
 };
 
@@ -49,7 +49,7 @@ export default async function GalleryPage() {
       <PageHero 
         title="Gallery" 
         subtitle="A glimpse into The Divine Hima"
-        backgroundImage="https://thedivinehima.com/wp-content/uploads/2018/04/takling-la-1.jpg"
+        backgroundImage="/images/takling-la-1.jpg"
       />
       <section className={`section ${styles.gallerySection}`}>
         <div className="container">

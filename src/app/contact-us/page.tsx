@@ -16,7 +16,7 @@ export default function ContactPage() {
     <main className={styles.main}>
       <PageHero 
         title="Get in Touch" 
-        backgroundImage="https://thedivinehima.com/wp-content/uploads/2024/12/luxury-2.jpg"
+        backgroundImage="/images/luxury-2.jpg"
       />
 
       <section className={`section ${styles.contactSection}`}>

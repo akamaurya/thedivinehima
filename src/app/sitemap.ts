@@ -11,14 +11,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await client.fetch(`*[_type == "blogPost" && defined(slug.current)]{ "slug": slug.current, _updatedAt }`);
 
   const roomUrls = rooms.map((room: any) => ({
-    url: `${baseUrl}/rooms/${room.slug}`,
+    url: `${baseUrl}/rooms/${room.slug}/`,
     lastModified: room._updatedAt,
     changeFrequency: 'weekly',
     priority: 0.8,
   }));
 
   const postUrls = posts.map((post: any) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
+    url: `${baseUrl}/${post.slug}/`,
     lastModified: post._updatedAt,
     changeFrequency: 'weekly',
     priority: 0.7,
@@ -26,49 +26,49 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: baseUrl,
+      url: `${baseUrl}/`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: `${baseUrl}/about`,
+      url: `${baseUrl}/about/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/rooms`,
+      url: `${baseUrl}/divine-rooms/`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/packages`,
+      url: `${baseUrl}/divine-holiday-packages/`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/dining`,
+      url: `${baseUrl}/dining/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/gallery`,
+      url: `${baseUrl}/gallery/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/blog`,
+      url: `${baseUrl}/blog/`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/contact`,
+      url: `${baseUrl}/contact-us/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,

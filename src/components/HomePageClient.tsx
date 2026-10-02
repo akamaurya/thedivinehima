@@ -10,19 +10,19 @@ const rooms = [
     name: 'Premium Rooms',
     type: 'Luxury Collection',
     description: 'Experience the ultimate comfort and elegance with our luxury hotel rooms.',
-    image: 'https://thedivinehima.com/wp-content/uploads/2024/12/premium-1.jpg',
+    image: '/images/premium-1.jpg',
   },
   {
     name: 'Superior Rooms',
     type: 'Comfort & Grace',
     description: 'Unmatched comfort and elegance in our premium rooms in Dharamshala.',
-    image: 'https://thedivinehima.com/wp-content/uploads/2024/12/luxury-1.jpg',
+    image: '/images/luxury-1.jpg',
   },
   {
     name: 'Deluxe Rooms',
     type: 'Cozy Retreat',
     description: 'Relax in comfort with modern amenities and breathtaking mountain views.',
-    image: 'https://thedivinehima.com/wp-content/uploads/2024/12/deluxe-2.jpg',
+    image: '/images/deluxe-2.jpg',
   },
 ];
 
@@ -181,7 +181,7 @@ export default function HomePageClient({ settings }: { settings?: any }) {
               <Link href="https://asiatech.in/booking_engine/index3?token=MTA4NDQ=" className="btn btn-primary">
                 Reserve
               </Link>
-              <Link href="/rooms" className="btn btn-secondary">
+              <Link href="/divine-rooms/" className="btn btn-secondary">
                 View Collection
               </Link>
             </div>
@@ -202,7 +202,7 @@ export default function HomePageClient({ settings }: { settings?: any }) {
             ) : (
               <img 
                 ref={heroImageRef}
-                src="https://thedivinehima.com/wp-content/uploads/2024/12/luxury-hotel-in-dharamshala.jpg" 
+                src="/images/luxury-hotel-in-dharamshala.jpg" 
                 alt="The Divine Hima exterior" 
                 className={styles.heroBg}
               />
@@ -240,7 +240,7 @@ export default function HomePageClient({ settings }: { settings?: any }) {
               />
             ) : (
               <img
-                src="https://thedivinehima.com/wp-content/uploads/2016/03/divine-hima0044.jpg"
+                src="/images/divine-hima0044.jpg"
                 alt="The Divine Hima Architecture"
                 className={styles.introImage}
                 loading="lazy"
@@ -282,7 +282,7 @@ export default function HomePageClient({ settings }: { settings?: any }) {
             {rooms.map((room, i) => {
               const sanityImage = getRoomImage(room.name);
               return (
-                <Link href="/rooms" key={room.name} className={styles.roomCard}>
+                <Link href="/divine-rooms/" key={room.name} className={styles.roomCard}>
                   <div className={styles.roomImageWrap}>
                     {sanityImage ? (
                       <SanityImage image={sanityImage} alt={room.name} className={styles.roomImage} width={800} height={600} />

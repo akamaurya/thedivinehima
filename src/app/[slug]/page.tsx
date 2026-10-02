@@ -2,40 +2,40 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PortableText } from '@portabletext/react';
-import { client } from '../../../../sanity/lib/client';
-import { urlForImage } from '../../../../sanity/lib/image';
+import { client } from '../../../sanity/lib/client';
+import { urlForImage } from '../../../sanity/lib/image';
 import PageHero from '@/components/PageHero';
 
 export const dynamic = 'force-static';
 
 export async function generateStaticParams() {
-  const query = `*[_type == "blogPost"] { "slug": slug.current }`;
+  const query = `*[_type == "blogPost" && defined(slug.current)] { "slug": slug.current }`;
   const slugs = await client.fetch(query);
   return slugs.map((s: { slug: string }) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const query = `*[_type == "blogPost" && slug.current == $slug][0] { title, body, coverImage }`;
+  const query = `*[_type == "blogPost" && slug.current == $slug][0] { title, seoTitle, seoDescription, body, coverImage }`;
   const post = await client.fetch(query, { slug });
   if (!post) return { title: 'Post Not Found' };
   
   // Extract a short description from the body if possible
-  const description = post.body && post.body.length > 0 
+  const description = post.seoDescription || (post.body && post.body.length > 0 
     ? (post.body.find((b: any) => b._type === 'block')?.children?.[0]?.text || '').slice(0, 150) + '...'
-    : 'Read our latest blog post.';
+    : 'Read our latest blog post.');
     
   const coverUrl = post.coverImage 
     ? urlForImage(post.coverImage).url() 
-    : 'https://thedivinehima.com/wp-content/uploads/2018/04/takling-la-1.jpg';
+    : '/images/takling-la-1.jpg';
     
   return {
-    title: `${post.title}`,
+    title: post.seoTitle ? { absolute: post.seoTitle } : post.title,
     description,
     openGraph: {
-      title: `${post.title} | The Divine Hima`,
+      title: post.seoTitle || `${post.title} | The Divine Hima`,
       description,
-      url: `https://thedivinehima.com/blog/${slug}`,
+      url: `https://thedivinehima.com/${slug}/`,
       type: 'article',
       images: [
         {
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       ]
     },
     alternates: {
-      canonical: `/blog/${slug}`,
+      canonical: `/${slug}/`,
     }
   };
 }
@@ -59,6 +59,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     title,
     coverImage,
     publishedAt,
+    _updatedAt,
+    seoDescription,
     body,
     categories
   }`;
@@ -71,8 +73,25 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const coverUrl = post.coverImage 
     ? urlForImage(post.coverImage).url() 
-    : 'https://thedivinehima.com/wp-content/uploads/2018/04/takling-la-1.jpg'; // fallback
+    : '/images/takling-la-1.jpg'; // fallback
     
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.seoDescription || undefined,
+    image: coverUrl.startsWith('/') ? `https://thedivinehima.com${coverUrl}` : coverUrl,
+    datePublished: post.publishedAt || undefined,
+    dateModified: post._updatedAt,
+    mainEntityOfPage: `https://thedivinehima.com/${slug}/`,
+    author: { '@type': 'Organization', name: 'The Divine Hima', url: 'https://thedivinehima.com/' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'The Divine Hima',
+      logo: { '@type': 'ImageObject', url: 'https://thedivinehima.com/images/cropped-Divine-Hima-logo-512-192x192.png' },
+    },
+  };
+
   const date = new Date(post.publishedAt || Date.now()).toLocaleDateString('en-US', {
     year: 'numeric', month: 'long', day: 'numeric'
   });
@@ -115,6 +134,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, '\\u003c') }}
+      />
       <PageHero 
         title={post.title} 
         backgroundImage={coverUrl}

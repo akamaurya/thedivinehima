@@ -12,10 +12,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About Us | The Divine Hima',
     description: 'Learn about The Divine Hima, a luxury boutique hotel in Dharamshala where art meets the Himalayas.',
-    url: 'https://thedivinehima.com/about',
+    url: 'https://thedivinehima.com/about/',
     images: [
       {
-        url: 'https://thedivinehima.com/wp-content/uploads/2023/12/southcol-main.jpg',
+        url: '/images/southcol-main.jpg',
         width: 1200,
         height: 630,
         alt: 'The Divine Hima Story',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: '/about',
+    canonical: '/about/',
   },
 };
 
@@ -34,7 +34,7 @@ export default async function AboutPage() {
     <main className={styles.main}>
       <PageHero 
         title="Our Story" 
-        backgroundImage={data?.heroImage || "https://thedivinehima.com/wp-content/uploads/2023/12/southcol-main.jpg"}
+        backgroundImage={data?.heroImage || "/images/southcol-main.jpg"}
       />
 
       <section className={`section ${styles.storySection}`}>
@@ -51,7 +51,7 @@ export default async function AboutPage() {
                     height={1200}
                   />
                 ) : (
-                  <img src="https://thedivinehima.com/wp-content/uploads/2016/03/divine-hima0044.jpg" alt="Hotel exterior" className={styles.storyImage} />
+                  <img src="/images/divine-hima0044.jpg" alt="Hotel exterior" className={styles.storyImage} />
                 )}
                 <div className={styles.imageAccent}></div>
               </div>
@@ -129,7 +129,7 @@ export default async function AboutPage() {
       <section className={styles.ctaSection}>
         <div className="container">
           <h2 className={styles.ctaTitle}>Experience The Divine Hima</h2>
-          <Link href="/rooms" className="btn btn-primary">Explore Our Rooms</Link>
+          <Link href="/divine-rooms/" className="btn btn-primary">Explore Our Rooms</Link>
         </div>
       </section>
     </main>

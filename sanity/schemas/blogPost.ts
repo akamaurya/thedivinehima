@@ -1,3 +1,5 @@
+import type { StringRule } from 'sanity';
+
 export const blogPost = {
   name: 'blogPost',
   title: 'Blog Post',
@@ -21,5 +23,7 @@ export const blogPost = {
       }
     ] },
     { name: 'categories', title: 'Categories', type: 'array', of: [{ type: 'string' }] },
+    { name: 'seoTitle', title: 'SEO Title', type: 'string', description: 'Full page <title> (no suffix added). Leave blank to use "<title> | The Divine Hima".', validation: (Rule: StringRule) => Rule.max(60).warning('Keep under 60 characters') },
+    { name: 'seoDescription', title: 'SEO Description', type: 'text', rows: 3, description: 'Meta description for search results. Leave blank to auto-generate.', validation: (Rule: StringRule) => Rule.max(160).warning('Keep under 160 characters') },
   ],
 };
