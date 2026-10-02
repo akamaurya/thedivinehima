@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     siteName: "The Divine Hima",
     images: [
       {
-        url: "/images/luxury-hotel-in-dharamshala.jpg",
+        url: "/wp-content/uploads/2024/12/luxury-hotel-in-dharamshala.jpg",
         width: 1200,
         height: 630,
         alt: "The Divine Hima Exterior in Dharamshala",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Divine Hima | Boutique Hotel in Dharamshala",
     description: "Experience luxury in the Himalayas at The Divine Hima — a boutique hotel in Dharamshala.",
-    images: ["/images/luxury-hotel-in-dharamshala.jpg"],
+    images: ["/wp-content/uploads/2024/12/luxury-hotel-in-dharamshala.jpg"],
   },
   alternates: {
     canonical: "/",
@@ -78,10 +78,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/images/cropped-Divine-Hima-logo-512-32x32.png", sizes: "32x32" },
-      { url: "/images/cropped-Divine-Hima-logo-512-192x192.png", sizes: "192x192" },
+      { url: "/wp-content/uploads/2016/03/cropped-Divine-Hima-logo-512-32x32.png", sizes: "32x32" },
+      { url: "/wp-content/uploads/2016/03/cropped-Divine-Hima-logo-512-192x192.png", sizes: "192x192" },
     ],
-    apple: "/images/cropped-Divine-Hima-logo-512-180x180.png",
+    apple: "/wp-content/uploads/2016/03/cropped-Divine-Hima-logo-512-180x180.png",
   },
 };
 
@@ -104,7 +104,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Hotel",
               "name": "The Divine Hima",
-              "image": "https://thedivinehima.com/images/luxury-hotel-in-dharamshala.jpg",
+              "image": "https://thedivinehima.com/wp-content/uploads/2024/12/luxury-hotel-in-dharamshala.jpg",
               "description": "Experience luxury in the Himalayas at The Divine Hima — a boutique hotel in Dharamshala offering premium rooms, world-class dining, and breathtaking mountain views.",
               "founder": {
                 "@type": "Person",

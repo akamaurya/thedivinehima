@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     url: 'https://thedivinehima.com/about/',
     images: [
       {
-        url: '/images/southcol-main.jpg',
+        url: '/wp-content/uploads/2023/12/southcol-main.jpg',
         width: 1200,
         height: 630,
         alt: 'The Divine Hima Story',
@@ -34,7 +34,7 @@ export default async function AboutPage() {
     <main className={styles.main}>
       <PageHero 
         title="Our Story" 
-        backgroundImage={data?.heroImage || "/images/southcol-main.jpg"}
+        backgroundImage={data?.heroImage || "/wp-content/uploads/2023/12/southcol-main.jpg"}
       />
 
       <section className={`section ${styles.storySection}`}>
@@ -51,7 +51,7 @@ export default async function AboutPage() {
                     height={1200}
                   />
                 ) : (
-                  <img src="/images/divine-hima0044.jpg" alt="Hotel exterior" className={styles.storyImage} />
+                  <img src="/wp-content/uploads/2016/03/divine-hima0044.jpg" alt="Hotel exterior" className={styles.storyImage} />
                 )}
                 <div className={styles.imageAccent}></div>
               </div>

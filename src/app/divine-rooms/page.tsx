@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     url: 'https://thedivinehima.com/divine-rooms/',
     images: [
       {
-        url: '/images/premium-3.jpg',
+        url: '/wp-content/uploads/2024/12/premium-3.jpg',
         width: 1200,
         height: 630,
         alt: 'Rooms at The Divine Hima',
@@ -37,8 +37,7 @@ export default async function RoomsPage() {
     roomType,
     description,
     images,
-    amenities,
-    price
+    amenities
   }`;
 
   const rooms = await client.fetch(query);
@@ -47,14 +46,14 @@ export default async function RoomsPage() {
     <main className={styles.main}>
       <PageHero 
         title="Our Rooms & Suites" 
-        backgroundImage="/images/premium-3.jpg"
+        backgroundImage="/wp-content/uploads/2024/12/premium-3.jpg"
       />
 
       {rooms.map((room: any, index: number) => {
         const isReverse = index % 2 !== 0;
         const imageUrl = room.images && room.images.length > 0 
           ? urlForImage(room.images[0]).url() 
-          : '/images/premium-1.jpg'; // fallback
+          : '/wp-content/uploads/2024/12/premium-1.jpg'; // fallback
 
         return (
           <section key={room._id} className={styles.roomSection}>
@@ -74,7 +73,10 @@ export default async function RoomsPage() {
                       </div>
                     ))}
                   </div>
-                  <Link href={`/rooms/${room.slug}/`} className={`btn btn-primary ${styles.bookBtn}`}>View Details</Link>
+                  <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                    <a href="https://asiatech.in/booking_engine/index3?token=MTA4NDQ%3D" className="btn btn-primary">Book Now</a>
+                    <Link href={`/rooms/${room.slug}/`} className={`btn btn-secondary ${styles.bookBtn}`}>View Details</Link>
+                  </div>
                 </div>
               </div>
             </AnimateOnScroll>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import { cache } from 'react';
 import { notFound } from 'next/navigation';
 import { client } from '../../../../sanity/lib/client';
 import { urlForImage } from '../../../../sanity/lib/image';
@@ -7,6 +7,9 @@ import PageHero from '@/components/PageHero';
 import styles from '../../divine-rooms/page.module.css';
 
 export const dynamic = 'force-static';
+
+// One Sanity request per page, shared by generateMetadata and the page.
+const get = cache((slug: string) => client.fetch(`*[_type == "room" && slug.current == $slug][0]`, { slug }));
 
 export async function generateStaticParams() {
   const query = `*[_type == "room" && defined(slug.current)] { "slug": slug.current }`;
@@ -21,13 +24,12 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const query = `*[_type == "room" && slug.current == $slug][0] { name, description, images, seoTitle, seoDescription }`;
-  const room = await client.fetch(query, { slug });
+  const room = await get(slug);
   if (!room) return { title: 'Room Not Found' };
 
   const heroImage = room.images && room.images.length > 0 
     ? urlForImage(room.images[0]).url() 
-    : '/images/premium-3.jpg';
+    : '/wp-content/uploads/2024/12/premium-3.jpg';
 
   const description = room.seoDescription || room.description;
 
@@ -55,17 +57,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function RoomPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const query = `*[_type == "room" && slug.current == $slug][0] {
-    _id,
-    name,
-    roomType,
-    description,
-    images,
-    amenities,
-    price
-  }`;
-  
-  const room = await client.fetch(query, { slug });
+  const room = await get(slug);
 
   if (!room) {
     notFound();
@@ -73,7 +65,7 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
 
   const heroImage = room.images && room.images.length > 0 
     ? urlForImage(room.images[0]).url() 
-    : '/images/premium-3.jpg';
+    : '/wp-content/uploads/2024/12/premium-3.jpg';
 
   return (
     <main className={styles.main}>
@@ -99,7 +91,7 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
               {room.roomType} Room
             </span>
             <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--secondary-color)' }}>{room.name}</h1>
-            <p style={{ fontSize: '1.25rem', fontWeight: 600, color: 'var(--primary-color)' }}>₹{room.price} / Night</p>
+            <a href="https://asiatech.in/booking_engine/index3?token=MTA4NDQ%3D" className="btn btn-primary">Book Now</a>
           </div>
 
           <div style={{ marginBottom: '3rem', fontSize: '1.1rem', lineHeight: 1.8, color: '#555' }}>
@@ -136,7 +128,7 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
           )}
 
           <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-            <Link href="https://asiatech.in/booking_engine/index3?token=MTA4NDQ=" className="btn btn-primary" style={{ padding: '1rem 3rem', fontSize: '1.1rem' }}>Book Now</Link>
+            <a href="https://asiatech.in/booking_engine/index3?token=MTA4NDQ%3D" className="btn btn-primary" style={{ padding: '1rem 3rem', fontSize: '1.1rem' }}>Book Now</a>
           </div>
         </div>
       </section>

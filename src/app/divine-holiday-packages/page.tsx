@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     url: 'https://thedivinehima.com/divine-holiday-packages/',
     images: [
       {
-        url: '/images/premium-3.jpg',
+        url: '/wp-content/uploads/2024/12/premium-3.jpg',
         width: 1200,
         height: 630,
         alt: 'Stay packages at The Divine Hima',
@@ -70,7 +70,7 @@ export default async function PackagesPage() {
 
       <PageHero
         title="Packages & Getaways"
-        backgroundImage="/images/premium-3.jpg"
+        backgroundImage="/wp-content/uploads/2024/12/premium-3.jpg"
       />
 
       <section className={`section ${styles.intro}`}>
@@ -91,7 +91,7 @@ export default async function PackagesPage() {
               {packages.map((pkg: any, index: number) => {
                 const imageUrl = pkg.image
                   ? urlForImage(pkg.image).width(800).height(600).url()
-                  : '/images/premium-1.jpg';
+                  : '/wp-content/uploads/2024/12/premium-1.jpg';
 
                 return (
                   <AnimateOnScroll key={pkg._id} delay={(index % 3) * 120}>
