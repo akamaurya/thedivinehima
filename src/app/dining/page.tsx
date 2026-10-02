@@ -11,10 +11,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Dining & Restaurant | The Divine Hima',
     description: 'Experience a culinary journey at The Divine Hima with Italian, Japanese, Chinese, Tibetan, and local Himachali cuisine.',
-    url: 'https://thedivinehima.com/dining',
+    url: 'https://thedivinehima.com/dining/',
     images: [
       {
-        url: 'https://thedivinehima.com/wp-content/uploads/2020/10/dining.jpg',
+        url: '/images/dining.jpg',
         width: 1200,
         height: 630,
         alt: 'Dining at The Divine Hima',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: '/dining',
+    canonical: '/dining/',
   },
 };
 
@@ -33,7 +33,7 @@ export default async function DiningPage() {
     <main className={styles.main}>
       <PageHero 
         title="Dining at The Divine Hima" 
-        backgroundImage={data?.heroImage || "https://thedivinehima.com/wp-content/uploads/2020/10/dining.jpg"}
+        backgroundImage={data?.heroImage || "/images/dining.jpg"}
       />
 
       <section className={`section ${styles.intro}`}>
@@ -54,7 +54,7 @@ export default async function DiningPage() {
                 {data?.restaurantImage ? (
                   <SanityImage image={data.restaurantImage} alt="The Restaurant" className={styles.venueImage} width={800} height={600} />
                 ) : (
-                  <img src="https://thedivinehima.com/wp-content/uploads/2020/10/dining2.jpg" alt="The Restaurant" className={styles.venueImage} />
+                  <img src="/images/dining2.jpg" alt="The Restaurant" className={styles.venueImage} />
                 )}
               </div>
               <div className={styles.venueBody}>
@@ -73,7 +73,7 @@ export default async function DiningPage() {
                 {data?.cafeImage ? (
                   <SanityImage image={data.cafeImage} alt="Divine Café" className={styles.venueImage} width={800} height={600} />
                 ) : (
-                  <img src="https://thedivinehima.com/wp-content/uploads/2020/10/cafe1.jpg" alt="Divine Café" className={styles.venueImage} />
+                  <img src="/images/cafe1.jpg" alt="Divine Café" className={styles.venueImage} />
                 )}
               </div>
               <div className={styles.venueBody}>
@@ -92,7 +92,7 @@ export default async function DiningPage() {
                 {data?.pizzeriaImage ? (
                   <SanityImage image={data.pizzeriaImage} alt="Firewood Pizzeria" className={styles.venueImage} width={800} height={600} />
                 ) : (
-                  <img src="https://thedivinehima.com/wp-content/uploads/2024/12/pizerria.jpg" alt="Firewood Pizzeria" className={styles.venueImage} />
+                  <img src="/images/pizerria.jpg" alt="Firewood Pizzeria" className={styles.venueImage} />
                 )}
               </div>
               <div className={styles.venueBody}>
@@ -111,7 +111,7 @@ export default async function DiningPage() {
                 {data?.barImage ? (
                   <SanityImage image={data.barImage} alt="The Bar By Far" className={styles.venueImage} width={800} height={600} />
                 ) : (
-                  <img src="https://thedivinehima.com/wp-content/uploads/2024/12/bar.jpg" alt="The Bar By Far" className={styles.venueImage} />
+                  <img src="/images/bar.jpg" alt="The Bar By Far" className={styles.venueImage} />
                 )}
               </div>
               <div className={styles.venueBody}>

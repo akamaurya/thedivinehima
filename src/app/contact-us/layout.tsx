@@ -6,10 +6,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contact Us | The Divine Hima',
     description: 'Get in touch with The Divine Hima. Reach us for bookings, inquiries, and more.',
-    url: 'https://thedivinehima.com/contact',
+    url: 'https://thedivinehima.com/contact-us/',
     images: [
       {
-        url: 'https://thedivinehima.com/wp-content/uploads/2024/12/luxury-2.jpg',
+        url: '/images/luxury-2.jpg',
         width: 1200,
         height: 630,
         alt: 'Contact The Divine Hima',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: '/contact',
+    canonical: '/contact-us/',
   },
 };
 

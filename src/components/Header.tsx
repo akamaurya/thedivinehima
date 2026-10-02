@@ -7,13 +7,13 @@ import styles from './Header.module.css';
 
 const navLinks = [
   { href: '/', label: 'Home' },
-  { href: '/rooms', label: 'Rooms' },
-  { href: '/packages', label: 'Packages' },
-  { href: '/dining', label: 'Dining' },
-  { href: '/gallery', label: 'Gallery' },
-  { href: '/about', label: 'About' },
-  { href: '/blog', label: 'Travel Guide' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/divine-rooms/', label: 'Rooms' },
+  { href: '/divine-holiday-packages/', label: 'Packages' },
+  { href: '/dining/', label: 'Dining' },
+  { href: '/gallery/', label: 'Gallery' },
+  { href: '/about/', label: 'About' },
+  { href: '/blog/', label: 'Travel Guide' },
+  { href: '/contact-us/', label: 'Contact' },
 ];
 
 export default function Header() {
@@ -58,7 +58,7 @@ export default function Header() {
     >
       <div className={styles.headerInner}>
         <Link href="/" className={styles.logo}>
-          <img src="https://thedivinehima.com/wp-content/themes/calluna-child/img/logo1.png" alt="The Divine Hima" style={{ maxHeight: '40px' }} />
+          <img src="/images/logo1.png" alt="The Divine Hima" style={{ maxHeight: '40px' }} />
         </Link>
 
         <nav className={styles.desktopNav}>
@@ -68,7 +68,7 @@ export default function Header() {
                 <Link
                   href={link.href}
                   className={`${styles.navLink} ${
-                    pathname === link.href ? styles.navLinkActive : ''
+                    pathname.replace(/\/$/, '') === link.href.replace(/\/$/, '') ? styles.navLinkActive : ''
                   }`}
                 >
                   {link.label}
@@ -110,7 +110,7 @@ export default function Header() {
               <Link
                 href={link.href}
                 className={`${styles.mobileNavLink} ${
-                  pathname === link.href ? styles.mobileNavLinkActive : ''
+                  pathname.replace(/\/$/, '') === link.href.replace(/\/$/, '') ? styles.mobileNavLinkActive : ''
                 }`}
                 onClick={() => setMobileOpen(false)}
               >

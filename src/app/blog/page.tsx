@@ -11,10 +11,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Blog | The Divine Hima',
     description: 'Read the latest stories and updates from The Divine Hima, Dharamshala.',
-    url: 'https://thedivinehima.com/blog',
+    url: 'https://thedivinehima.com/blog/',
     images: [
       {
-        url: 'https://thedivinehima.com/wp-content/uploads/2018/04/takling-la-1.jpg',
+        url: '/images/takling-la-1.jpg',
         width: 1200,
         height: 630,
         alt: 'The Divine Hima Blog',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: '/blog',
+    canonical: '/blog/',
   },
 };
 
@@ -45,7 +45,7 @@ export default async function BlogPage() {
       <PageHero 
         title="Our Blog" 
         subtitle="Stories, tips, and updates from the mountains."
-        backgroundImage="https://thedivinehima.com/wp-content/uploads/2018/04/takling-la-1.jpg"
+        backgroundImage="/images/takling-la-1.jpg"
       />
 
       <section className="section">
@@ -57,14 +57,14 @@ export default async function BlogPage() {
               posts.map((post: any, index: number) => {
                 const coverUrl = post.coverImage 
                   ? urlForImage(post.coverImage).url() 
-                  : 'https://thedivinehima.com/wp-content/uploads/2024/12/premium-1.jpg'; // fallback
+                  : '/images/premium-1.jpg'; // fallback
                 const date = new Date(post.publishedAt || Date.now()).toLocaleDateString('en-US', {
                   year: 'numeric', month: 'long', day: 'numeric'
                 });
 
                 return (
                   <AnimateOnScroll key={post._id} delay={index * 100}>
-                    <Link href={`/blog/${post.slug}`} style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
+                    <Link href={`/${post.slug}/`} style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}>
                       <div style={{ 
                         backgroundColor: 'white', 
                         borderRadius: '12px', 

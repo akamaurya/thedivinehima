@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { client } from '../../../../sanity/lib/client';
 import { urlForImage } from '../../../../sanity/lib/image';
 import PageHero from '@/components/PageHero';
-import styles from '../page.module.css';
+import styles from '../../divine-rooms/page.module.css';
 
 export const dynamic = 'force-static';
 
@@ -21,21 +21,23 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const query = `*[_type == "room" && slug.current == $slug][0] { name, description, images }`;
+  const query = `*[_type == "room" && slug.current == $slug][0] { name, description, images, seoTitle, seoDescription }`;
   const room = await client.fetch(query, { slug });
   if (!room) return { title: 'Room Not Found' };
 
   const heroImage = room.images && room.images.length > 0 
     ? urlForImage(room.images[0]).url() 
-    : 'https://thedivinehima.com/wp-content/uploads/2024/12/premium-3.jpg';
+    : '/images/premium-3.jpg';
+
+  const description = room.seoDescription || room.description;
 
   return {
-    title: `${room.name}`,
-    description: room.description,
+    title: room.seoTitle ? { absolute: room.seoTitle } : room.name,
+    description,
     openGraph: {
-      title: `${room.name} | The Divine Hima`,
-      description: room.description,
-      url: `https://thedivinehima.com/rooms/${slug}`,
+      title: room.seoTitle || `${room.name} | The Divine Hima`,
+      description,
+      url: `https://thedivinehima.com/rooms/${slug}/`,
       images: [
         {
           url: heroImage,
@@ -46,7 +48,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       ]
     },
     alternates: {
-      canonical: `/rooms/${slug}`,
+      canonical: `/rooms/${slug}/`,
     }
   };
 }
@@ -71,7 +73,7 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
 
   const heroImage = room.images && room.images.length > 0 
     ? urlForImage(room.images[0]).url() 
-    : 'https://thedivinehima.com/wp-content/uploads/2024/12/premium-3.jpg';
+    : '/images/premium-3.jpg';
 
   return (
     <main className={styles.main}>

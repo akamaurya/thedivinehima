@@ -1,0 +1,10 @@
+# Apache host config. Keep the redirects in sync with vercel.json.
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+# Retired WordPress URLs -> nearest page. Anchored so /rooms/<slug>/ is untouched.
+RedirectMatch 301 ^/superior-rooms/?$ /divine-rooms/
+RedirectMatch 301 ^/premium-rooms/?$ /divine-rooms/
+RedirectMatch 301 ^/standard-deluxe-rooms/?$ /divine-rooms/
+RedirectMatch 301 ^/rooms/?$ /divine-rooms/
+RedirectMatch 301 ^/homepage/?$ /

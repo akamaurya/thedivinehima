@@ -1,0 +1,10 @@
+{
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/superior-rooms/", "destination": "/divine-rooms/", "statusCode": 301 },
+    { "source": "/premium-rooms/", "destination": "/divine-rooms/", "statusCode": 301 },
+    { "source": "/standard-deluxe-rooms/", "destination": "/divine-rooms/", "statusCode": 301 },
+    { "source": "/rooms/", "destination": "/divine-rooms/", "statusCode": 301 },
+    { "source": "/homepage/", "destination": "/", "statusCode": 301 }
+  ]
+}

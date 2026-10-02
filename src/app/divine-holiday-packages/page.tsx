@@ -13,10 +13,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Packages & Getaways | The Divine Hima',
     description: 'Curated stay packages at The Divine Hima, Dharamshala — romantic getaways, family escapes, and wellness retreats with Himalayan views, dining, and experiences included.',
-    url: 'https://thedivinehima.com/packages',
+    url: 'https://thedivinehima.com/divine-holiday-packages/',
     images: [
       {
-        url: 'https://thedivinehima.com/wp-content/uploads/2024/12/premium-3.jpg',
+        url: '/images/premium-3.jpg',
         width: 1200,
         height: 630,
         alt: 'Stay packages at The Divine Hima',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: '/packages',
+    canonical: '/divine-holiday-packages/',
   },
 };
 
@@ -70,7 +70,7 @@ export default async function PackagesPage() {
 
       <PageHero
         title="Packages & Getaways"
-        backgroundImage="https://thedivinehima.com/wp-content/uploads/2024/12/premium-3.jpg"
+        backgroundImage="/images/premium-3.jpg"
       />
 
       <section className={`section ${styles.intro}`}>
@@ -91,7 +91,7 @@ export default async function PackagesPage() {
               {packages.map((pkg: any, index: number) => {
                 const imageUrl = pkg.image
                   ? urlForImage(pkg.image).width(800).height(600).url()
-                  : 'https://thedivinehima.com/wp-content/uploads/2024/12/premium-1.jpg';
+                  : '/images/premium-1.jpg';
 
                 return (
                   <AnimateOnScroll key={pkg._id} delay={(index % 3) * 120}>

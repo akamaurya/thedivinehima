@@ -5,12 +5,12 @@ import styles from './Footer.module.css';
 
 const quickLinks = [
   { href: '/', label: 'Home' },
-  { href: '/rooms', label: 'Rooms' },
-  { href: '/packages', label: 'Packages' },
-  { href: '/dining', label: 'Dining' },
-  { href: '/gallery', label: 'Gallery' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/divine-rooms/', label: 'Rooms' },
+  { href: '/divine-holiday-packages/', label: 'Packages' },
+  { href: '/dining/', label: 'Dining' },
+  { href: '/gallery/', label: 'Gallery' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact-us/', label: 'Contact' },
 ];
 
 const socialLinks = [
@@ -29,7 +29,7 @@ export default function Footer() {
         {/* Column 1 — Brand */}
         <div className={styles.column}>
           <Link href="/" className={styles.logo}>
-            <img src="https://thedivinehima.com/wp-content/uploads/2016/04/Divine-Hima-ftr@2x.png" alt="The Divine Hima" style={{ maxHeight: '80px' }} />
+            <img src="/images/Divine-Hima-ftr@2x.png" alt="The Divine Hima" style={{ maxHeight: '80px' }} />
           </Link>
           <p className={styles.brandDescription}>
             A luxury boutique hotel nestled in the serene landscapes of
