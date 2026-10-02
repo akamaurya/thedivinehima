@@ -22,6 +22,7 @@ export const blogPost = {
         ]
       }
     ] },
+    { name: 'structuredData', title: 'Structured Data (JSON-LD)', type: 'text', rows: 8, description: 'Optional JSON-LD (object or array) rendered in the page head. Replaces the auto-generated Article schema when set.' },
     { name: 'categories', title: 'Categories', type: 'array', of: [{ type: 'string' }] },
     { name: 'seoTitle', title: 'SEO Title', type: 'string', description: 'Full page <title> (no suffix added). Leave blank to use "<title> | The Divine Hima".', validation: (Rule: StringRule) => Rule.max(60).warning('Keep under 60 characters') },
     { name: 'seoDescription', title: 'SEO Description', type: 'text', rows: 3, description: 'Meta description for search results. Leave blank to auto-generate.', validation: (Rule: StringRule) => Rule.max(160).warning('Keep under 160 characters') },

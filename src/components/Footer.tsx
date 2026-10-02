@@ -29,7 +29,7 @@ export default function Footer() {
         {/* Column 1 — Brand */}
         <div className={styles.column}>
           <Link href="/" className={styles.logo}>
-            <img src="/images/Divine-Hima-ftr@2x.png" alt="The Divine Hima" style={{ maxHeight: '80px' }} />
+            <img src="/wp-content/uploads/2016/04/Divine-Hima-ftr@2x.png" alt="The Divine Hima" style={{ maxHeight: '80px' }} />
           </Link>
           <p className={styles.brandDescription}>
             A luxury boutique hotel nestled in the serene landscapes of

@@ -1,4 +1,7 @@
+import { readdirSync } from 'node:fs';
+import path from 'node:path';
 import type { Metadata } from 'next';
+import { cache } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { PortableText } from '@portabletext/react';
@@ -8,16 +11,22 @@ import PageHero from '@/components/PageHero';
 
 export const dynamic = 'force-static';
 
+// One Sanity request per page, shared by generateMetadata and the page.
+const get = cache((slug: string) => client.fetch(`*[_type == "blogPost" && slug.current == $slug][0]`, { slug }));
+
 export async function generateStaticParams() {
   const query = `*[_type == "blogPost" && defined(slug.current)] { "slug": slug.current }`;
-  const slugs = await client.fetch(query);
-  return slugs.map((s: { slug: string }) => ({ slug: s.slug }));
+  const slugs: { slug: string }[] = await client.fetch(query);
+  // Posts share the root with static routes; a post named after one would collide.
+  const reserved = new Set(readdirSync(path.join(process.cwd(), 'src/app')));
+  const params = slugs.filter((s) => !reserved.has(s.slug)).map((s) => ({ slug: s.slug }));
+  // output: 'export' rejects an empty list.
+  return params.length ? params : [{ slug: 'dummy' }];
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const query = `*[_type == "blogPost" && slug.current == $slug][0] { title, seoTitle, seoDescription, body, coverImage }`;
-  const post = await client.fetch(query, { slug });
+  const post = await get(slug);
   if (!post) return { title: 'Post Not Found' };
   
   // Extract a short description from the body if possible
@@ -27,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     
   const coverUrl = post.coverImage 
     ? urlForImage(post.coverImage).url() 
-    : '/images/takling-la-1.jpg';
+    : '/wp-content/uploads/2018/04/takling-la-1.jpg';
     
   return {
     title: post.seoTitle ? { absolute: post.seoTitle } : post.title,
@@ -54,18 +63,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const query = `*[_type == "blogPost" && slug.current == $slug][0] {
-    _id,
-    title,
-    coverImage,
-    publishedAt,
-    _updatedAt,
-    seoDescription,
-    body,
-    categories
-  }`;
-  
-  const post = await client.fetch(query, { slug });
+  const post = await get(slug);
 
   if (!post) {
     notFound();
@@ -73,7 +71,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const coverUrl = post.coverImage 
     ? urlForImage(post.coverImage).url() 
-    : '/images/takling-la-1.jpg'; // fallback
+    : '/wp-content/uploads/2018/04/takling-la-1.jpg'; // fallback
     
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -88,7 +86,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     publisher: {
       '@type': 'Organization',
       name: 'The Divine Hima',
-      logo: { '@type': 'ImageObject', url: 'https://thedivinehima.com/images/cropped-Divine-Hima-logo-512-192x192.png' },
+      logo: { '@type': 'ImageObject', url: 'https://thedivinehima.com/wp-content/uploads/2016/03/cropped-Divine-Hima-logo-512-192x192.png' },
     },
   };
 
@@ -113,7 +111,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         );
       },
       callToAction: ({ value }: any) => {
-        const targetUrl = (!value.url || value.url === '/contact') 
+        const targetUrl = (!value.url || ['/contact', '/contact-us', '/contact-us/'].includes(value.url))
           ? 'https://asiatech.in/booking_engine/index3?token=MTA4NDQ=' 
           : value.url;
 
@@ -136,7 +134,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, '\\u003c') }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(post.structuredData ? JSON.parse(post.structuredData) : articleSchema).replace(/</g, '\\u003c') }}
       />
       <PageHero 
         title={post.title} 

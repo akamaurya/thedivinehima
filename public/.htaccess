@@ -1,4 +1,4 @@
-# Apache host config. Keep the redirects in sync with vercel.json.
+# Apache/LiteSpeed config for thedivinehima.com: real 301s for retired WordPress URLs. Keep in sync with the redirect pages in src/app (they cover GitHub Pages).
 DirectoryIndex index.html
 ErrorDocument 404 /404.html
 
@@ -8,3 +8,9 @@ RedirectMatch 301 ^/premium-rooms/?$ /divine-rooms/
 RedirectMatch 301 ^/standard-deluxe-rooms/?$ /divine-rooms/
 RedirectMatch 301 ^/rooms/?$ /divine-rooms/
 RedirectMatch 301 ^/homepage/?$ /
+RedirectMatch 301 ^/divine-cuisine/?$ /dining/
+RedirectMatch 301 ^/location/?$ /contact-us/
+RedirectMatch 301 ^/travel-guide/?$ /blog/
+RedirectMatch 301 ^/retreats/?$ /divine-holiday-packages/
+RedirectMatch 301 ^/(divine-study|divine-awards|booking-and-deposits)/?$ /about/
+RedirectMatch 301 ^/(tag|category|author)/ /blog/

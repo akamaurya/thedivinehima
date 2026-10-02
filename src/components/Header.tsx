@@ -58,7 +58,7 @@ export default function Header() {
     >
       <div className={styles.headerInner}>
         <Link href="/" className={styles.logo}>
-          <img src="/images/logo1.png" alt="The Divine Hima" style={{ maxHeight: '40px' }} />
+          <img src="/wp-content/themes/calluna-child/img/logo1.png" alt="The Divine Hima" style={{ maxHeight: '40px' }} />
         </Link>
 
         <nav className={styles.desktopNav}>

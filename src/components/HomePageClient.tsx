@@ -10,19 +10,19 @@ const rooms = [
     name: 'Premium Rooms',
     type: 'Luxury Collection',
     description: 'Experience the ultimate comfort and elegance with our luxury hotel rooms.',
-    image: '/images/premium-1.jpg',
+    image: '/wp-content/uploads/2024/12/premium-1.jpg',
   },
   {
     name: 'Superior Rooms',
     type: 'Comfort & Grace',
     description: 'Unmatched comfort and elegance in our premium rooms in Dharamshala.',
-    image: '/images/luxury-1.jpg',
+    image: '/wp-content/uploads/2024/12/luxury-1.jpg',
   },
   {
     name: 'Deluxe Rooms',
     type: 'Cozy Retreat',
     description: 'Relax in comfort with modern amenities and breathtaking mountain views.',
-    image: '/images/deluxe-2.jpg',
+    image: '/wp-content/uploads/2024/12/deluxe-2.jpg',
   },
 ];
 
@@ -202,7 +202,7 @@ export default function HomePageClient({ settings }: { settings?: any }) {
             ) : (
               <img 
                 ref={heroImageRef}
-                src="/images/luxury-hotel-in-dharamshala.jpg" 
+                src="/wp-content/uploads/2024/12/luxury-hotel-in-dharamshala.jpg" 
                 alt="The Divine Hima exterior" 
                 className={styles.heroBg}
               />
@@ -240,7 +240,7 @@ export default function HomePageClient({ settings }: { settings?: any }) {
               />
             ) : (
               <img
-                src="/images/divine-hima0044.jpg"
+                src="/wp-content/uploads/2016/03/divine-hima0044.jpg"
                 alt="The Divine Hima Architecture"
                 className={styles.introImage}
                 loading="lazy"

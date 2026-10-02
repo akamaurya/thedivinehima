@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     url: 'https://thedivinehima.com/blog/',
     images: [
       {
-        url: '/images/takling-la-1.jpg',
+        url: '/wp-content/uploads/2018/04/takling-la-1.jpg',
         width: 1200,
         height: 630,
         alt: 'The Divine Hima Blog',
@@ -45,7 +45,7 @@ export default async function BlogPage() {
       <PageHero 
         title="Our Blog" 
         subtitle="Stories, tips, and updates from the mountains."
-        backgroundImage="/images/takling-la-1.jpg"
+        backgroundImage="/wp-content/uploads/2018/04/takling-la-1.jpg"
       />
 
       <section className="section">
@@ -57,7 +57,7 @@ export default async function BlogPage() {
               posts.map((post: any, index: number) => {
                 const coverUrl = post.coverImage 
                   ? urlForImage(post.coverImage).url() 
-                  : '/images/premium-1.jpg'; // fallback
+                  : '/wp-content/uploads/2024/12/premium-1.jpg'; // fallback
                 const date = new Date(post.publishedAt || Date.now()).toLocaleDateString('en-US', {
                   year: 'numeric', month: 'long', day: 'numeric'
                 });
