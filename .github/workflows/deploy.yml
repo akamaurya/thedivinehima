@@ -25,6 +25,12 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+        env:
+          BASE_PATH: /thedivinehima
+      # ponytail: preview-only. basePath doesn't reach plain <img src="/wp-content/..."> paths,
+      # so prefix them in the export (HTML, RSC payloads, JS). Drop this step and BASE_PATH
+      # when deploying to thedivinehima.com.
+      - run: grep -rl --include='*.html' --include='*.txt' --include='*.js' '"/wp-content/' out | xargs sed -i 's#"/wp-content/#"/thedivinehima/wp-content/#g'
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
