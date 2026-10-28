@@ -8,6 +8,7 @@ import { PortableText } from '@portabletext/react';
 import { client } from '../../../sanity/lib/client';
 import { urlForImage } from '../../../sanity/lib/image';
 import PageHero from '@/components/PageHero';
+import { safeJsonLd } from '@/lib/json-ld';
 
 export const dynamic = 'force-static';
 
@@ -134,7 +135,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <main>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(post.structuredData ? JSON.parse(post.structuredData) : articleSchema).replace(/</g, '\\u003c') }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(post.structuredData ? JSON.parse(post.structuredData) : articleSchema) }}
       />
       <PageHero 
         title={post.title} 

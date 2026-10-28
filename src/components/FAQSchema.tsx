@@ -1,4 +1,5 @@
 import Script from 'next/script';
+import { safeJsonLd } from '@/lib/json-ld';
 
 export default function FAQSchema() {
   const faqData = {
@@ -98,7 +99,7 @@ export default function FAQSchema() {
 
   return (
     <Script id="faq-schema" type="application/ld+json" strategy="beforeInteractive">
-      {JSON.stringify(faqData)}
+      {safeJsonLd(faqData)}
     </Script>
   );
 }

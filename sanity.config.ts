@@ -13,8 +13,13 @@ import { tourPackage } from './sanity/schemas/package';
 
 const isProd = process.env.NODE_ENV === 'production';
 
+// Override per deployment: root-domain builds (thedivinehima.com/studio) set
+// SANITY_STUDIO_BASE_PATH=/studio, the GitHub Pages preview keeps the subpath.
+const basePath =
+  process.env.SANITY_STUDIO_BASE_PATH || (isProd ? '/thedivinehima/studio' : '/studio');
+
 export default defineConfig({
-  basePath: isProd ? '/thedivinehima/studio' : '/studio',
+  basePath,
   projectId,
   dataset,
   title: 'The Divine Hima',

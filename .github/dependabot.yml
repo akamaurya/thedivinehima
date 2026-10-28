@@ -1,0 +1,29 @@
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    groups:
+      # One PR for the framework stack so Next/React/eslint stay in lockstep.
+      next:
+        patterns:
+          - next
+          - eslint-config-next
+          - react
+          - react-dom
+    ignore:
+      # npm audit fix --force proposes Sanity 5.x, which is a downgrade, not a fix.
+      - dependency-name: sanity
+        update-types: ['version-update:semver-major']
+
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: weekly
+    # Actions must stay pinned to commit SHAs; Dependabot rewrites both SHA and comment.
+    groups:
+      actions:
+        patterns: ['*']

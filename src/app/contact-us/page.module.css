@@ -46,107 +46,54 @@
   align-items: start;
 }
 
-/* ---------- Contact Form ---------- */
+/* ---------- Action Card ---------- */
 
-.formCard {
+.actionCard {
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: clamp(1.75rem, 4vw, 2.5rem);
 }
 
-.formRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-}
-
-.formGroup {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.25rem;
-}
-
-.label {
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-text-muted);
-  margin-bottom: 0.5rem;
-}
-
-.input,
-.textarea {
-  background: var(--color-bg-elevated);
-  border: 1px solid var(--color-border);
-  color: var(--color-text);
-  padding: 0.875rem 1rem;
-  border-radius: var(--radius-sm);
-  font-family: var(--font-body);
+.actionText {
+  color: var(--color-text-secondary);
   font-size: 0.95rem;
-  line-height: 1.5;
-  transition: border-color var(--transition-base), box-shadow var(--transition-base);
-  width: 100%;
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
 }
 
-.input::placeholder,
-.textarea::placeholder {
-  color: var(--color-text-muted);
-  opacity: 0.6;
-}
-
-.input:focus,
-.textarea:focus {
-  border-color: var(--color-secondary);
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(150, 122, 80, 0.1);
-}
-
-.textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-.submitBtn {
-  margin-top: 0.5rem;
-  width: 100%;
-}
-
-/* ---------- Success Message ---------- */
-
-.successMessage {
-  display: flex;
-  align-items: center;
+.actions {
+  display: grid;
   gap: 0.75rem;
-  background: rgba(150, 122, 80, 0.08);
-  border: 1px solid rgba(150, 122, 80, 0.25);
+}
+
+.actionBtn {
+  width: 100%;
+  text-align: center;
+}
+
+.actionBtnGhost {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  padding: 1rem 1.25rem;
-  margin-top: 1rem;
-  animation: fadeSlideIn 0.4s ease forwards;
-}
-
-.successIcon {
-  font-size: 1.25rem;
-  flex-shrink: 0;
-}
-
-.successText {
+  color: var(--color-text);
   font-size: 0.9rem;
-  color: var(--color-gold);
-  line-height: 1.5;
+  transition: border-color var(--transition-base), color var(--transition-base);
 }
 
-@keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.actionBtnGhost:hover {
+  border-color: var(--color-secondary);
+  color: var(--color-gold);
+}
+
+.actionNote {
+  margin-top: 1.25rem;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
 }
 
 /* ---------- Info Cards ---------- */
@@ -248,14 +195,10 @@
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-
-  .formRow {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 600px) {
-  .formCard {
+  .actionCard {
     padding: 1.25rem;
   }
 

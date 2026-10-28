@@ -45,3 +45,6 @@ next-env.d.ts
 
 # WordPress pull (scripts/pull-wp.mjs)
 /wp-export
+
+# Pre-launch working notes (not part of the deployed site)
+/to-go-live

@@ -3,27 +3,31 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ['main']
+  pull_request:
   workflow_dispatch:
 
+# Least privilege at the workflow level; the deploy job escalates per job.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: 'pages'
+  group: 'pages-${{ github.ref }}'
   cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      # Actions are pinned to full commit SHAs (see .github/dependabot.yml for updates).
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: '20'
+          node-version: '24.22.1' # CVE-2026-111497 is unfixed on Node 20 (EOL)
           cache: 'npm'
       - run: npm ci
+      - run: npm test
       - run: npm run build
         env:
           BASE_PATH: /thedivinehima
@@ -31,15 +35,22 @@ jobs:
       # so prefix them in the export (HTML, RSC payloads, JS). Drop this step and BASE_PATH
       # when deploying to thedivinehima.com.
       - run: grep -rl --include='*.html' --include='*.txt' --include='*.js' '"/wp-content/' out | xargs sed -i 's#"/wp-content/#"/thedivinehima/wp-content/#g'
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
         with:
           path: ./out
 
   deploy:
+    # Builds on PRs are verification only; only main deploys.
+    if: github.event_name != 'pull_request'
+    # Add required reviewers to the `github-pages` environment so production
+    # deploys need a human approval (Settings > Environments).
     environment:
       name: github-pages
       url: ${{ github.event.deployment.payload.web_url }}
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      pages: write
+      id-token: write
     steps:
-      - uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febcac5b3c0c03e # v4

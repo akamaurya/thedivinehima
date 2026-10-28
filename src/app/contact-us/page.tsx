@@ -1,64 +1,52 @@
-'use client';
-import { FormEvent, useState } from 'react';
 import PageHero from '@/components/PageHero';
 import styles from './page.module.css';
 
+const WHATSAPP_URL = 'https://wa.me/918626983777';
+const EMAIL = 'reservation@thedivinehima.com';
+
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    // Real implementation would send to an API
-  };
-
   return (
     <main className={styles.main}>
-      <PageHero 
-        title="Get in Touch" 
+      <PageHero
+        title="Get in Touch"
         backgroundImage="/wp-content/uploads/2024/12/luxury-2.jpg"
       />
 
       <section className={`section ${styles.contactSection}`}>
         <div className="container">
           <div className={styles.grid}>
-            
-            {/* Left Col - Form */}
-            <div className={styles.formCard}>
-              <h2 className={styles.sectionTitle}>Send us a Message</h2>
-              {submitted ? (
-                <div className={styles.successMessage}>
-                  Thank you for reaching out! We will get back to you shortly.
-                </div>
-              ) : (
-                <form className={styles.contactForm} onSubmit={handleSubmit}>
-                  <div className={styles.formRow}>
-                    <div className={styles.formGroup}>
-                      <label htmlFor="name" className={styles.label}>Name</label>
-                      <input type="text" id="name" required className={styles.input} />
-                    </div>
-                    <div className={styles.formGroup}>
-                      <label htmlFor="email" className={styles.label}>Email</label>
-                      <input type="email" id="email" required className={styles.input} />
-                    </div>
-                  </div>
-                  <div className={styles.formRow}>
-                    <div className={styles.formGroup}>
-                      <label htmlFor="phone" className={styles.label}>Phone</label>
-                      <input type="tel" id="phone" className={styles.input} />
-                    </div>
-                    <div className={styles.formGroup}>
-                      <label htmlFor="subject" className={styles.label}>Subject</label>
-                      <input type="text" id="subject" required className={styles.input} />
-                    </div>
-                  </div>
-                  <div className={styles.formGroup}>
-                    <label htmlFor="message" className={styles.label}>Message</label>
-                    <textarea id="message" rows={5} required className={styles.textarea}></textarea>
-                  </div>
-                  <button type="submit" className={`btn btn-primary ${styles.submitBtn}`}>Send Message</button>
-                </form>
-              )}
+            {/* Left Col: working contact channels (no form backend on a static site) */}
+            <div className={styles.actionCard}>
+              <h2 className={styles.sectionTitle}>Reserve or Enquire</h2>
+              <p className={styles.actionText}>
+                Tell us your dates and how many guests are travelling, and we
+                will reply with availability and the best rate. WhatsApp is the
+                fastest way to reach the front desk.
+              </p>
+
+              <div className={styles.actions}>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`btn btn-primary ${styles.actionBtn}`}
+                >
+                  WhatsApp the front desk
+                </a>
+                <a href="tel:+918626983777" className={styles.actionBtnGhost}>
+                  Call +91 86269 83777
+                </a>
+                <a
+                  href={`mailto:${EMAIL}?subject=${encodeURIComponent('Booking enquiry: The Divine Hima')}`}
+                  className={styles.actionBtnGhost}
+                >
+                  Email {EMAIL}
+                </a>
+              </div>
+
+              <p className={styles.actionNote}>
+                We answer every message, 8:00 AM to 10:00 PM IST.
+              </p>
             </div>
 
             {/* Right Col - Info */}
@@ -87,7 +75,7 @@ export default function ContactPage() {
                 <div className={styles.infoCardIcon}>✉️</div>
                 <div className={styles.infoCardContent}>
                   <h3 className={styles.infoCardTitle}>Email</h3>
-                  <a href="mailto:reservation@thedivinehima.com" className={styles.infoCardLink}>reservation@thedivinehima.com</a>
+                  <a href={`mailto:${EMAIL}`} className={styles.infoCardLink}>{EMAIL}</a>
                 </div>
               </div>
 
@@ -102,7 +90,7 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
-            
+
           </div>
         </div>
       </section>
