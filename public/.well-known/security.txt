@@ -1,0 +1,5 @@
+# Security contact (RFC 9116). Served from https://thedivinehima.com/.well-known/security.txt
+Contact: mailto:reservation@thedivinehima.com
+Expires: 2027-10-28T00:00:00.000Z
+Preferred-Languages: en, hi
+Canonical: https://thedivinehima.com/.well-known/security.txt

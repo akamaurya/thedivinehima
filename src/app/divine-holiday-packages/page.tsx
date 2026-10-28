@@ -3,9 +3,10 @@ import { client } from '../../../sanity/lib/client';
 import { urlForImage } from '../../../sanity/lib/image';
 import PageHero from '@/components/PageHero';
 import AnimateOnScroll from '@/components/AnimateOnScroll';
+import { safeJsonLd } from '@/lib/json-ld';
 import styles from './page.module.css';
 
-const WHATSAPP_URL = 'https://wa.me/8626983777';
+const WHATSAPP_URL = 'https://wa.me/918626983777';
 
 export const metadata: Metadata = {
   title: 'Packages & Getaways',
@@ -65,7 +66,7 @@ export default async function PackagesPage() {
     <main className={styles.main}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonLd(jsonLd) }}
       />
 
       <PageHero
