@@ -3,6 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ['main']
+  pull_request:
   workflow_dispatch:
 
 # Least privilege at the workflow level; the deploy job escalates per job.
@@ -10,7 +11,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: 'pages'
+  group: 'pages-${{ github.ref }}'
   cancel-in-progress: false
 
 jobs:
@@ -39,6 +40,8 @@ jobs:
           path: ./out
 
   deploy:
+    # Builds on PRs are verification only; only main deploys.
+    if: github.event_name != 'pull_request'
     # Add required reviewers to the `github-pages` environment so production
     # deploys need a human approval (Settings > Environments).
     environment:
