@@ -1,7 +1,7 @@
 import PageHero from '@/components/PageHero';
+import { PHONE_DISPLAY, TEL_URL, WHATSAPP_URL } from '@/lib/contact';
 import styles from './page.module.css';
 
-const WHATSAPP_URL = 'https://wa.me/918626983777';
 const EMAIL = 'reservation@thedivinehima.com';
 
 export default function ContactPage() {
@@ -29,23 +29,23 @@ export default function ContactPage() {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`btn btn-primary ${styles.actionBtn}`}
+                  className="btn btn-primary"
                 >
                   WhatsApp the front desk
                 </a>
-                <a href="tel:+918626983777" className={styles.actionBtnGhost}>
-                  Call +91 86269 83777
+                <a href={TEL_URL} className="btn btn-secondary">
+                  Call {PHONE_DISPLAY}
                 </a>
                 <a
                   href={`mailto:${EMAIL}?subject=${encodeURIComponent('Booking enquiry: The Divine Hima')}`}
-                  className={styles.actionBtnGhost}
+                  className="btn btn-secondary"
                 >
-                  Email {EMAIL}
+                  Email us
                 </a>
               </div>
 
               <p className={styles.actionNote}>
-                We answer every message, 8:00 AM to 10:00 PM IST.
+                We answer every message, 8:00 AM to 10:30 PM IST.
               </p>
             </div>
 
@@ -67,7 +67,7 @@ export default function ContactPage() {
                 <div className={styles.infoCardIcon}>📞</div>
                 <div className={styles.infoCardContent}>
                   <h3 className={styles.infoCardTitle}>Phone</h3>
-                  <a href="tel:+918626983777" className={styles.infoCardLink}>+91 86269 83777</a>
+                  <a href={TEL_URL} className={styles.infoCardLink}>{PHONE_DISPLAY}</a>
                 </div>
               </div>
 

@@ -59,6 +59,7 @@ Nothing on the apex domain changes, so rollback is: stop the WordPress redirect
   hundred conversions per arm before trusting the difference).
 - Optional: also compare `email_click` / `phone_click`, session duration, and
   bounce between the two variants for a fuller "experience" picture.
+  `whatsapp_click` is tracked on the new site only, so it has no control arm.
 
 ## Changing the split
 

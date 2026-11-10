@@ -46,5 +46,8 @@ next-env.d.ts
 # WordPress pull (scripts/pull-wp.mjs)
 /wp-export
 
+# Local Cloudflare runtime state
+/.wrangler
+
 # Pre-launch working notes (not part of the deployed site)
 /to-go-live

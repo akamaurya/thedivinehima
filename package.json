@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --test --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON src/lib/json-ld.test.mjs"
+    "test": "node --test"
   },
   "dependencies": {
     "@portabletext/react": "^6.2.0",

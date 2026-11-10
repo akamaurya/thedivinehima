@@ -1,6 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { safeJsonLd } from './json-ld.ts';
+import { parseJsonLd, safeJsonLd } from './json-ld.ts';
+
+test('bad editor JSON falls back instead of failing the build', () => {
+  assert.equal(parseJsonLd('{"@type": "Article",}'), undefined);
+  assert.equal(parseJsonLd(''), undefined);
+  assert.deepEqual(parseJsonLd('{"@type":"Article"}'), { '@type': 'Article' });
+});
 
 test('a package name containing </script> cannot close the tag', () => {
   const payload = '</script><script>alert(document.domain)</script>';

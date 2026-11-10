@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import styles from '@/app/page.module.css';
 import SanityImage from '@/components/SanityImage';
+import { PHONE_DISPLAY, TEL_URL } from '@/lib/contact';
 
 const rooms = [
   {
@@ -383,7 +384,7 @@ export default function HomePageClient({ settings }: { settings?: any }) {
           <span className="metadata">Invitations Open</span>
           <h2 className={styles.ctaTitle} style={{ marginTop: '1.5rem' }}>Experience The Divine Hima</h2>
           <p className={styles.ctaPhone}>
-            <a href="tel:+918626983777">+91 86269 83777</a>
+            <a href={TEL_URL}>{PHONE_DISPLAY}</a>
           </p>
           <Link href="https://asiatech.in/booking_engine/index3?token=MTA4NDQ=" className="btn btn-primary">
             Request a Reservation

@@ -1,5 +1,5 @@
-import Script from 'next/script';
 import { safeJsonLd } from '@/lib/json-ld';
+import { PHONE_DISPLAY } from '@/lib/contact';
 
 export default function FAQSchema() {
   const faqData = {
@@ -91,15 +91,13 @@ export default function FAQSchema() {
         "name": "How can I book a room at your hotel?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "You can book a room through our website, by calling our reservations at +91 86269 83777 OR emailing us at reservation@thedivinehima.com"
+          "text": `You can book a room through our website, by calling our reservations at ${PHONE_DISPLAY} OR emailing us at reservation@thedivinehima.com`
         }
       }
     ]
   };
 
   return (
-    <Script id="faq-schema" type="application/ld+json" strategy="beforeInteractive">
-      {safeJsonLd(faqData)}
-    </Script>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(faqData) }} />
   );
 }

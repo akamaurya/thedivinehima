@@ -4,9 +4,8 @@ import { urlForImage } from '../../../sanity/lib/image';
 import PageHero from '@/components/PageHero';
 import AnimateOnScroll from '@/components/AnimateOnScroll';
 import { safeJsonLd } from '@/lib/json-ld';
+import { WHATSAPP_URL } from '@/lib/contact';
 import styles from './page.module.css';
-
-const WHATSAPP_URL = 'https://wa.me/918626983777';
 
 export const metadata: Metadata = {
   title: 'Packages & Getaways',

@@ -1,0 +1,18 @@
+# Real 301s on Cloudflare for retired WordPress URLs.
+# Keep in sync with the redirect pages in src/app, which cover GitHub Pages.
+# Trailing slashes are required: rules match exactly, and bare paths get slashed first.
+/superior-rooms/ /divine-rooms/ 301
+/premium-rooms/ /divine-rooms/ 301
+/standard-deluxe-rooms/ /divine-rooms/ 301
+/rooms/ /divine-rooms/ 301
+/homepage/ / 301
+/divine-cuisine/ /dining/ 301
+/location/ /contact-us/ 301
+/travel-guide/ /blog/ 301
+/retreats/ /divine-holiday-packages/ 301
+/divine-study/ /about/ 301
+/divine-awards/ /about/ 301
+/booking-and-deposits/ /about/ 301
+/tag/* /blog/ 301
+/category/* /blog/ 301
+/author/* /blog/ 301

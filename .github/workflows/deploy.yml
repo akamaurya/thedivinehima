@@ -17,8 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
     steps:
       # Actions are pinned to full commit SHAs (see .github/dependabot.yml for updates).
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -41,9 +39,7 @@ jobs:
 
   deploy:
     # Builds on PRs are verification only; only main deploys.
-    if: github.event_name != 'pull_request'
-    # Add required reviewers to the `github-pages` environment so production
-    # deploys need a human approval (Settings > Environments).
+    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ github.event.deployment.payload.web_url }}
@@ -53,4 +49,4 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febcac5b3c0c03e # v4
+      - uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

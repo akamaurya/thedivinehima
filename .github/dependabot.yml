@@ -5,7 +5,6 @@ updates:
     directory: '/'
     schedule:
       interval: weekly
-    open-pull-requests-limit: 5
     groups:
       # One PR for the framework stack so Next/React/eslint stay in lockstep.
       next:
@@ -14,10 +13,6 @@ updates:
           - eslint-config-next
           - react
           - react-dom
-    ignore:
-      # npm audit fix --force proposes Sanity 5.x, which is a downgrade, not a fix.
-      - dependency-name: sanity
-        update-types: ['version-update:semver-major']
 
   - package-ecosystem: github-actions
     directory: '/'
@@ -27,3 +22,7 @@ updates:
     groups:
       actions:
         patterns: ['*']
+    ignore:
+      # v4 silently drops dotfiles from the artifact, including .well-known/security.txt.
+      - dependency-name: actions/upload-pages-artifact
+        update-types: ['version-update:semver-major']

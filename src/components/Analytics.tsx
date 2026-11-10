@@ -37,7 +37,10 @@ function classifyAnchor(anchor: HTMLAnchorElement) {
     return { name: 'book_now_click', props: { link_url: href, link_text: linkText } };
   }
   if (href.startsWith('mailto:')) {
-    return { name: 'email_click', props: { link_url: href, email_address: href.replace(/^mailto:/, '') } };
+    return { name: 'email_click', props: { link_url: href, email_address: href.replace(/^mailto:/, '').split('?')[0] } };
+  }
+  if (href.includes('wa.me/')) {
+    return { name: 'whatsapp_click', props: { link_url: href, link_text: linkText } };
   }
   if (href.startsWith('tel:')) {
     return { name: 'phone_click', props: { link_url: href, phone_number: href.replace(/^tel:/, '') } };
@@ -57,7 +60,7 @@ function classifyAnchor(anchor: HTMLAnchorElement) {
  * `?ph_did=` param carrying their shared visitor id, so both sites resolve
  * to the same person in PostHog (one funnel across the redirect).
  *
- * The custom events (book_now_click, email_click, phone_click) still need to
+ * The custom events (book_now_click, email_click, phone_click, whatsapp_click) still need to
  * be marked as "Key Events" in the GA4 Admin > Events UI to count as
  * conversions; in PostHog set up a funnel broken down by `site_variant`.
  */

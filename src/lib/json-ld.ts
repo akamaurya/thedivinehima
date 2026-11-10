@@ -1,3 +1,14 @@
+/** Parses editor-written JSON-LD. Bad JSON returns undefined so one typo can't fail the whole export. */
+export function parseJsonLd(raw?: string | null): unknown {
+  if (!raw) return undefined;
+  try {
+    return JSON.parse(raw);
+  } catch {
+    console.warn(`Ignoring invalid structuredData: ${raw.slice(0, 60)}`);
+    return undefined;
+  }
+}
+
 /**
  * Serialises structured data for a `<script type="application/ld+json">` tag.
  *
