@@ -79,7 +79,7 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
             <span style={{ 
               display: 'inline-block', 
               padding: '0.5rem 1rem', 
-              backgroundColor: 'var(--primary-color)', 
+              backgroundColor: 'var(--color-primary)', 
               color: 'white', 
               borderRadius: '2rem',
               fontSize: '0.8rem',
@@ -90,7 +90,7 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
             }}>
               {room.roomType} Room
             </span>
-            <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--secondary-color)' }}>{room.name}</h1>
+            <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--color-text)' }}>{room.name}</h1>
             <a href="https://asiatech.in/booking_engine/index3?token=MTA4NDQ%3D" className="btn btn-primary">Book Now</a>
           </div>
 
@@ -100,11 +100,11 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
 
           {room.amenities && room.amenities.length > 0 && (
             <div style={{ marginBottom: '3rem' }}>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--secondary-color)' }}>Room Amenities</h3>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--color-text)' }}>Room Amenities</h3>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
                 {room.amenities.map((amenity: string, i: number) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '1rem', backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
-                    <span style={{ color: 'var(--primary-color)' }}>✨</span> {amenity}
+                    <span style={{ color: 'var(--color-primary)' }}>✨</span> {amenity}
                   </div>
                 ))}
               </div>
@@ -113,7 +113,7 @@ export default async function RoomPage({ params }: { params: Promise<{ slug: str
 
           {room.images && room.images.length > 1 && (
             <div style={{ marginBottom: '3rem' }}>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--secondary-color)' }}>Gallery</h3>
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--color-text)' }}>Gallery</h3>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1rem' }}>
                 {room.images.slice(1).map((img: any, i: number) => (
                   <img 

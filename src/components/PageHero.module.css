@@ -57,7 +57,7 @@
 .subtitle {
   margin-top: 0.75rem;
   font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-  color: var(--color-text-secondary);
+  color: rgba(255, 255, 255, 0.85); /* sits on the dark overlay */
   font-weight: 400;
   letter-spacing: 0.02em;
 }

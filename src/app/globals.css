@@ -6,7 +6,8 @@
   /* Brand Colors - Minimalist Editorial */
   --color-primary: #8a2c22; /* Editorial Accent (Deep Red) */
   --color-secondary: #555555;
-  --color-gold: #c5a059;
+  --color-gold: #c5a059; /* decorative only (rules, borders, text on dark) */
+  --color-gold-text: #85692c; /* gold for text on light backgrounds — 4.9:1 on --color-bg */
 
   /* Background Palette (Print-inspired) */
   --color-bg: #F9F8F6; /* Warm off-white */
@@ -17,7 +18,7 @@
   /* Text Palette */
   --color-text: #111111;
   --color-text-secondary: #444444;
-  --color-text-muted: #888888;
+  --color-text-muted: #6b6b6b; /* 5:1 on --color-bg (was #888, 3.3:1) */
   --color-text-inverse: #F9F8F6;
 
   /* Borders */
@@ -173,6 +174,15 @@ img {
   color: var(--color-text);
 }
 
+/* Long labels ("Explore Local Environs on Google Maps") must wrap on phones, not overflow */
+@media (max-width: 600px) {
+  .btn {
+    white-space: normal;
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
 .btn-primary {
   background: var(--color-bg-dark);
   color: var(--color-text-inverse);
@@ -202,6 +212,30 @@ img {
 .animate-on-scroll.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================
+   Keyboard focus
+   ============================================ */
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
 }
 
 /* ============================================

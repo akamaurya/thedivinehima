@@ -33,13 +33,13 @@
 }
 
 .filterPillActive {
-  background: var(--color-gold);
-  color: var(--color-bg);
-  border-color: var(--color-gold);
+  background: var(--color-bg-dark);
+  color: var(--color-text-inverse);
+  border-color: var(--color-bg-dark);
 }
 
 .filterPillActive:hover {
-  border-color: var(--color-gold);
+  border-color: var(--color-bg-dark);
 }
 
 /* ── Masonry Grid ── */
@@ -50,6 +50,11 @@
 }
 
 .galleryItem {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
   break-inside: avoid;
   margin-bottom: 1rem;
   position: relative;
