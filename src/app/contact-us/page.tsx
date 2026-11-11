@@ -1,16 +1,32 @@
+import Link from 'next/link';
 import PageHero from '@/components/PageHero';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import FAQ from '@/components/FAQ';
+import JsonLd from '@/components/JsonLd';
 import { PHONE_DISPLAY, TEL_URL, WHATSAPP_URL } from '@/lib/contact';
+import { CONTACT_FAQS } from '@/lib/faqs';
+import { EMAIL, HOTEL_ID, SITE } from '@/lib/schema';
 import styles from './page.module.css';
-
-const EMAIL = 'reservation@thedivinehima.com';
 
 export default function ContactPage() {
   return (
     <main className={styles.main}>
-      <PageHero
-        title="Get in Touch"
-        backgroundImage="/wp-content/uploads/2024/12/luxury-2.jpg"
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'ContactPage',
+          url: `${SITE}/contact-us/`,
+          name: 'Contact The Divine Hima',
+          about: { '@id': HOTEL_ID },
+        }}
       />
+      <PageHero
+        title="Contact The Divine Hima"
+        subtitle="Bookings and questions, answered 8:00 AM to 10:30 PM IST"
+        backgroundImage="/wp-content/uploads/2024/12/luxury-2.jpg"
+        alt="The Divine Hima, Sidhpur, Dharamshala"
+      />
+      <Breadcrumbs items={[{ name: 'Contact', href: '/contact-us/' }]} />
 
       <section className={`section ${styles.contactSection}`}>
         <div className="container">
@@ -95,6 +111,24 @@ export default function ContactPage() {
         </div>
       </section>
 
+      <section className="section">
+        <div className="container prose">
+          <h2>How to reach us</h2>
+          <p>
+            The Divine Hima is in Sidhpur, between lower Dharamshala and McLeod Ganj, directly opposite the Norbulingka Institute. Our address is Opp. Norbulingka Institute, Sidhpur, Dharamshala, Kangra, Himachal Pradesh 176057.
+          </p>
+          <h3>By air</h3>
+          <p>Kangra (Gaggal) airport is about 12 km away, 25 to 30 minutes by road, with regular flights from Delhi. We arrange airport pickups on request.</p>
+          <h3>By train</h3>
+          <p>Pathankot Junction, about 85 km away, is the most practical mainline railway station. The drive from there takes 3 to 3.5 hours.</p>
+          <h3>By road</h3>
+          <p>Dharamshala is about 475 km from Delhi (10 to 12 hours) and 250 km from Chandigarh (6 to 7 hours), with overnight buses from both to the Dharamshala bus stand. There is secure parking at the hotel.</p>
+          <p>
+            Our guide on <Link href="/how-to-reach-dharamshala/">how to reach Dharamshala</Link> compares every route in detail.
+          </p>
+        </div>
+      </section>
+
       <section className={styles.mapSection}>
         <div className={styles.mapWrapper}>
           <iframe 
@@ -109,6 +143,8 @@ export default function ContactPage() {
           ></iframe>
         </div>
       </section>
+
+      <FAQ items={CONTACT_FAQS} title="Before you arrive" />
     </main>
   );
 }

@@ -3,124 +3,124 @@ import Link from 'next/link';
 import PageHero from '@/components/PageHero';
 import AnimateOnScroll from '@/components/AnimateOnScroll';
 import SanityImage from '@/components/SanityImage';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import JsonLd from '@/components/JsonLd';
+import { HOTEL_ID, SITE } from '@/lib/schema';
 import { client } from '../../../sanity/lib/client';
 import styles from './page.module.css';
 
+const description =
+  'The story of The Divine Hima, a 12-room boutique hotel in Sidhpur, Dharamshala, built by a Himalayan geologist: an art gallery, library and rooftop yoga room opposite Norbulingka.';
+
 export const metadata: Metadata = {
-  title: 'About Us',
-  description: 'Learn about The Divine Hima, a luxury boutique hotel in Dharamshala where art meets the Himalayas.',
+  title: { absolute: 'About The Divine Hima: A Geologist’s Boutique Hotel in Dharamshala' },
+  description,
   openGraph: {
-    title: 'About Us | The Divine Hima',
-    description: 'Learn about The Divine Hima, a luxury boutique hotel in Dharamshala where art meets the Himalayas.',
-    url: 'https://thedivinehima.com/about/',
-    images: [
-      {
-        url: '/wp-content/uploads/2023/12/southcol-main.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'The Divine Hima Story',
-      }
-    ],
+    title: 'About The Divine Hima, Dharamshala',
+    description,
+    url: `${SITE}/about/`,
+    images: [{ url: '/wp-content/uploads/2023/12/southcol-main.jpg', width: 1200, height: 630, alt: 'Inside The Divine Hima, Dharamshala' }],
   },
-  alternates: {
-    canonical: '/about/',
-  },
+  alternates: { canonical: '/about/' },
+};
+
+// Shown until the aboutPage document has copy.
+const fallback = {
+  storyTitle: 'Where Art Meets the Himalayas',
+  story: [
+    'The Divine Hima was born from a passion for blending art, comfort and the timeless beauty of the Himalayas. Founded by Sanjay Kumbkarni, it celebrates the cultural heritage of Dharamshala while giving every guest a warm, personal stay.',
+  ],
+  founderQuote: null as string | null,
+  features: [] as { title: string; text: string }[],
 };
 
 export default async function AboutPage() {
-  const data = await client.fetch(`*[_type == "aboutPage"][0]{ heroImage, storyImage }`);
+  const data = (await client.fetch(`*[_type == "aboutPage"][0]`)) ?? {};
+  const story: string[] = data.story?.length ? data.story : fallback.story;
+  const features: { title: string; text: string }[] = data.features ?? fallback.features;
 
   return (
     <main className={styles.main}>
-      <PageHero 
-        title="Our Story" 
-        backgroundImage={data?.heroImage || "/wp-content/uploads/2023/12/southcol-main.jpg"}
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'AboutPage',
+          url: `${SITE}/about/`,
+          name: 'About The Divine Hima',
+          description,
+          about: { '@id': HOTEL_ID },
+        }}
       />
+      <PageHero
+        title="About The Divine Hima"
+        subtitle="A boutique hotel in Dharamshala, built by a Himalayan geologist"
+        backgroundImage={data.heroImage || '/wp-content/uploads/2023/12/southcol-main.jpg'}
+        alt="A room at The Divine Hima with Himalayan photographs on the walls"
+      />
+      <Breadcrumbs items={[{ name: 'About', href: '/about/' }]} />
 
       <section className={`section ${styles.storySection}`}>
         <div className="container">
           <AnimateOnScroll>
             <div className={styles.storyGrid}>
               <div className={styles.storyImageWrapper}>
-                {data?.storyImage ? (
-                  <SanityImage 
-                    image={data.storyImage} 
-                    alt="Hotel exterior" 
-                    className={styles.storyImage}
-                    width={800}
-                    height={1200}
-                  />
+                {data.storyImage ? (
+                  <SanityImage image={data.storyImage} alt="The Divine Hima, Sidhpur" className={styles.storyImage} width={800} height={1200} />
                 ) : (
-                  <img src="/wp-content/uploads/2016/03/divine-hima0044.jpg" alt="Hotel exterior" className={styles.storyImage} />
+                  <img src="/wp-content/uploads/2016/03/divine-hima0044.jpg" alt="Stone and timber exterior of The Divine Hima, Sidhpur" className={styles.storyImage} loading="lazy" />
                 )}
                 <div className={styles.imageAccent}></div>
               </div>
               <div className={styles.storyContent}>
-                <h2 className={styles.storyTitle}>Where Art Meets the Himalayas</h2>
-                <p className={styles.storyText}>
-                  The Divine Hima was born from a passion for blending art, luxury, and the timeless beauty of the Himalayas. Founded by Sanjay Kumbkarni, our boutique hotel is more than a place to stay — it's an experience that celebrates the rich cultural heritage of Dharamshala while providing world-class comfort and hospitality.
-                </p>
-                <p className={styles.storyText}>
-                  Located opposite the renowned Norbulingka Institute in Sidhpur, we are perfectly positioned for guests to explore Tibetan art, Buddhist monasteries, and the breathtaking Dhauladhar mountain range.
-                </p>
+                <h2 className={styles.storyTitle}>{data.storyTitle || fallback.storyTitle}</h2>
+                {story.map((p) => (
+                  <p key={p.slice(0, 40)} className={styles.storyText}>{p}</p>
+                ))}
               </div>
             </div>
           </AnimateOnScroll>
         </div>
       </section>
 
-      <section className={`section ${styles.valuesSection}`}>
-        <div className="container">
-          <h2 className="section-title">Our Philosophy</h2>
-          <p className="section-subtitle">The pillars of The Divine Hima experience</p>
-          
-          <div className={styles.valuesGrid}>
-            <AnimateOnScroll delay={0}>
-              <div className={styles.valueCard}>
-                <div className={styles.valueIcon}>🎨</div>
-                <h3 className={styles.valueTitle}>Art & Culture</h3>
-                <p className={styles.valueDescription}>
-                  Every corner of our hotel is artistically crafted, creating a living gallery that celebrates local and international art forms.
-                </p>
-              </div>
-            </AnimateOnScroll>
-            
-            <AnimateOnScroll delay={150}>
-              <div className={styles.valueCard}>
-                <div className={styles.valueIcon}>🏔️</div>
-                <h3 className={styles.valueTitle}>Himalayan Heritage</h3>
-                <p className={styles.valueDesc}>
-                  We embrace the traditions and natural beauty of the Himalayas, from our architecture to our cuisine to our warm hospitality.
-                </p>
-              </div>
-            </AnimateOnScroll>
-            
-            <AnimateOnScroll delay={300}>
-              <div className={styles.valueCard}>
-                <div className={styles.valueIcon}>🤝</div>
-                <h3 className={styles.valueTitle}>Warm Hospitality</h3>
-                <p className={styles.valueDesc}>
-                  Our cordial and well-mannered staff ensure every guest feels at home, with personalized service that goes above and beyond.
-                </p>
-              </div>
-            </AnimateOnScroll>
+      {data.founderQuote && (
+        <section className={`section ${styles.quoteSection}`}>
+          <figure className={`container ${styles.quote}`}>
+            <blockquote>{data.founderQuote}</blockquote>
+            <figcaption>Sanjay Kumbkarni, founder</figcaption>
+          </figure>
+        </section>
+      )}
+
+      {features.length > 0 && (
+        <section className={`section ${styles.valuesSection}`}>
+          <div className="container">
+            <h2 className="section-title">What You Will Find Here</h2>
+            <div className={styles.valuesGrid}>
+              {features.map((f) => (
+                <div key={f.title} className={styles.valueCard}>
+                  <h3 className={styles.valueTitle}>{f.title}</h3>
+                  <p className={styles.valueDescription}>{f.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className={`section ${styles.locationSection}`}>
         <div className="container">
           <div className={styles.locationContent}>
-            <h2 className={styles.locationTitle}>Our Location</h2>
+            <h2 className={styles.locationTitle}>Where We Are</h2>
             <p className={styles.locationText}>
-              Sidhpur, Dharamshala is a serene haven nestled in the lap of the Dhauladhar range. It offers the perfect balance — quiet enough for a peaceful retreat, yet close enough to key attractions.
+              Sidhpur is a quiet village in the lap of the Dhauladhar range, between lower Dharamshala and McLeod Ganj. It is calm enough for a real rest and close enough to everything worth seeing in the Kangra valley.
             </p>
-            
             <ul className={styles.locationList}>
-              <li><strong>Norbulingka Institute:</strong> Right opposite the hotel</li>
-              <li><strong>Gyuto Monastery:</strong> 2 km away</li>
-              <li><strong>Chinmaya Tapovan:</strong> 4 km away</li>
-              <li><strong>Dharamshala Cricket Stadium:</strong> 6 km away</li>
+              <li><strong>Norbulingka Institute:</strong> directly opposite the hotel</li>
+              <li><strong>Gyuto Monastery:</strong> 2 km</li>
+              <li><strong>Chinmaya Tapovan:</strong> 4 km</li>
+              <li><strong>HPCA cricket stadium:</strong> 6 km</li>
+              <li><strong>Kangra (Gaggal) airport:</strong> 12 km</li>
+              <li><strong>Dalai Lama Temple, McLeod Ganj:</strong> about 20 km</li>
             </ul>
           </div>
         </div>
@@ -128,8 +128,8 @@ export default async function AboutPage() {
 
       <section className={styles.ctaSection}>
         <div className="container">
-          <h2 className={styles.ctaTitle}>Experience The Divine Hima</h2>
-          <Link href="/divine-rooms/" className="btn btn-primary">Explore Our Rooms</Link>
+          <h2 className={styles.ctaTitle}>Stay at The Divine Hima</h2>
+          <Link href="/divine-rooms/" className="btn btn-primary">See the rooms</Link>
         </div>
       </section>
     </main>

@@ -266,3 +266,83 @@ img {
   background: var(--color-bg-dark);
   color: var(--color-text-inverse);
 }
+
+/* ============================================
+   Breadcrumbs (Breadcrumbs.tsx) and long-form copy
+   ============================================ */
+.breadcrumbs ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1.25rem 0;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+}
+.breadcrumbs li + li::before {
+  content: '/';
+  margin-right: 0.5rem;
+  color: var(--color-border-dark);
+}
+.breadcrumbs a {
+  color: var(--color-text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-border);
+}
+.breadcrumbs a:hover {
+  color: var(--color-primary);
+}
+
+/* Editorial prose column: serif headings, sans body, generous measure. */
+.prose {
+  max-width: 68ch;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+.prose > * + * {
+  margin-top: 1.25rem;
+}
+.prose h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.9rem, 3.5vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+  margin-top: 3.5rem;
+}
+.prose h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--color-text);
+  margin-top: 2rem;
+}
+.prose ul {
+  padding-left: 1.25rem;
+}
+.prose li + li {
+  margin-top: 0.5rem;
+}
+.prose a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* Screen-reader-only text, e.g. the first letter behind a decorative drop cap. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

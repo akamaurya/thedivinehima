@@ -5,9 +5,10 @@ interface PageHeroProps {
   title: string;
   subtitle?: string;
   backgroundImage: any; // Can be a string URL or a Sanity image object
+  alt?: string; // Describes the photo for image search; defaults to the title
 }
 
-export default function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
+export default function PageHero({ title, subtitle, backgroundImage, alt = title }: PageHeroProps) {
   const isSanityImage = backgroundImage && typeof backgroundImage !== 'string';
 
   return (
@@ -15,7 +16,7 @@ export default function PageHero({ title, subtitle, backgroundImage }: PageHeroP
       {isSanityImage ? (
         <SanityImage
           image={backgroundImage}
-          alt=""
+          alt={alt}
           className={styles.backgroundImage}
           priority
           width={1920}
@@ -24,9 +25,10 @@ export default function PageHero({ title, subtitle, backgroundImage }: PageHeroP
       ) : (
         <img
           src={backgroundImage}
-          alt=""
+          alt={alt}
           className={styles.backgroundImage}
           loading="eager"
+          fetchPriority="high"
         />
       )}
       <div className={styles.overlay} />

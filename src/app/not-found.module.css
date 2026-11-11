@@ -1,0 +1,76 @@
+.main {
+  padding: clamp(8rem, 16vw, 12rem) 0 clamp(5rem, 10vw, 8rem);
+}
+
+.code {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(5rem, 16vw, 12rem);
+  line-height: 0.9;
+  color: var(--color-primary);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-top: 1.5rem;
+}
+
+.lead {
+  max-width: 55ch;
+  margin-top: 1.5rem;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.links {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin-top: 4rem;
+  border-top: 1px solid var(--color-border-dark);
+}
+
+.links li {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.links a {
+  display: block;
+  padding: 1.75rem 1.5rem 1.75rem 0;
+}
+
+.links h2 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  transition: color var(--transition-base);
+}
+
+.links a:hover h2,
+.links a:focus-visible h2 {
+  color: var(--color-primary);
+}
+
+.links p {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.help {
+  margin-top: 3rem;
+  max-width: 65ch;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+.help a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

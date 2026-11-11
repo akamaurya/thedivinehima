@@ -1,14 +1,15 @@
+import type { Metadata } from 'next';
 import { client } from '../../sanity/lib/client';
 import HomePageClient from '@/components/HomePageClient';
 
-// By default, let's keep the home page revalidated often or static depending on Next.js config
-export const revalidate = 60; // Revalidate every 60 seconds so CMS changes show up
+// Title and description come from the root layout defaults; the homepage owns the canonical.
+export const metadata: Metadata = { alternates: { canonical: '/' } };
 
 export default async function HomePage() {
-  // Fetch the siteSettings document
-  const settings = await client.fetch(
-    `*[_type == "siteSettings"][0]{ heroImage, introImage, premiumRoomImage, superiorRoomImage, deluxeRoomImage }`
-  );
+  const [settings, testimonials] = await Promise.all([
+    client.fetch(`*[_type == "siteSettings"][0]{ heroImage, introImage, premiumRoomImage, superiorRoomImage, deluxeRoomImage }`),
+    client.fetch(`*[_type == "testimonial" && defined(text)] | order(date desc) { name, text, rating }`),
+  ]);
 
-  return <HomePageClient settings={settings} />;
+  return <HomePageClient settings={settings} testimonials={testimonials} />;
 }

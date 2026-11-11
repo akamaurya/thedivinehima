@@ -1,19 +1,33 @@
 import type { Metadata } from 'next';
 import { cache } from 'react';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { client } from '../../../../sanity/lib/client';
 import { urlForImage } from '../../../../sanity/lib/image';
 import PageHero from '@/components/PageHero';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import FAQ from '@/components/FAQ';
+import JsonLd from '@/components/JsonLd';
+import { ROOM_FAQS } from '@/lib/faqs';
+import { BOOKING_URL, HOTEL_ID, SITE } from '@/lib/schema';
 import styles from '../../divine-rooms/page.module.css';
 
 export const dynamic = 'force-static';
 
 // One Sanity request per page, shared by generateMetadata and the page.
 const get = cache((slug: string) => client.fetch(`*[_type == "room" && slug.current == $slug][0]`, { slug }));
+const getOthers = cache((slug: string) =>
+  client.fetch(`*[_type == "room" && defined(slug.current) && slug.current != $slug] | order(price asc) { name, "slug": slug.current, price }`, { slug }),
+);
+
+const inr = (n: number) => `₹${n.toLocaleString('en-IN')}`;
+const heroOf = (room: any) => (room.images?.length ? urlForImage(room.images[0]).width(1920).url() : '/wp-content/uploads/2024/12/premium-3.jpg');
+const describe = (room: any) =>
+  room.seoDescription ||
+  `${room.price ? `From ${inr(room.price)} a night with breakfast. ` : ''}${room.description ?? ''}`.slice(0, 155).replace(/\s+\S*$/, '…');
 
 export async function generateStaticParams() {
-  const query = `*[_type == "room" && defined(slug.current)] { "slug": slug.current }`;
-  const slugs = await client.fetch(query);
+  const slugs = await client.fetch(`*[_type == "room" && defined(slug.current)] { "slug": slug.current }`);
   if (!slugs || slugs.length === 0) {
     return [{ slug: 'dummy' }];
   }
@@ -27,110 +41,117 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const room = await get(slug);
   if (!room) return { title: 'Room Not Found' };
 
-  const heroImage = room.images && room.images.length > 0 
-    ? urlForImage(room.images[0]).url() 
-    : '/wp-content/uploads/2024/12/premium-3.jpg';
-
-  const description = room.seoDescription || room.description;
+  const title = room.seoTitle || `${room.name} | Boutique Room in Dharamshala | The Divine Hima`;
+  const description = describe(room);
 
   return {
-    title: room.seoTitle ? { absolute: room.seoTitle } : room.name,
+    title: { absolute: title },
     description,
     openGraph: {
-      title: room.seoTitle || `${room.name} | The Divine Hima`,
+      title,
       description,
-      url: `https://thedivinehima.com/rooms/${slug}/`,
-      images: [
-        {
-          url: heroImage,
-          width: 1200,
-          height: 630,
-          alt: room.name,
-        }
-      ]
+      url: `${SITE}/rooms/${slug}/`,
+      images: [{ url: heroOf(room), width: 1200, height: 630, alt: `${room.name} at The Divine Hima, Dharamshala` }],
     },
-    alternates: {
-      canonical: `/rooms/${slug}/`,
-    }
+    alternates: { canonical: `/rooms/${slug}/` },
   };
 }
 
 export default async function RoomPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const room = await get(slug);
+  const [room, others] = await Promise.all([get(slug), getOthers(slug)]);
 
   if (!room) {
     notFound();
   }
 
-  const heroImage = room.images && room.images.length > 0 
-    ? urlForImage(room.images[0]).url() 
-    : '/wp-content/uploads/2024/12/premium-3.jpg';
+  const url = `${SITE}/rooms/${slug}/`;
+  const images: string[] = (room.images ?? []).map((img: any) => urlForImage(img).width(1200).url());
 
   return (
     <main className={styles.main}>
-      <PageHero 
-        title={room.name} 
-        backgroundImage={heroImage}
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'HotelRoom',
+          '@id': `${url}#room`,
+          name: room.name,
+          url,
+          description: room.description,
+          image: images,
+          containedInPlace: { '@id': HOTEL_ID },
+          amenityFeature: (room.amenities ?? []).map((name: string) => ({ '@type': 'LocationFeatureSpecification', name, value: true })),
+          ...(room.price
+            ? { offers: { '@type': 'Offer', price: String(room.price), priceCurrency: 'INR', unitText: 'per night', description: 'Breakfast included, taxes extra', url: BOOKING_URL } }
+            : {}),
+        }}
       />
+      <PageHero
+        title={room.name}
+        subtitle={room.roomType ? `${room.roomType[0].toUpperCase()}${room.roomType.slice(1)} room at The Divine Hima, Dharamshala` : 'A boutique room at The Divine Hima, Dharamshala'}
+        backgroundImage={heroOf(room)}
+        alt={`${room.name} at The Divine Hima, Dharamshala`}
+      />
+      <Breadcrumbs items={[{ name: 'Rooms', href: '/divine-rooms/' }, { name: room.name, href: `/rooms/${slug}/` }]} />
+
       <section className="section">
-        <div className="container" style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem 1rem' }}>
-          <div style={{ marginBottom: '2rem' }}>
-            <span style={{ 
-              display: 'inline-block', 
-              padding: '0.5rem 1rem', 
-              backgroundColor: 'var(--color-primary)', 
-              color: 'white', 
-              borderRadius: '2rem',
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              letterSpacing: '1px',
-              textTransform: 'uppercase',
-              marginBottom: '1rem'
-            }}>
-              {room.roomType} Room
-            </span>
-            <h1 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--color-text)' }}>{room.name}</h1>
-            <a href="https://asiatech.in/booking_engine/index3?token=MTA4NDQ%3D" className="btn btn-primary">Book Now</a>
+        <div className={`container ${styles.detail}`}>
+          <div className={styles.detailMeta}>
+            {room.price ? <p className={styles.roomPrice}>From {inr(room.price)} a night, breakfast included</p> : <span />}
+            <a href={BOOKING_URL} className="btn btn-primary">Check availability</a>
           </div>
 
-          <div style={{ marginBottom: '3rem', fontSize: '1.1rem', lineHeight: 1.8, color: '#555' }}>
+          <div className="prose">
+            <h2>About this room</h2>
             <p>{room.description}</p>
+            <p>
+              Every stay includes complimentary breakfast and daily housekeeping. Taxes are extra. Check-in is from 2:00 PM and check-out by 11:00 AM.
+            </p>
+
+            {room.amenities?.length > 0 && (
+              <>
+                <h2>Room amenities</h2>
+                <ul className={styles.amenitiesGrid}>
+                  {room.amenities.map((amenity: string) => (
+                    <li key={amenity} className={styles.amenityPill}>{amenity}</li>
+                  ))}
+                </ul>
+              </>
+            )}
           </div>
 
-          {room.amenities && room.amenities.length > 0 && (
-            <div style={{ marginBottom: '3rem' }}>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--color-text)' }}>Room Amenities</h3>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
-                {room.amenities.map((amenity: string, i: number) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '1rem', backgroundColor: '#f9f9f9', borderRadius: '8px' }}>
-                    <span style={{ color: 'var(--color-primary)' }}>✨</span> {amenity}
-                  </div>
+          {images.length > 1 && (
+            <>
+              <h2 className="section-title" style={{ fontSize: 'clamp(1.9rem, 3.5vw, 2.75rem)', marginTop: '3.5rem' }}>Photos</h2>
+              <div className={styles.detailGallery}>
+                {images.slice(1).map((src, i) => (
+                  <img key={src} src={src} alt={`${room.name} at The Divine Hima, photo ${i + 2}`} loading="lazy" />
                 ))}
               </div>
-            </div>
+            </>
           )}
 
-          {room.images && room.images.length > 1 && (
-            <div style={{ marginBottom: '3rem' }}>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', color: 'var(--color-text)' }}>Gallery</h3>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1rem' }}>
-                {room.images.slice(1).map((img: any, i: number) => (
-                  <img 
-                    key={i} 
-                    src={urlForImage(img).url()} 
-                    alt={`${room.name} - Image ${i + 2}`} 
-                    style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '8px' }}
-                  />
+          {others?.length > 0 && (
+            <div className="prose" style={{ marginTop: '3.5rem' }}>
+              <h2>Other rooms at The Divine Hima</h2>
+              <ul className={styles.otherRooms}>
+                {others.map((o: any) => (
+                  <li key={o.slug}>
+                    <Link href={`/rooms/${o.slug}/`}>{o.name}</Link>
+                    {o.price ? `, from ${inr(o.price)}` : ''}
+                  </li>
                 ))}
-              </div>
+              </ul>
+              <p><Link href="/divine-rooms/">Compare all rooms</Link></p>
             </div>
           )}
-
-          <div style={{ textAlign: 'center', marginTop: '4rem' }}>
-            <a href="https://asiatech.in/booking_engine/index3?token=MTA4NDQ%3D" className="btn btn-primary" style={{ padding: '1rem 3rem', fontSize: '1.1rem' }}>Book Now</a>
-          </div>
         </div>
+      </section>
+
+      <FAQ items={ROOM_FAQS} title="Before you book" />
+
+      <section className="section" style={{ textAlign: 'center', paddingTop: 0 }}>
+        <a href={BOOKING_URL} className="btn btn-primary">Book {room.name}</a>
       </section>
     </main>
   );

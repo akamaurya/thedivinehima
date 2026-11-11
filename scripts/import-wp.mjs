@@ -1,7 +1,8 @@
 // Import wp-export/{rooms,posts}.json (from scripts/pull-wp.mjs) into Sanity.
 // Keeps WordPress slugs so URLs don't change. Deterministic _ids make reruns
 // overwrite instead of duplicating.
-// Usage: node scripts/import-wp.mjs [--dry]
+// Usage: node scripts/import-wp.mjs [--dry] [--only=slug,slug]
+// --only imports just those post/room slugs, so later Studio edits to the rest aren't overwritten.
 // ponytail: @sanity/client, @portabletext/html and jsdom come in via sanity/next-sanity, not package.json.
 import { createReadStream, readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -18,8 +19,10 @@ const LOGO = `${SITE}/wp-content/uploads/2016/03/cropped-Divine-Hima-logo-512-19
 process.loadEnvFile(); // token: `migration_wp` in .env
 const client = createClient({ projectId: 'cwlrdggu', dataset: 'production', apiVersion: '2024-06-29', token: process.env.migration_wp, useCdn: false });
 
-const rooms = JSON.parse(readFileSync('wp-export/rooms.json', 'utf8'));
-const posts = JSON.parse(readFileSync('wp-export/posts.json', 'utf8'));
+const only = process.argv.find((a) => a.startsWith('--only='))?.slice(7).split(',');
+const pick = (list) => (only ? list.filter((d) => only.includes(d.slug)) : list);
+const rooms = pick(JSON.parse(readFileSync('wp-export/rooms.json', 'utf8')));
+const posts = pick(JSON.parse(readFileSync('wp-export/posts.json', 'utf8')));
 
 const uploaded = new Map();
 async function image(file) {
