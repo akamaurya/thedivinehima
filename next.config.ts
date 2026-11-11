@@ -6,6 +6,8 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   output: 'export',
   basePath: process.env.BASE_PATH,
+  // `env` is what reaches the browser: the embedded Studio is a client component.
+  env: { STUDIO_BASE_PATH: `${process.env.BASE_PATH ?? ''}/studio` },
   trailingSlash: true,
   images: {
     unoptimized: true,

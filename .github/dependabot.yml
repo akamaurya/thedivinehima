@@ -1,0 +1,28 @@
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: weekly
+    groups:
+      # One PR for the framework stack so Next/React/eslint stay in lockstep.
+      next:
+        patterns:
+          - next
+          - eslint-config-next
+          - react
+          - react-dom
+
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: weekly
+    # Actions must stay pinned to commit SHAs; Dependabot rewrites both SHA and comment.
+    groups:
+      actions:
+        patterns: ['*']
+    ignore:
+      # v4 silently drops dotfiles from the artifact, including .well-known/security.txt.
+      - dependency-name: actions/upload-pages-artifact
+        update-types: ['version-update:semver-major']

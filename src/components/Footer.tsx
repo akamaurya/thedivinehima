@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { PHONE_DISPLAY, TEL_URL } from '@/lib/contact';
 import styles from './Footer.module.css';
 
 const quickLinks = [
@@ -74,8 +75,8 @@ export default function Footer() {
             </p>
             <p className={styles.contactLine}>
               📞{' '}
-              <a href="tel:+918626983777" className={styles.footerLink}>
-                +91 86269 83777
+              <a href={TEL_URL} className={styles.footerLink}>
+                {PHONE_DISPLAY}
               </a>
             </p>
             <p className={styles.contactLine}>

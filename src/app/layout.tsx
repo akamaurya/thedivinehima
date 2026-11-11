@@ -88,7 +88,7 @@ export const metadata: Metadata = {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
-import Script from "next/script";
+import { PHONE_E164 } from "@/lib/contact";
 
 export default function RootLayout({
   children,
@@ -98,8 +98,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body>
-        <Script id="schema-org-local-business" type="application/ld+json" strategy="beforeInteractive">
-          {`
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `
             {
               "@context": "https://schema.org",
               "@type": "Hotel",
@@ -136,7 +135,7 @@ export default function RootLayout({
                 "longitude": 76.3533
               },
               "url": "https://thedivinehima.com",
-              "telephone": "+918626983777",
+              "telephone": "${PHONE_E164}",
               "priceRange": "$$$",
               "starRating": {
                 "@type": "Rating",
@@ -160,8 +159,7 @@ export default function RootLayout({
                 }
               ]
             }
-          `}
-        </Script>
+          ` }} />
         <Header />
         {children}
         <Footer />

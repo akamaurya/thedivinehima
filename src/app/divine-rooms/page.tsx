@@ -4,6 +4,7 @@ import { client } from '../../../sanity/lib/client';
 import { urlForImage } from '../../../sanity/lib/image';
 import PageHero from '@/components/PageHero';
 import AnimateOnScroll from '@/components/AnimateOnScroll';
+import { PHONE_DISPLAY, TEL_URL } from '@/lib/contact';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -88,7 +89,7 @@ export default async function RoomsPage() {
         <div className={styles.ctaInner}>
           <h3 className={styles.ctaTitle}>Can't decide?</h3>
           <p className={styles.ctaText}>Let us help you find the perfect room for your stay.</p>
-          <a href="tel:+918626983777" className={styles.ctaPhone}>+91 86269 83777</a>
+          <a href={TEL_URL} className={styles.ctaPhone}>{PHONE_DISPLAY}</a>
         </div>
       </section>
     </main>

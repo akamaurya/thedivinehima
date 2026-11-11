@@ -11,10 +11,8 @@ import { aboutPage } from './sanity/schemas/aboutPage';
 import { diningPage } from './sanity/schemas/diningPage';
 import { tourPackage } from './sanity/schemas/package';
 
-const isProd = process.env.NODE_ENV === 'production';
-
 export default defineConfig({
-  basePath: isProd ? '/thedivinehima/studio' : '/studio',
+  basePath: process.env.STUDIO_BASE_PATH,
   projectId,
   dataset,
   title: 'The Divine Hima',

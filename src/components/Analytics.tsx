@@ -11,6 +11,13 @@ const GA_ID = 'G-GHCNSVZJ90';
 const POSTHOG_KEY = 'phc_mWVYd5x4y3uc7XLZ8bQ5766T8VL2M4234ykpks4wBywB';
 const POSTHOG_HOST = 'https://eu.i.posthog.com';
 
+// PostHog distinct IDs are opaque strings (UUIDs by default, but the WordPress
+// snippet may mint its own). Accept a sane charset/length, and only trust the
+// value when the visitor actually navigated here from the WordPress site:
+// anyone can craft `?ph_did=<someone else's id>` to pollute funnels.
+const POSTHOG_ID = /^[A-Za-z0-9._@-]{6,128}$/;
+const CONTROL_ORIGINS = ['https://thedivinehima.com', 'https://www.thedivinehima.com'];
+
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
@@ -30,7 +37,10 @@ function classifyAnchor(anchor: HTMLAnchorElement) {
     return { name: 'book_now_click', props: { link_url: href, link_text: linkText } };
   }
   if (href.startsWith('mailto:')) {
-    return { name: 'email_click', props: { link_url: href, email_address: href.replace(/^mailto:/, '') } };
+    return { name: 'email_click', props: { link_url: href, email_address: href.replace(/^mailto:/, '').split('?')[0] } };
+  }
+  if (href.includes('wa.me/')) {
+    return { name: 'whatsapp_click', props: { link_url: href, link_text: linkText } };
   }
   if (href.startsWith('tel:')) {
     return { name: 'phone_click', props: { link_url: href, phone_number: href.replace(/^tel:/, '') } };
@@ -50,7 +60,7 @@ function classifyAnchor(anchor: HTMLAnchorElement) {
  * `?ph_did=` param carrying their shared visitor id, so both sites resolve
  * to the same person in PostHog (one funnel across the redirect).
  *
- * The custom events (book_now_click, email_click, phone_click) still need to
+ * The custom events (book_now_click, email_click, phone_click, whatsapp_click) still need to
  * be marked as "Key Events" in the GA4 Admin > Events UI to count as
  * conversions; in PostHog set up a funnel broken down by `site_variant`.
  */
@@ -58,7 +68,12 @@ export default function Analytics() {
   useEffect(() => {
     // Continue the same PostHog identity as the WordPress site, if present.
     const params = new URLSearchParams(window.location.search);
-    const sharedId = params.get('ph_did') || undefined;
+    const candidateId = params.get('ph_did');
+    const referrerOrigin = document.referrer ? new URL(document.referrer).origin : '';
+    const sharedId =
+      candidateId && POSTHOG_ID.test(candidateId) && CONTROL_ORIGINS.includes(referrerOrigin)
+        ? candidateId
+        : undefined;
 
     posthog.init(POSTHOG_KEY, {
       api_host: POSTHOG_HOST,
@@ -70,7 +85,7 @@ export default function Analytics() {
     posthog.register({ site_variant: 'new' });
 
     // Strip the ph_did param so it isn't shared/bookmarked/indexed.
-    if (sharedId) {
+    if (candidateId) {
       params.delete('ph_did');
       const query = params.toString();
       const clean = window.location.pathname + (query ? `?${query}` : '') + window.location.hash;
