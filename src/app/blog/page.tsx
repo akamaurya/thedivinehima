@@ -81,13 +81,13 @@ export default async function BlogPage() {
                         <div style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
                           <div style={{ marginBottom: '1rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                             {post.categories?.map((cat: string, i: number) => (
-                              <span key={i} style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--primary-color)', backgroundColor: '#f0f4f0', padding: '0.25rem 0.75rem', borderRadius: '1rem' }}>
+                              <span key={i} style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--color-primary)', backgroundColor: '#f0f4f0', padding: '0.25rem 0.75rem', borderRadius: '1rem' }}>
                                 {cat}
                               </span>
                             ))}
                           </div>
-                          <h2 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'var(--secondary-color)', lineHeight: 1.4 }}>{post.title}</h2>
-                          <div style={{ marginTop: 'auto', paddingTop: '1rem', borderTop: '1px solid #eee', fontSize: '0.85rem', color: '#888' }}>
+                          <h2 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'var(--color-text)', lineHeight: 1.4 }}>{post.title}</h2>
+                          <div style={{ marginTop: 'auto', paddingTop: '1rem', borderTop: '1px solid #eee', fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>
                             {date}
                           </div>
                         </div>

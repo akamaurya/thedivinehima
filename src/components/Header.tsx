@@ -54,7 +54,8 @@ export default function Header() {
 
   return (
     <header
-      className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}
+      // Home has no dark hero image behind the header, so it is solid from the first paint.
+      className={`${styles.header} ${scrolled || pathname === '/' ? styles.scrolled : ''}`}
     >
       <div className={styles.headerInner}>
         <Link href="/" className={styles.logo}>
@@ -103,6 +104,7 @@ export default function Header() {
       {/* Mobile menu */}
       <nav
         className={`${styles.mobileNav} ${mobileOpen ? styles.mobileNavOpen : ''}`}
+        inert={!mobileOpen}
       >
         <ul className={styles.mobileNavList}>
           {navLinks.map((link) => (

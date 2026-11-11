@@ -131,7 +131,7 @@
 }
 
 .infoCardLink {
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   transition: color var(--transition-fast);
 }
 

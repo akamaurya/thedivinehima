@@ -109,7 +109,7 @@
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   margin-bottom: 0.75rem;
 }
 
@@ -162,7 +162,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   font-weight: 700;
 }
 
@@ -180,7 +180,7 @@
   font-family: var(--font-heading);
   font-size: 1.35rem;
   font-weight: 700;
-  color: var(--color-gold);
+  color: var(--color-gold-text);
 }
 
 .enquireBtn {
