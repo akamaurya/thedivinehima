@@ -16,6 +16,7 @@ export const tourPackage = {
       type: 'array',
       of: [{ type: 'string' }],
     },
+    { name: 'url', title: 'Details Page (optional, e.g. /retreats/)', type: 'string' },
     {
       name: 'featured',
       title: 'Featured / Popular',

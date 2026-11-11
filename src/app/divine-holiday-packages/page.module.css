@@ -265,3 +265,15 @@
     padding: 2.5rem var(--container-padding);
   }
 }
+
+.detailsLink {
+  display: inline-block;
+  margin: 0.5rem 0 1.5rem;
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.notes {
+  border-top: 1px solid var(--color-border);
+}

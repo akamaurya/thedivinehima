@@ -3,14 +3,17 @@ import { client } from '../../../sanity/lib/client';
 import { urlForImage } from '../../../sanity/lib/image';
 import PageHero from '@/components/PageHero';
 import GalleryClient, { GalleryImage } from '@/components/GalleryClient';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from './page.module.css';
 
+const description = 'Photos of The Divine Hima, Dharamshala: the rooms, the restaurant and café, the art on the walls and the Dhauladhar views from Sidhpur.';
+
 export const metadata: Metadata = {
-  title: 'Gallery',
-  description: 'A visual journey through The Divine Hima, Dharamshala.',
+  title: { absolute: 'Photo Gallery: Rooms, Dining & Views | The Divine Hima, Dharamshala' },
+  description,
   openGraph: {
-    title: 'Gallery | The Divine Hima',
-    description: 'A visual journey through The Divine Hima, Dharamshala.',
+    title: 'Photo Gallery | The Divine Hima, Dharamshala',
+    description,
     url: 'https://thedivinehima.com/gallery/',
     images: [
       {
@@ -47,10 +50,12 @@ export default async function GalleryPage() {
   return (
     <main className={styles.main}>
       <PageHero 
-        title="Gallery" 
-        subtitle="A glimpse into The Divine Hima"
+        title="Photo Gallery"
+        subtitle="Rooms, dining and Himalayan views at The Divine Hima"
         backgroundImage="/wp-content/uploads/2018/04/takling-la-1.jpg"
+        alt="The Takling La Pass room at The Divine Hima, Dharamshala"
       />
+      <Breadcrumbs items={[{ name: 'Gallery', href: '/gallery/' }]} />
       <section className={`section ${styles.gallerySection}`}>
         <div className="container">
           <GalleryClient images={images} />

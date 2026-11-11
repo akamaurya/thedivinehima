@@ -329,6 +329,7 @@
 }
 
 .amenitiesList {
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -355,7 +356,7 @@
   align-items: flex-start;
 }
 
-.amenityContent h4 {
+.amenityContent h3 {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 400;
@@ -572,4 +573,62 @@
     flex-direction: column;
     gap: 2rem;
   }
+}
+
+/* Copy blocks added for search content (keep them quiet: body type, measured width). */
+.roomsIntro,
+.amenitiesIntro,
+.sightsIntro {
+  max-width: 60ch;
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.ratingLine {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.05rem;
+}
+
+.amenityContent h3 a,
+.sightTitle a {
+  text-decoration: underline;
+  text-decoration-color: var(--color-border);
+  text-underline-offset: 6px;
+  transition: text-decoration-color var(--transition-base);
+}
+
+.amenityContent h3 a:hover,
+.sightTitle a:hover {
+  text-decoration-color: var(--color-primary);
+}
+
+.guides {
+  margin-top: 5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--color-border-dark);
+}
+
+.guidesTitle {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+
+.guides ul {
+  list-style: none;
+  columns: 2 22rem;
+  column-gap: 4rem;
+  margin-bottom: 2.5rem;
+}
+
+.guides li {
+  break-inside: avoid;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.guides li a:hover {
+  color: var(--color-primary);
 }

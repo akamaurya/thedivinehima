@@ -1,41 +1,35 @@
 # The Divine Hima
 
-> A boutique luxury hotel in Dharamshala offering premium rooms, world-class dining, and breathtaking mountain views near the Norbulingka Institute.
+> A 12-room boutique hotel in Sidhpur, Dharamshala (Himachal Pradesh, India), directly opposite the Norbulingka Institute. Mountain-view rooms named after Himalayan passes, an in-house restaurant, café, wood-fired pizzeria and bar. Rated 4.5/5 by 1,264 guests on Google. Built by Sanjay Kumbkarni, a Himalayan geologist.
 
 ## Rooms
 
-- [Our Rooms](https://thedivinehima.com/divine-rooms/): Detailed information about our boutique luxury rooms and suites in Dharamshala, designed for comfort and tranquility.
+- [Rooms in Dharamshala](https://thedivinehima.com/divine-rooms/): All 12 rooms in three categories (Deluxe, Superior, Premium), from ₹7,450 to ₹15,000 a night with breakfast included. Each room has its own page at /rooms/<name>/.
+
+## Packages and retreats
+
+- [Holiday packages](https://thedivinehima.com/divine-holiday-packages/): 2-night and 3-night stays with breakfast and dinner, from ₹19,999 for two including taxes.
+- [The Himalayan Reset](https://thedivinehima.com/retreats/): A 6-day, 5-night small-group yoga and wellness retreat, from $599 per person all-inclusive, with private rooms.
 
 ## Dining
 
-- [Dining Experience](https://thedivinehima.com/dining/): Information on our world-class dining, menu, culinary experiences, and restaurant ambiance.
+- [Dining](https://thedivinehima.com/dining/): The restaurant (Himachali, Tibetan, Indian, Italian, Japanese, Chinese), Divine Café, Firewood Pizzeria and The Bar By Far. Vegetarian and vegan options.
 
-## Packages
+## About, gallery and contact
 
-- [Holiday Packages](https://thedivinehima.com/divine-holiday-packages/): Curated holiday packages and local experiences around Dharamshala.
+- [About](https://thedivinehima.com/about/): The story of the hotel and its founder.
+- [Gallery](https://thedivinehima.com/gallery/): Photos of the rooms, dining and views.
+- [Contact](https://thedivinehima.com/contact-us/): Phone, WhatsApp, email, directions by air, rail and road.
+- [Travel guides](https://thedivinehima.com/blog/): Dharamshala travel guides. Each guide lives at the site root, e.g. https://thedivinehima.com/best-time-to-visit-dharamshala/.
 
-## Gallery
+## Key facts
 
-- [Gallery](https://thedivinehima.com/gallery/): Visual showcase of The Divine Hima's exterior, interior, rooms, and beautiful Himalayan surroundings.
-
-## About & Contact
-
-- [About Us](https://thedivinehima.com/about/): The story behind The Divine Hima, founded by Sanjay Kumbkarni, and our commitment to luxury hospitality.
-- [Contact](https://thedivinehima.com/contact-us/): Location details, email, phone number, and directions to The Divine Hima in Sidhpur.
-- [Travel Guides](https://thedivinehima.com/blog/): Index of our Dharamshala travel guides. Each guide lives at the site root, e.g. https://thedivinehima.com/best-time-to-visit-dharamshala/.
-
-## Key Facts
-
-- Located in Sidhpur, Dharamshala, opposite the Norbulingka Institute.
-- Offers premium luxury accommodations with Himalayan views.
-- Owned by Sanjay Kumbkarni.
-- Amenities include free WiFi, an in-house restaurant, and parking.
-- Star Rating: 4.5 Stars
-- Phone: +918626983777
-- Cuisine: Highlights local Himachali, North Indian, and international cuisines.
-
-## Contact
-
-- Website: https://thedivinehima.com/
-- Phone: +918626983777
-- Address: Opposite Norbulingka Institute, Sidhpur, Dharamshala, HP 176057, India
+- Address: Opposite Norbulingka Institute, Sidhpur, Dharamshala, Kangra, Himachal Pradesh 176057, India
+- Phone and WhatsApp: +91 86269 83777
+- Email: reservation@thedivinehima.com
+- Check-in 2:00 PM, check-out 11:00 AM
+- Complimentary breakfast and daily housekeeping with every stay; room prices exclude taxes
+- Cancellation: full refund 14+ days before arrival, 50% refund 3+ days before, no refund after that
+- Pet friendly, free on-site parking, free Wi-Fi
+- Distances: Gyuto Monastery 2 km, HPCA cricket stadium 6 km, Kangra (Gaggal) airport 12 km, McLeod Ganj about 20 km
+- Google rating: 4.5/5 from 1,264 reviews

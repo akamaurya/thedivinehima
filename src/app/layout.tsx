@@ -18,11 +18,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://thedivinehima.com"),
   title: {
-    default: "The Divine Hima | Boutique Hotel in Dharamshala",
+    default: "Boutique Hotel in Dharamshala, Sidhpur | The Divine Hima",
     template: "%s | The Divine Hima",
   },
   description:
-    "Experience luxury in the Himalayas at The Divine Hima — a boutique hotel in Dharamshala offering premium rooms, world-class dining, and breathtaking mountain views.",
+    "12-room boutique hotel opposite Norbulingka in Sidhpur, Dharamshala. Rated 4.5/5 by 1,264 Google reviewers. Mountain-view rooms, restaurant, café and bar.",
   keywords: [
     "Boutique Hotel Dharamshala",
     "Luxury Hotel Himalayas",
@@ -44,8 +44,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: "https://thedivinehima.com",
-    title: "The Divine Hima | Boutique Hotel in Dharamshala",
-    description: "Experience luxury in the Himalayas at The Divine Hima — a boutique hotel in Dharamshala.",
+    title: "Boutique Hotel in Dharamshala, Sidhpur | The Divine Hima",
+    description: "12-room boutique hotel opposite Norbulingka in Sidhpur, Dharamshala. Rated 4.5/5 by 1,264 Google reviewers.",
     siteName: "The Divine Hima",
     images: [
       {
@@ -56,15 +56,9 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "The Divine Hima | Boutique Hotel in Dharamshala",
-    description: "Experience luxury in the Himalayas at The Divine Hima — a boutique hotel in Dharamshala.",
-    images: ["/wp-content/uploads/2024/12/luxury-hotel-in-dharamshala.jpg"],
-  },
-  alternates: {
-    canonical: "/",
-  },
+  // Card type only: X falls back to each page's og:title/description/image,
+  // so posts and rooms no longer preview as the homepage.
+  twitter: { card: "summary_large_image" },
   robots: {
     index: true,
     follow: true,
@@ -88,7 +82,8 @@ export const metadata: Metadata = {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Analytics from "@/components/Analytics";
-import { PHONE_E164 } from "@/lib/contact";
+import JsonLd from "@/components/JsonLd";
+import { hotelSchema, websiteSchema } from "@/lib/schema";
 
 export default function RootLayout({
   children,
@@ -98,68 +93,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: `
-            {
-              "@context": "https://schema.org",
-              "@type": "Hotel",
-              "name": "The Divine Hima",
-              "image": "https://thedivinehima.com/wp-content/uploads/2024/12/luxury-hotel-in-dharamshala.jpg",
-              "description": "Experience luxury in the Himalayas at The Divine Hima — a boutique hotel in Dharamshala offering premium rooms, world-class dining, and breathtaking mountain views.",
-              "founder": {
-                "@type": "Person",
-                "name": "Sanjay Kumbkarni"
-              },
-              "sameAs": [
-                "https://www.instagram.com/thedivinehima",
-                "https://www.facebook.com/thedivinehima",
-                "https://www.tripadvisor.in/Hotel_Review-g2058079-d10243144-Reviews-The_Divine_Hima-Sidhpur_Dharamshala_Kangra_District_Himachal_Pradesh.html"
-              ],
-              "knowsAbout": [
-                "Boutique Hospitality",
-                "Himalayan Tourism",
-                "Luxury Accommodation",
-                "Dharamshala Travel",
-                "Fine Dining"
-              ],
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Opposite Norbulingka Institute, Sidhpur",
-                "addressLocality": "Dharamshala",
-                "addressRegion": "HP",
-                "postalCode": "176057",
-                "addressCountry": "IN"
-              },
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": 32.1932,
-                "longitude": 76.3533
-              },
-              "url": "https://thedivinehima.com",
-              "telephone": "${PHONE_E164}",
-              "priceRange": "$$$",
-              "starRating": {
-                "@type": "Rating",
-                "ratingValue": "4.5"
-              },
-              "amenityFeature": [
-                {
-                  "@type": "LocationFeatureSpecification",
-                  "name": "Free WiFi",
-                  "value": true
-                },
-                {
-                  "@type": "LocationFeatureSpecification",
-                  "name": "Restaurant",
-                  "value": true
-                },
-                {
-                  "@type": "LocationFeatureSpecification",
-                  "name": "Parking",
-                  "value": true
-                }
-              ]
-            }
-          ` }} />
+        <JsonLd data={hotelSchema} />
+        <JsonLd data={websiteSchema} />
         <Header />
         {children}
         <Footer />
