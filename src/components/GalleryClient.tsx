@@ -13,7 +13,10 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
   const [activeCategory, setActiveCategory] = useState('All');
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
-  const categories = ['All', 'Property', 'Rooms', 'Dining', 'Views', 'Activities'];
+  // Only offer filters that have photos, so no tab opens onto an empty grid.
+  const categories = ['All', 'Property', 'Rooms', 'Dining', 'Views', 'Activities'].filter(
+    (cat) => cat === 'All' || images.some((img) => img.category?.toLowerCase() === cat.toLowerCase())
+  );
 
   const filteredImages = activeCategory === 'All' 
     ? images 
