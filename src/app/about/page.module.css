@@ -218,7 +218,7 @@
 }
 
 .distanceSep {
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   font-weight: 300;
 }
 
@@ -312,7 +312,7 @@
 
 .locationList li::before {
   content: '•';
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   position: absolute;
   left: 0;
 }

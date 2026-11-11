@@ -121,7 +121,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <Link 
               href={targetUrl} 
               className="btn btn-primary"
-              style={{ padding: '1rem 3rem', fontSize: '1.2rem', display: 'inline-block', borderRadius: '8px' }}
+              style={{ padding: '1rem 2rem', fontSize: '1.1rem', display: 'inline-block', borderRadius: '8px' }}
             >
               {value.text || 'Book Now'}
             </Link>
@@ -146,12 +146,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
             <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
               {post.categories?.map((cat: string, i: number) => (
-                <span key={i} style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--primary-color)', backgroundColor: '#f0f4f0', padding: '0.25rem 1rem', borderRadius: '2rem' }}>
+                <span key={i} style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--color-primary)', backgroundColor: '#f0f4f0', padding: '0.25rem 1rem', borderRadius: '2rem' }}>
                   {cat}
                 </span>
               ))}
             </div>
-            <div style={{ fontSize: '1rem', color: '#888' }}>
+            <div style={{ fontSize: '1rem', color: 'var(--color-text-muted)' }}>
               Published on {date}
             </div>
           </div>
@@ -159,8 +159,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div style={{ 
             fontSize: '1.1rem', 
             lineHeight: 1.8, 
-            color: '#333',
-            fontFamily: 'var(--font-lato), sans-serif'
+            color: '#333'
           }}>
             {post.body ? (
               <PortableText value={post.body} components={components} />

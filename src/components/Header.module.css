@@ -101,6 +101,11 @@
   text-shadow: none;
 }
 
+.scrolled .navLink:hover,
+.scrolled .navLinkActive {
+  color: var(--color-gold-text);
+}
+
 .navLink::after {
   content: '';
   position: absolute;
@@ -133,6 +138,11 @@
 .bookBtn {
   padding: 0.625rem 1.5rem;
   font-size: 0.75rem;
+}
+
+/* Over a dark hero the black button needs an edge to stay visible */
+.header:not(.scrolled) .bookBtn {
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 /* --- Hamburger --- */
@@ -242,12 +252,12 @@
 }
 
 .mobileNavLink:hover {
-  color: var(--color-gold);
+  color: var(--color-gold-text);
   padding-left: 0.5rem;
 }
 
 .mobileNavLinkActive {
-  color: var(--color-gold);
+  color: var(--color-gold-text);
 }
 
 .mobileBookBtn {

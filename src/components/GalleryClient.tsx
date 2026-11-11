@@ -13,7 +13,10 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
   const [activeCategory, setActiveCategory] = useState('All');
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
-  const categories = ['All', 'Property', 'Rooms', 'Dining', 'Views', 'Activities'];
+  // Only offer filters that have photos, so no tab opens onto an empty grid.
+  const categories = ['All', 'Property', 'Rooms', 'Dining', 'Views', 'Activities'].filter(
+    (cat) => cat === 'All' || images.some((img) => img.category?.toLowerCase() === cat.toLowerCase())
+  );
 
   const filteredImages = activeCategory === 'All' 
     ? images 
@@ -21,11 +24,12 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
 
   return (
     <>
-      <div className={styles.filterContainer}>
+      <div className={styles.filterRow}>
         {categories.map(cat => (
-          <button 
+          <button
             key={cat}
-            className={`${styles.filterBtn} ${activeCategory === cat ? styles.active : ''}`}
+            className={`${styles.filterPill} ${activeCategory === cat ? styles.filterPillActive : ''}`}
+            aria-pressed={activeCategory === cat}
             onClick={() => setActiveCategory(cat)}
           >
             {cat}
@@ -35,20 +39,24 @@ export default function GalleryClient({ images }: { images: GalleryImage[] }) {
 
       <div className={styles.masonryGrid}>
         {filteredImages.map((img) => (
-          <div 
-            key={img._id} 
-            className={styles.masonryItem}
+          <button
+            type="button"
+            key={img._id}
+            className={styles.galleryItem}
+            aria-label={`Enlarge ${img.title || 'photo'}`}
             onClick={() => setLightboxImage(img.imageUrl)}
           >
-            <img src={img.imageUrl} alt={img.title || 'Gallery Image'} className={styles.galleryImage} />
-          </div>
+            <img src={img.imageUrl} alt={img.title || 'Gallery Image'} />
+          </button>
         ))}
       </div>
 
       {lightboxImage && (
-        <div className={styles.lightbox} onClick={() => setLightboxImage(null)}>
-          <button className={styles.closeLightbox} onClick={() => setLightboxImage(null)}>✕</button>
-          <img src={lightboxImage} alt="Enlarged view" className={styles.lightboxImg} onClick={(e) => e.stopPropagation()} />
+        <div className={styles.lightboxOverlay} onClick={() => setLightboxImage(null)}>
+          <button className={styles.lightboxClose} aria-label="Close" onClick={() => setLightboxImage(null)}>✕</button>
+          <div className={styles.lightboxContent} onClick={(e) => e.stopPropagation()}>
+            <img src={lightboxImage} alt="Enlarged view" />
+          </div>
         </div>
       )}
     </>
